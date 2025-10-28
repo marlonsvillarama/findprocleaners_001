@@ -1,5 +1,6 @@
 <script>
     let {
+        id = '1',
         date = '20251028',
         text = 'This is a preview of a sample article from the blog. As time goes by, more articles will be written to provide valuable information for people wanting to clean their homes better.',
         title = 'Article'
@@ -17,8 +18,9 @@
     });
 </script>
 
-<div class="grid">
+<div class="flex flex-col">
     <h1 class="font-semibold text-lg text-green-700">{title}</h1>
     <span class="font-light text-sm">{articleDate}</span>
-    <p class="mt-2">{text}</p>
+    <p class="mt-2 mb-4">{text}</p>
+    <a href="/" class="text-sm font-semibold text-green-700 pb-2 hover:underline">Read article</a>
 </div>

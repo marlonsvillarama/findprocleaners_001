@@ -105,7 +105,7 @@
                     {/each}
                 </Select.Content>
             </Select.Root>
-            <Button class="bg-green-500 p-5 rounded-sm hover:bg-green-600 cursor-pointer">Search</Button>
+            <Button class="bg-green-700 p-5 rounded-sm hover:bg-green-800 font-normal cursor-pointer">Search</Button>
         </div>
         <!-- <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.</p>
         <div class="mt-10 flex items-center justify-center gap-x-6">

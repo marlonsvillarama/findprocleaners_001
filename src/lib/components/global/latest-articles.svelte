@@ -18,7 +18,10 @@
 </script>
 
 <div class="mx-4 sm:w-7xl sm:mx-auto grid gap-2">
-    <h1 class="text-xl text-green-800 font-semibold mb-1">Latest Articles</h1>
+    <div class="flex flex-row justify-between items-center">
+        <h1 class="text-xl text-green-800 font-semibold mb-1">Latest Articles</h1>
+        <a href="/" class="border-b-2 hover:border-b-green-800">Read Blog</a>
+    </div>
     <Separator />
     <div class="grid grid-cols-2 gap-12 items-start">
         {#each articles as article}
