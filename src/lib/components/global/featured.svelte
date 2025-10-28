@@ -61,8 +61,8 @@
     ];
 </script>
 
-<main class="m-auto max-w-7xl">
-    <h1 class="text-lg text-green-700 font-semibold mb-1">Featured Cleaners</h1>
+<div class="mx-4 sm:w-7xl sm:mx-auto">
+    <h1 class="text-xl text-green-800 font-bold mb-1">Featured Cleaners</h1>
     <ScrollArea orientation="horizontal" class="w-full whitespace-nowrap rounded-none">
         <div class="flex w-max space-x-4 pb-4">
             {#each featuredList as featured}
@@ -70,4 +70,4 @@
             {/each}
         </div>
     </ScrollArea>
-</main>
+</div>

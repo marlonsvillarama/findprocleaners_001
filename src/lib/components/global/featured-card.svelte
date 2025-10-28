@@ -1,6 +1,7 @@
 <script>
     // import * as StarRating from "$lib/components/ui/star-rating/index";
 
+    import ImageIcon from '@lucide/svelte/icons/image';
     import MailIcon from '@lucide/svelte/icons/mail';
     import PhoneIcon from '@lucide/svelte/icons/phone';
 	import StarIcon from '@lucide/svelte/icons/star';
@@ -16,11 +17,13 @@
     } = $props();
 </script>
 
-<div class="featured-card border rounded-sm h-72 sm:w-[300px]">
-    <h2 class="rounded-t-sm bg-green-700 py-1 px-3 text-white font-semibold text-md">{city}</h2>
+<div class="featured-card border-none rounded-sm h-72 sm:w-[280px]">
+    <h2 class="rounded-t-sm bg-green-800 py-1 px-3 text-white font-semibold text-md">{city}</h2>
     <div class="content">
-        <div class="img border">img</div>
-        <div class="grid company py-2 px-3 overflow-hidden text-ellipsis gap-1">
+        <div class="img border-x-1 border-green-800 bg-green-100 items-center justify-center">
+            <ImageIcon size={32} />
+        </div>
+        <div class="grid company py-2 px-3 overflow-hidden text-ellipsis gap-1 border-1 border-green-800 rounded-b-sm">
             <h3 class="">
                 {#if website}
                     <a class="underline font-semibold text-green-700" href={website} target="_blank">{name}</a>

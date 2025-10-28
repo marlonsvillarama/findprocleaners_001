@@ -43,7 +43,7 @@
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="#" class="text-md font-semibold text-white">Blog</a>
-        <a href="#" class="text-md font-normal text-white">Write a Review</a>
+        <a href="#" class="text-md font-semibold text-white">Write a Review</a>
         <a href="#" class="text-md font-semibold text-white">Advertise</a>
         <a href="#" class="text-md font-semibold text-white">Contact Us</a>
       </div>
@@ -122,9 +122,9 @@
 
 <style>
     .hero-area {
-        /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%),
-            url('/images/hero-01.jpg'); */
-        background-image: url('/images/hero-01.jpg');
+        background-image: linear-gradient(to bottom, rgba(0, 255, 0, 0.15) 0%, rgba(0, 255, 0, 0.15) 100%),
+            url('/images/hero-01.jpg');
+        /* background-image: url('/images/hero-01.jpg'); */
         background-size: cover;
     }
 </style>
