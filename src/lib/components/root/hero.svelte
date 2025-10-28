@@ -48,7 +48,7 @@
         <a href="#" class="text-md font-semibold text-white">Contact Us</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="bg-white px-5 py-3 rounded-lg text-md font-semibold text-green-500">Log in <span aria-hidden="true">&rarr;</span></a>
+        <a href="#" class="bg-white px-8 py-3 rounded-lg text-md font-semibold text-green-500">Log in</a>
       </div>
     </nav>
     <el-dialog>
@@ -122,9 +122,9 @@
 
 <style>
     .hero-area {
-        background-image: linear-gradient(to bottom, rgba(0, 255, 0, 0.15) 0%, rgba(0, 255, 0, 0.15) 100%),
-            url('/images/hero-01.jpg');
-        /* background-image: url('/images/hero-01.jpg'); */
+        /* background-image: linear-gradient(to bottom, rgba(0, 255, 0, 0.15) 0%, rgba(0, 255, 0, 0.15) 100%),
+            url('/images/hero-01.jpg'); */
+        background-image: url('/images/hero-01.jpg');
         background-size: cover;
     }
 </style>

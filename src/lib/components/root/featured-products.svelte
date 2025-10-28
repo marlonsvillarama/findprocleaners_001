@@ -28,7 +28,7 @@
     ];
 </script>
 
-<div class="mx-4 sm:w-7xl sm:mx-auto grid gap-2">
+<div class="mx-4 sm:w-7xl sm:mx-auto grid gap-4">
     <h1 class="text-xl text-green-800 font-semibold mb-1">Featured Products</h1>
     <Separator />
     <!-- <div class="border grid sm:grid-cols-3 gap-4 sm:gap-12 items-start"> -->
