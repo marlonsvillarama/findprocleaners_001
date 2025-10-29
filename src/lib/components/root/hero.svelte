@@ -42,10 +42,10 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <a href="#" class="text-md font-semibold text-white">Blog</a>
-        <a href="#" class="text-md font-semibold text-white">Write a Review</a>
+        <a href="#" class="text-md font-semibold text-white">Articles</a>
+        <a href="#" class="text-md font-semibold text-white">Review</a>
         <a href="#" class="text-md font-semibold text-white">Advertise</a>
-        <a href="#" class="text-md font-semibold text-white">Contact Us</a>
+        <a href="#" class="text-md font-semibold text-white">About Us</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a href="#" class="bg-white px-8 py-3 rounded-lg text-md font-semibold text-green-500">Log in</a>
@@ -71,7 +71,7 @@
               <div class="-my-6 divide-y divide-white/10">
                 <div class="space-y-2 py-6">
                   <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Blog</a>
-                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Write a Review</a>
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Review</a>
                   <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Advertise</a>
                   <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Company</a>
                 </div>

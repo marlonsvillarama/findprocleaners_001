@@ -3,7 +3,7 @@
 </script>
 
 <div class="">
-    <header class="absolute inset-x-0 top-0 z-50 bg-green-700">
+    <header class="bg-green-700">
         <nav aria-label="Global" class="flex items-center justify-between px-6 py-2 lg:px-8">
             <div class="flex lg:flex-1">
                 <a href="#" class="-m-1.5 py-3">
@@ -65,7 +65,7 @@
         </el-dialog>
     </header>
 
-    <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="relative isolate px-6 pt-8 lg:px-8">
         {@render children?.()}
     </div>
 </div>
