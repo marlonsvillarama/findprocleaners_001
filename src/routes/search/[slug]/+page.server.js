@@ -9,7 +9,7 @@ export async function load({ params, url }) {
 	// if (slug.toLowerCase() === 'new') { return {}; }
 	
 	/* let urlParams = url.searchParams.has('json');
-	console.log('+load urlParams', urlParams);
+	// console.log('+load urlParams', urlParams);
 	let { data } = await supabase.from("clients").select(`
 		*,
 		client_status (id, name)
@@ -25,11 +25,11 @@ export async function load({ params, url }) {
 	`)
 	.eq('country', '1')
 	.order('name');
-	console.log('server citiesResponse data', citiesResponse.data);
+	// console.log('server citiesResponse data', citiesResponse.data);
 	// let allCities = citiesResponse.data;
 
 	let city = citiesResponse.data.find(d => d.name.toLowerCase().replaceAll(' ', '+') === slug);
-	console.log('city', city);
+	// console.log('city', city);
 
 	let listingsResponse = await supabase.from("fpc_listings").select(`
 		id,
@@ -49,7 +49,7 @@ export async function load({ params, url }) {
 	.or(`city.is.null, city.eq.${city.id.toString()}`)
 	.eq('is_active', 'TRUE')
 	.order('name');
-	console.log('listingsResponse', listingsResponse);
+	// console.log('listingsResponse', listingsResponse);
 
 	return {
 		cities: citiesResponse.data,

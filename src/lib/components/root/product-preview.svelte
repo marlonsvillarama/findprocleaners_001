@@ -1,6 +1,6 @@
 <script>
     let { data } = $props();
-    console.log('product preview data', data);
+    // console.log('product preview data', data);
 </script>
 
 <div class="grid gap-3 w-[275px] h-max-[300px] text-center">

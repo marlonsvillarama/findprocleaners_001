@@ -2,7 +2,7 @@
     import FeaturedCard from "./featured-card.svelte";
 
     let { data } = $props();
-    console.log('*** featured data', data);
+    // console.log('*** featured data', data);
 </script>
 
 <div class="mx-4 sm:w-7xl sm:mx-auto">

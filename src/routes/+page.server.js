@@ -49,7 +49,7 @@ async function getProducts () {
         description,
         image_path
     `);
-    console.log('server getProducts data', data);
+    // console.log('server getProducts data', data);
 
     return data;
 };

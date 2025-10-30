@@ -6,12 +6,12 @@
     let { data } = $props();
     let value = $state('');
     const triggerContent = $derived.by(() => {
-        console.log('selected value', value);
+        // console.log('selected value', value);
         return data.cities.find(f => f.name === value)?.name ?? 'Select my city'
     });
 
     const searchCity = () => {
-        console.log('selected city', value);
+        // console.log('selected city', value);
         if (!value) { return; }
 
         window.location = `/search/${value.toLowerCase().replaceAll(' ', '+')}`;
