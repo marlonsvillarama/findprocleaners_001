@@ -5,18 +5,27 @@
     import Footer from "$lib/components/root/footer.svelte";
     import Hero from "$lib/components/root/hero.svelte";
     import LatestArticles from "$lib/components/root/latest-articles.svelte";
+
+    let { data } = $props();
 </script>
 
-<div class="grid gap-16 sm:gap-24">
-    <Hero />
+<svelte:head>
+    <title>FindProCleaners - Find the best cleaners near you</title>
+    <meta name="description" content="Find the best professional cleaners within your area.">
+</svelte:head>
 
-    <Featured />
+<div class="grid gap-16 sm:gap-16">
+    <Hero { data } />
+
+    {#if data.featured.length > 0}
+        <Featured { data } />
+    {/if}
 
     <LatestArticles />
 
-    <FeaturedProducts />
+    <FeaturedProducts { data } />
 
-    <CitiesList />
+    <CitiesList { data } />
 
     <Footer />
 </div>
