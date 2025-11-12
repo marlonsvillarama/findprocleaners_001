@@ -3,6 +3,7 @@
     import FeaturedProducts from "$lib/components/root/featured-products.svelte";
     import Featured from "$lib/components/root/featured.svelte";
     import Footer from "$lib/components/root/footer.svelte";
+    import Header from "$lib/components/root/header.svelte";
     import Hero from "$lib/components/root/hero.svelte";
     import LatestArticles from "$lib/components/root/latest-articles.svelte";
 
@@ -14,7 +15,9 @@
     <meta name="description" content="Find the best professional cleaners within your area.">
 </svelte:head>
 
-<div class="grid gap-16 sm:gap-16">
+<Header { data } />
+
+<div class="grid gap-16 sm:gap-24">
     <Hero { data } />
 
     {#if data.featured.length > 0}

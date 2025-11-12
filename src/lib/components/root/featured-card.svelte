@@ -16,26 +16,27 @@
         website = 'https://queenstowncleaningservices.co.nz/'
     */
     let { data } = $props();
+    console.log('featured data', data);
 </script>
 
 <a href={data.website} target="_blank">
-<div class="featured-card border-none rounded-md h-72 sm:w-[290px] bg-linear-to-b from-white to-green-100/20 shadow-md">
-    <h2 class="rounded-t-md bg-green-800 py-2 px-4 text-white font-normal text-sm">{data.city ? data.city.name : 'All Regions'}</h2>
+<div class="featured-card rounded-md sm:w-[290px] bg-linear-to-b from-white to-green-100/20 shadow-md">
+    <h2 class="rounded-t-md bg-green-800 py-2 px-3 text-white font-normal text-sm">{data.area_service === true ? (data.city || 'All Regions') : 'All Regions'}</h2>
     <div class="content bg-white rounded-b-md">
-        <div class="card-img">
-            <img src="/images/listings/{data.image_path}" class="w-full h-[120px] overflow-hidden object-none" alt={data.name} />
-        </div>
+        <div class="card-img w-full bg-[url('{data.image_path}')] bg-cover h-[160px]" />
+            <!-- <img src={data.image_path} class="w-full h-[120px] overflow-hidden object-none" alt={data.name} /> -->
+        <!-- </div> -->
         <!-- <div class="img border-x-1 border-green-800/50 bg-green-100 items-center justify-center">
             <ImageIcon size={32} />
         </div> -->
-        <div class="grid company py-2 px-3 overflow-hidden text-ellipsis gap-1 border-green-800 rounded-b-sm
-            bg-linear-to-b from-white to-green-100/40">
+        <div class="grid grid-rows-2 justify-between company pt-2 pb-3 px-3 min-h-[170px] rounded-b-sm">
+            <!-- "bg-linear-to-b from-white to-green-100/40"> -->
             <!-- <h3> -->
-                {#if data.website}
-                    <span class="underline font-semibold text-green-700 text-sm" href={data.website} target="_blank">{data.name}</span>
-                {:else}
-                    <span class="underline font-semibold text-green-700 text-sm">{data.name}</span>
-                {/if}
+                <!-- {#if data.website} -->
+                    <div class="font-semibold text-gray-700 text-md">{data.name}</div>
+                <!-- {:else} -->
+                    <!-- <div class="font-semibold text-gray-700 text-md">{data.name}</div> -->
+                <!-- {/if} -->
             <!-- </h3> -->
             
             <div class="details">
@@ -45,9 +46,9 @@
                         <span class="font-semibold">{(data.reviews_ave || 0).toFixed(1)}</span>
                     </div> -->
                     <div class="flex flex-row gap-1 items-center">
-                        <span class="font-extrabold text-lg text-green-800">{(data.review_ave || 0).toFixed(1)}</span>
+                        <span class="font-extrabold text-lg text-green-800">{(data.rating_ave || 0).toFixed(1)}</span>
                         <StarIcon size={16} class="fill-yellow-500" />
-                        <span class="text-sm">of {data.reviews_count || 0} reviews</span>
+                        <span class="text-sm">of {data.review_count || 0} reviews</span>
                     </div>
                 </div>
                 <div class="flex flex-col gap-[4px] text-sm justify-end">
@@ -73,23 +74,23 @@
 </a>
 
 <style>
-    .featured-card {
+    /* .featured-card {
         display: grid;
         grid-template-rows: auto 1fr;
         height: 100%;
-    }
-    .content {
+    } */
+    /* .content {
         display: grid;
         grid-template-rows: 1fr 1fr;
-    }
-    .company {
+    } */
+    /* .company {
         grid-template-rows: auto 1fr;
-    }
-    .details {
+    } */
+    /* .details {
         display: grid;
         grid-template-rows: auto 1fr;
-    }
-    .card-img {
+    } */
+    /* .card-img {
         position: relative;
     }
     .card-img::before {
@@ -101,5 +102,5 @@
         bottom: 0;
         background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(255, 255, 255, 1) 100%);
         z-index: 1;
-    }
+    } */
 </style>
