@@ -19,7 +19,7 @@
 
 <div class="mx-4 sm:w-7xl sm:mx-auto grid gap-2">
     <div class="flex flex-row justify-between items-center">
-        <h1 class="text-xl text-green-800 font-semibold mb-1">Latest Articles</h1>
+        <h1 class="text-xl text-green-800 font-semibold mb-1">Affiliate Articles</h1>
         <a href="/" class="border-b-2 hover:border-b-green-800">Read Blog</a>
     </div>
     <Separator />

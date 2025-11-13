@@ -4,6 +4,6 @@ import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from "$env/static/publi
 
 const supabaseUrl = PUBLIC_SUPABASE_URL;
 const supabaseKey = PUBLIC_SUPABASE_ANON_KEY;
-console.log('supabaseUrl', supabaseUrl);
-console.log('supabaseKey', supabaseKey);
+// console.log('supabaseUrl', supabaseUrl);
+// console.log('supabaseKey', supabaseKey);
 export const supabase = createClient(supabaseUrl, supabaseKey);
