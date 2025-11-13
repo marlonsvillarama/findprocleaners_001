@@ -11,6 +11,10 @@
     <meta name="description" content="Find the best professional cleaners within {data.city?.name}.">
 </svelte:head>
 
+<div class="mx-2 sm:mx-auto sm:w-[90%] sm:max-w-7xl">
+    
+</div>
+
 <div class="mx-4 sm"></div>
 <div class="search-results m-auto sm:w-[90%] gap-8">
     <SearchFilters { data } />

@@ -16,31 +16,32 @@
         website = 'https://queenstowncleaningservices.co.nz/'
     */
     let { data } = $props();
-    console.log('featured data', data);
+    console.log('featured card data', data);
 </script>
 
 <a href={data.website} target="_blank">
-<div class="featured-card rounded-md sm:w-[290px] bg-linear-to-b from-white to-green-100/20 shadow-md">
+<div class="featured-card rounded-md sm:w-[290px] bg-white from-white to-green-100/50 shadow-md">
     <h2 class="rounded-t-md bg-green-800 py-2 px-3 text-white font-normal text-sm">{data.area_service === true ? (data.city || 'All Regions') : 'All Regions'}</h2>
     <div class="content bg-white rounded-b-md">
-        <div class="card-img w-full bg-[url('{data.image_path}')] bg-cover h-[160px]" />
-            <!-- <img src={data.image_path} class="w-full h-[120px] overflow-hidden object-none" alt={data.name} /> -->
-        <!-- </div> -->
+        <div class="card-img w-full h-[200px] align-center overflow-hidden object-none flex items-center">
+            <img src={data.image_url} class="w-full align-center" alt={data.name} />
+        </div>
         <!-- <div class="img border-x-1 border-green-800/50 bg-green-100 items-center justify-center">
             <ImageIcon size={32} />
         </div> -->
-        <div class="grid grid-rows-2 justify-between company pt-2 pb-3 px-3 min-h-[170px] rounded-b-sm">
+        <div class="grid grid-rows-2 company pt-2 pb-3 px-3 min-h-[140px] rounded-b-sm
+            bg-linear-to-b from-white to-green-100/70">
             <!-- "bg-linear-to-b from-white to-green-100/40"> -->
             <!-- <h3> -->
                 <!-- {#if data.website} -->
-                    <div class="font-semibold text-gray-700 text-md">{data.name}</div>
+                    <div class="font-semibold text-gray-700 text-md border-none">{data.name}</div>
                 <!-- {:else} -->
                     <!-- <div class="font-semibold text-gray-700 text-md">{data.name}</div> -->
                 <!-- {/if} -->
             <!-- </h3> -->
             
-            <div class="details">
-                <div class="flex flex-row gap-2 items-center text-sm">
+            <div class="details grid gap-[0px] justify-start border-0 border-red-500">
+                <div class="flex flex-row gap-2 items-center text-sm border-none">
                     <!-- <span class="">Google rating:</span> -->
                     <!-- <div class="flex flex-row gap-1 items-center">
                         <span class="font-semibold">{(data.reviews_ave || 0).toFixed(1)}</span>
@@ -51,21 +52,19 @@
                         <span class="text-sm">of {data.review_count || 0} reviews</span>
                     </div>
                 </div>
-                <div class="flex flex-col gap-[4px] text-sm justify-end">
+                <div class="flex flex-col gap-[4px] text-sm justify-end border-none">
                     <div class="flex flex-row gap-3 items-center">
                         <PhoneIcon size={16} />
                         {#if data.phone_1} <span class="text-sm">0{data.phone_1}</span>
                         {:else} <span class="text-sm italic text-gray-400 font-light">No phone information</span>
                         {/if}
-                        <!-- <span class="font-semibold">{data.phone_1}</span> -->
                     </div>
-                    <div class="flex flex-row gap-3 items-center">
+                    <!-- <div class="flex flex-row gap-3 items-center">
                         <MailIcon size={16} />
                         {#if data.email_1} <span class="text-sm">{data.email_1}</span>
                         {:else} <span class="text-sm italic text-gray-400 font-light">No email information</span>
                         {/if}
-                        <!-- <span class="font-semibold">{data.email_1}</span> -->
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -90,7 +89,7 @@
         display: grid;
         grid-template-rows: auto 1fr;
     } */
-    /* .card-img {
+    .card-img {
         position: relative;
     }
     .card-img::before {
@@ -102,5 +101,5 @@
         bottom: 0;
         background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(255, 255, 255, 1) 100%);
         z-index: 1;
-    } */
+    }
 </style>

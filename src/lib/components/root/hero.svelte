@@ -63,7 +63,7 @@
                                         <a href="/search/{city.name.toLowerCase().replaceAll(' ', '+')}" target="_self"
                                             class="hover:bg-green-700/5"
                                         >
-                                            <h2 class="text-gray-600 hover:text-green-700 p-1 pl-2 border-l-2 border-transparent
+                                            <h2 class="text-gray-600 hover:text-green-700 p-1 px-2 border-l-2 border-transparent
                                                 hover:border-green-700
                                             ">{city.name}</h2>
                                         </a>

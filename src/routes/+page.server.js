@@ -1,3 +1,4 @@
+import { PUBLIC_SUPABASE_URL } from "$env/static/public"
 import { supabase } from "$lib/supabaseClient";
 import { error } from '@sveltejs/kit';
 
@@ -43,6 +44,7 @@ async function getListings () {
     // .or(`city.is.null, city.eq.${city.id.toString()}`)
     // console.log('server getListings', data);
 
+    data.forEach(d => d.image_url = `${PUBLIC_SUPABASE_URL}/storage/v1/object/public/fpc_listings/${d.image_path}`)
     return data;
 };
 
@@ -51,7 +53,8 @@ async function getProducts () {
         id,
         name,
         description,
-        image_path
+        image_path,
+        link
     `);
     // console.log('server getProducts data', data);
 
@@ -78,7 +81,7 @@ export async function load({ params, url }) {
     // console.log('cities', cities);
 
     let listings = await getListings();
-    console.log('listings', listings);
+    // console.log('listings', listings);
     let products = await getProducts();
     // console.log('products', products);
 

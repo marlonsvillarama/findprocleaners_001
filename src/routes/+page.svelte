@@ -17,14 +17,14 @@
 
 <Header { data } />
 
-<div class="grid gap-16 sm:gap-24">
+<div class="grid gap-16 sm:gap-24 bg-background-light">
     <Hero { data } />
 
     {#if data.featured.length > 0}
         <Featured { data } />
     {/if}
 
-    <LatestArticles />
+    <!-- <LatestArticles /> -->
 
     <FeaturedProducts { data } />
 

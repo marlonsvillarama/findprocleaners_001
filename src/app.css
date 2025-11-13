@@ -7,7 +7,7 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  /* --background: rgba(240, 240, 240, 0.5); */
+  --background-light: rgba(240, 240, 240, 0.5);
   --foreground: oklch(0.13 0.028 261.692);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);
