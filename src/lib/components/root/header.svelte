@@ -4,14 +4,14 @@
             text: 'Home',
             url: '/'
         },
-        {
-            text: 'Listings',
-            url: '/listings'
-        },
-        {
-            text: 'Advertise',
-            url: '/'
-        },
+        // {
+        //     text: 'Listings',
+        //     url: '/listings'
+        // },
+        // {
+        //     text: 'Advertise',
+        //     url: '/'
+        // },
         {
             text: 'Contact Us',
             url: '/contact'
@@ -19,7 +19,7 @@
     ];
 </script>
 
-<div class="flex items-end justify-between my-4 mx-2 sm:mx-auto sm:w-[90%] sm:max-w-7xl">
+<div class="flex items-end justify-between my-4 mx-2 sm:mx-auto sm:w-[90%] sm:max-w-7xl bg-white">
     <div class="flex items-end gap-4">
         <img src="/images/icons/findprocleaners.svg" alt="Find Pro Cleaners" class="w-[32px] h-auto">
         <div class="flex items-end">
