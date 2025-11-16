@@ -9,18 +9,27 @@
     } from "@lucide/svelte";
 
     let { data } = $props();
-    console.log('paginator', {
+    /* console.log('paginator', {
         count: data.count,
         firstIndex: data.firstIndex,
         lastIndex: data.lastIndex,
         hasPrevious: data.hasPrevious,
         hasNext: data.hasNext
-    });
+    }); */
 
     // const PAGE_COUNT = Math.ceil(data.count / 20);
     const gotoPage = (page) => {
         // let page = data.page + (inc === true ? 1 : -1);
-        window.location = `/search/${data.slug}?page=${page}`;
+        let arrParams = [];
+        let urlParams = new URLSearchParams(window.location.search);
+        urlParams.forEach((v, k) => {
+            arrParams.push(`${k}=${k === 'page' ? page : v}`);
+        });
+        console.log('paginator urlParams', urlParams);
+
+        let pageUrl = `/search/${data.slug}?${arrParams.join('&')}`;
+        console.log('paginator pageUrl', pageUrl);
+        window.location = pageUrl;
     };
 </script>
 

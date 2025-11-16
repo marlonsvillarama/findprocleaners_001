@@ -4,7 +4,9 @@
     import * as Popover from '$lib/components/ui/popover/index';
     import * as RadioGroup from '$lib/components/ui/radio-group/index';
     import * as Select from '$lib/components/ui/select/index';
+    import { IconShieldCheckered } from '@tabler/icons-svelte';
     import Button, { buttonVariants } from '../ui/button/button.svelte';
+    import Checkbox from '../ui/checkbox/checkbox.svelte';
     import Label from '../ui/label/label.svelte';
     import Separator from '../ui/separator/separator.svelte';
 
@@ -22,6 +24,17 @@
     // });
     // console.log(`cities = ${data.allCities?.length}`, data.allCities || []);
 
+    const serviceTypes = [
+        { id: 'boat', text: 'Boat Cleaning' },
+        { id: 'car wash', text: 'Car Wash' },
+        { id: 'carpet', text: 'Carpet' },
+        { id: 'establishment', text: 'Commercial' },
+        { id: 'house', text: 'House' },
+        { id: 'pressure', text: 'Pressure Wash' },
+        { id: 'upholstery', text: 'Upholstery' },
+        { id: 'window', text: 'Windows' },
+    ];
+
     const COLUMN_COUNT = 3;
     let groups = [];
     let perColumn = Math.ceil(data.cities.length / COLUMN_COUNT);
@@ -37,7 +50,46 @@
     // $effect(() => console.log('selectedCity', selectedCity))
     const cityTrigger = $derived(data.cities.find((c) => c.id === selectedCity)?.name ?? '--');
 
-    let selectedSort = $state('');
+    let selectedSort = $state(`${data.sort || ''}|${data.order}`);
+    let selectedTypes = $state(data?.types?.length > 0 ? data.types.split(',') : []);
+
+    const applyFilters = () => {
+        let sortParts = selectedSort.split('|');
+        let url = `/search/${data.slug}?page=${data.page}&sort=${sortParts[0]}`;
+
+        if (sortParts.length > 1) {
+            url = `${url}&order=${sortParts[1]}`
+        }
+
+        if (selectedTypes.length > 0) {
+            url = `${url}&types=${selectedTypes.join(',')}`
+        }
+
+        // console.log('applyFilters url', url);
+        window.location = url;
+    };
+
+    const isServiceTypeChecked = (type) => {
+        return data.types.split(',').indexOf(type) >= 0;
+    };
+
+    const updateServiceTypes = (id, toggle) => {
+        console.log(`selectedTypes BEFORE id = ${id}; toggle = ${toggle}`, selectedTypes);
+        if (toggle) {
+            if (selectedTypes.indexOf(id) < 0) {
+                console.log(`pushing into array (toggle = ${toggle}): ${id}...`)
+                selectedTypes.push(id);
+            }
+        }
+        else {
+            if (selectedTypes.indexOf(id) >= 0) {
+                console.log(`removing from array (toggle = ${toggle}): ${id}...`)
+                selectedTypes = selectedTypes.filter(d => d !== id);
+            }
+        }
+
+        console.log(`selectedTypes AFTER id = ${id}; toggle = ${toggle}`, selectedTypes);
+    };
 </script>
 
 <div class="grid gap-1 w-[250px]">
@@ -50,8 +102,8 @@
 
                 <Dialog.Root>
                     <Dialog.Trigger>
-                        <div class="flex justify-center items-center gap-3 py-2 border-b-2 border-green-700 w-full bg-white rounded-sm text-green-700 cursor-pointer
-                            hover:shadow-lg">
+                        <div class="flex justify-center items-center gap-3 py-2 border-green-700 w-full bg-white rounded-sm text-green-700 cursor-pointer
+                            shadow-sm hover:shadow-md">
                             <Building2 size={20} />
                             <span>Select your city</span>
                         </div>
@@ -100,7 +152,23 @@
 
             <!-- <Separator /> -->
 
-            <Field.Field class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
+            <div class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm pb-2 font-medium">Job Types</h2>
+                    <!-- <Button variant="secondary">Clear types</Button> -->
+                </div>
+                <div class="grid gap-1">
+                    {#each serviceTypes as serviceType}
+                        <Field.Field orientation="horizontal" class="pl-3 hover:bg-green-700/5">
+                            <Checkbox id="type-{serviceType.id}" value={serviceType.id}
+                                checked={isServiceTypeChecked(serviceType.id)}
+                                onCheckedChange={v => updateServiceTypes(serviceType.id, v)}></Checkbox>
+                            <Field.Label for="type-{serviceType.id}" class="px-1 py-1 cursor-pointer font-light">{serviceType.text}</Field.Label>
+                        </Field.Field>
+                    {/each}
+                </div>
+            </div>
+            <!-- <Field.Field class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
                 <Field.Label>Job Type</Field.Label>
                 <RadioGroup.Root bind:value={selectedSort}>
                     <Label class="w-full cursor-pointer px-3 font-light">
@@ -119,24 +187,28 @@
                         <RadioGroup.Item value="water+blasting" />
                         Water Blasting
                     </Label>
+                    <Label class="w-full cursor-pointer px-3 font-light">
+                        <RadioGroup.Item value="water+blasting" />
+                        Water Blasting
+                    </Label>
                 </RadioGroup.Root>
-            </Field.Field>
+            </Field.Field> -->
 
             <!-- <Separator /> -->
 
             <Field.Field class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
-                <Field.Label>Sort by...</Field.Label>
+                <Field.Label>Sort Results</Field.Label>
                 <RadioGroup.Root bind:value={selectedSort}>
                     <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="highest+rated" />
+                        <RadioGroup.Item value="rating_ave|desc" />
                         Highest Rated
                     </Label>
                     <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="most+reviews" />
+                        <RadioGroup.Item value="review_count|desc" />
                         Most reviews
                     </Label>
                     <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="name" />
+                        <RadioGroup.Item value="name|asc" />
                         Name
                     </Label>
                 </RadioGroup.Root>
@@ -144,7 +216,7 @@
 
             <!-- <Separator /> -->
 
-            <Button class="bg-green-700 hover:bg-green-800 cursor-pointer">Apply filters</Button>
+            <Button class="bg-green-700 hover:bg-green-800 cursor-pointer" disabled={!selectedSort} onclick={applyFilters}>Apply filters</Button>
         </Field.Group>
     </Field.Set>
 </div>

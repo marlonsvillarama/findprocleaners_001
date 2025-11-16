@@ -40,8 +40,10 @@ async function getFeatured (options) {
 	`)
 	.eq('is_active', true)
 	.eq('is_featured', true)
-	.or(`city.eq.${options.slug}`, 'city.eq.null')
+	.ilike('city', `%${options.slug}%`)
+	// .or(`city.eq.${options.slug}`, 'city.eq.null')
 	.not('website', 'eq', null)
+	.gt('review_count', 0)
 	.range(0, 2)
 	.order('rating_ave', { ascending: false })
 	.order('review_count', { ascending: false })
@@ -52,18 +54,30 @@ async function getFeatured (options) {
 };
 
 async function getListings (options) {
-	const PAGE_SIZE = 20;
-	const PAGE_START = PAGE_SIZE * ((options.page || 1) - 1);
-	const PAGE_END = PAGE_START + PAGE_SIZE - 1;
-	console.log('getListings', { PAGE_SIZE, PAGE_START, PAGE_END });
+	let { page, slug, sort, order, types } = options;
 
-	let { count, error } = await supabase.from("fpc_listings")
+	const PAGE_SIZE = 20;
+	const PAGE_START = PAGE_SIZE * ((page || 1) - 1);
+	const PAGE_END = PAGE_START + PAGE_SIZE - 1;
+	// console.log('getListings', { PAGE_SIZE, PAGE_START, PAGE_END, options });
+
+	let countQuery = supabase.from("fpc_listings")
 		.select('id', { count: 'exact', head: true })
 		.eq('is_active', true)
-		.not('website', 'eq', null);
+		.eq('is_featured', false)
+		.ilike('city', `%${slug}%`)
+		.not('website', 'eq', null)
+		.gt('review_count', 0);
 		// .or(`city.eq.${options.slug}`, 'city.eq.null')
+	
+	if (types.length > 0) {
+		let typeFilters = types.map(t => `types.ilike.%${t}%`).join(', ');
+		// console.log('typeFilters', typeFilters);
+		countQuery = countQuery.or(typeFilters);
+	}
+	let { count, error } = await countQuery;
 
-	let { data } = await supabase.from("fpc_listings").select(`
+	let listingsQuery = supabase.from("fpc_listings").select(`
 		id,
 		name,
 		types,
@@ -81,23 +95,39 @@ async function getListings (options) {
 		review_count,
 		rating_ave,
 		area_service,
-		image_path
+		image_path,
+		fpc_reviews (
+			id,
+			review_timestamp,
+			review_text,
+			author_title,
+			review_id,
+			review_link
+		)
 	`)
 	.eq('is_active', true)
 	.eq('is_featured', false)
-	.or(`city.eq.${options.slug}`, 'city.eq.null')
+	.ilike('city', `%${options.slug}%`)
 	.not('website', 'eq', null)
+	.gt('review_count', 0)
 	.range(PAGE_START, PAGE_END)
-	.order('name');
+	.order(sort, { ascending: order === 'asc' });
 	// .or(`city.is.null, city.eq.${city.id.toString()}`)
 	// console.log('server getListings', data);
+	
+	if (types.length > 0) {
+		let typeFilters = types.map(t => `types.ilike.%${t}%`).join(', ');
+		// console.log('typeFilters', typeFilters);
+		listingsQuery = listingsQuery.or(typeFilters);
+	}
+	let { data } = await listingsQuery;
 
 	data.forEach(d => d.image_url = `${PUBLIC_SUPABASE_URL}/storage/v1/object/public/fpc_listings/${d.image_path}`)
-	console.log('getListings return...', {
+	/* console.log('getListings return...', {
 		count,
 		hasNext: PAGE_END < count,
 		hasPrevious: PAGE_START >= PAGE_SIZE
-	});
+	}); */
 	return {
 		count,
 		data,
@@ -108,12 +138,51 @@ async function getListings (options) {
 	};
 };
 
+/* async function getReviews (options) {
+	// const PAGE_SIZE = 20;
+	// const PAGE_START = PAGE_SIZE * ((options.page || 1) - 1);
+	// const PAGE_END = PAGE_START + PAGE_SIZE - 1;
+	// console.log('getListings', { PAGE_SIZE, PAGE_START, PAGE_END, options });
+
+	/* let { count, error } = await supabase.from("fpc_reviews")
+		.select('id', { count: 'exact', head: true })
+		.eq('is_active', true)
+		.eq('is_featured', false)
+		.ilike('city', `%${options.slug}%`)
+		.not('website', 'eq', null);
+		// .or(`city.eq.${options.slug}`, 'city.eq.null') *
+
+	let { data } = await supabase.from("fpc_reviews").select(`
+		id,
+		review_timestamp,
+		review_text,
+		author_title,
+		review_id,
+		review_link
+	`)
+	.in('id', options.list);
+	// .or(`city.is.null, city.eq.${city.id.toString()}`)
+	// console.log('server getListings', data);
+
+	// data.forEach(d => d.image_url = `${PUBLIC_SUPABASE_URL}/storage/v1/object/public/fpc_listings/${d.image_path}`)
+	console.log('getReviews return...', data);
+	return data;
+}; */
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params, url }) {
     let slug = params.slug;
     // console.log('+load slug', slug);
 
 	// if (slug.toLowerCase() === 'new') { return {}; }
+	let sortParam = url.searchParams.get('sort') || 'name';
+	// console.log('sortParam', sortParam);
+	
+	let orderParam = url.searchParams.get('order') || 'asc';
+	// console.log('orderParam', orderParam);
+
+	let typesParam = url.searchParams.get('types') || '';
+	// console.log('typesParam', typesParam);
 	
 	/* let urlParams = url.searchParams.has('page');
 	// console.log('+load urlParams', urlParams);
@@ -142,7 +211,14 @@ export async function load({ params, url }) {
 	let pageParam = url.searchParams.get('page') || 1;
 
 	let featured = await getFeatured({ slug });
-    let listings = await getListings({ page: pageParam, slug });
+    let listings = await getListings({
+		page: pageParam,
+		slug,
+		sort: sortParam.toLowerCase(),
+		order: orderParam.toLowerCase(),
+		types: typesParam.toLowerCase().split(',')
+	});
+	// let reviews = await getReviews({ list: listings.data.map(d => d.id) })
 	/* let listingsResponse = await supabase.from("fpc_listings").select(`
 		id,
 		name,
@@ -173,7 +249,10 @@ export async function load({ params, url }) {
 		hasPrevious: listings.hasPrevious,
 		lastIndex: listings.lastIndex,
 		results: listings.data.filter(d => d.is_featured === false),
+		order: orderParam,
 		page: pageParam,
-		slug
+		slug,
+		sort: sortParam,
+		types: typesParam
     };
 }
