@@ -1,4 +1,6 @@
 <script>
+    import ContactForm from "./contact-form.svelte";
+
     let links = [
         {
             text: 'Home',
@@ -12,15 +14,15 @@
         //     text: 'Advertise',
         //     url: '/'
         // },
-        {
-            text: 'Contact Us',
-            url: '/contact'
-        },
+        // {
+        //     text: 'Contact Us',
+        //     url: '/contact'
+        // },
     ];
 </script>
 
 <!-- <div class="bg-green-800 w-full py-12 text-white"> -->
-<div class="bg-green-800 py-12 text-white">
+<div class="bg-green-800 pt-10 pb-12 text-white">
     <div class="mx-2 sm:mx-auto sm:w-[90%] sm:max-w-7xl flex items-center justify-between gap-8">
     <!-- <div class="grid grid-cols-2 items-center justify-between mx-2 sm:mx-auto sm:w-[90%] sm:max-w-7xl"> -->
         <div class="grid gap-1">
@@ -32,6 +34,8 @@
                 <a href={link.url} title={link.text} class="text-md font-normal text-gray-200 pb-[2px] border-b-2 border-transparent
                     hover:text-white hover:border-white">{link.text}</a>
             {/each}
+
+            <ContactForm isFooter={true} />
         </div>
     </div>
 </div>

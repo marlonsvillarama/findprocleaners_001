@@ -100,7 +100,7 @@
 	}); */
 </script>
 
-<div class="results-container grid gap-8">
+<div class="results-container grid">
     <div>
         <h1 class="text-green-800 text-2xl font-extrabold mb-1">Search Results for '{data.city?.name}'</h1>
         <Separator class="mb-1" />
@@ -108,7 +108,7 @@
     </div>
 
     {#if data.featured.length > 0}
-    <div class="grid gap-2">
+    <div class="grid gap-2 mb-8">
         <h2 class="text-xl font-semibold">Featured Cleaners</h2>
         <div class="grid gap-4 bg-green-300/10 rounded-md bg-accent/20 shadow-md p-6 sm:flex sm:flex-cols-3 sm:justify-between">
             {#each data.featured as d}
@@ -125,7 +125,7 @@
     {/if}
 
     {#if data.results.length > 0}
-        <div class="grid gap-2 mt-4">
+        <div class="grid gap-2">
             <SearchPaginator { data } />
 
             <div class="grid gap-1">
@@ -140,13 +140,14 @@
         <div class="grid gap-2 mt-8">
             <h1 class="font-bold pb-4 text-5xl">Uh-oh...</h1>
             <p class="">We did not find anything in {data.city?.name} at this time.</p>
-            <p class="">Please feel free to read our articles, refer a cleaner you know, or write a review!</p>
+            <p class="">Please feel free to contact us and refer a cleaner you know!</p>
         </div>
         <div class="flex flex-row gap-4 items-center mt-8">
-            <a href="/blog" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Read our blog</a>
-            <a href="/advertise" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Refer a cleaner</a>
-            <a href="/advertise" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Advertise with us</a>
-            <a href="/review" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Write a review</a>
+            <!-- <a href="/blog" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Read our blog</a> -->
+            <!-- <a href="/advertise" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Refer a cleaner</a> -->
+            <!-- <a href="/advertise" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Advertise with us</a> -->
+            <!-- <a href="/review" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Write a review</a> -->
+            <a href="/contact" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Contact Us</a>
         </div>
     {/if}
 </div>

@@ -1,4 +1,6 @@
 <script>
+    import ContactForm from "./contact-form.svelte";
+
     let links = [
         {
             text: 'Home',
@@ -12,10 +14,10 @@
         //     text: 'Advertise',
         //     url: '/'
         // },
-        {
-            text: 'Contact Us',
-            url: '/contact'
-        },
+        // {
+        //     text: 'Contact Us',
+        //     url: '/contact'
+        // },
     ];
 </script>
 
@@ -34,5 +36,7 @@
             <a href={link.url} title={link.text} class="text-md font-normal text-green-700 pb-[2px] border-b-2 border-transparent
                 hover:text-green-900 hover:border-green-900">{link.text}</a>
         {/each}
+
+        <ContactForm />
     </div>
 </div>
