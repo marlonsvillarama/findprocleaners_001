@@ -29,7 +29,7 @@
     let contactErrors = $state({});
     let isOpen = $state(false);
     let isSubmitting = $state(false);
-    let isSubmitted = $state(true);
+    let isSubmitted = $state(false);
 
     let inquiryTypes = [
         { value: 'advertise', text: 'Advertise a cleaner' },
@@ -158,14 +158,18 @@
         <div class="grid gap-8 max-h-[500px] overflow-scroll p-2 pr-4">
             <div class="grid gap-1">
                 <Label for="your_name" class="ml-[2px]">Your Name</Label>
-                <Input id="your_name" name="your_name" bind:value={contactData.name} onblur={() => hasError('name')} />
+                <Input id="your_name" name="your_name" bind:value={contactData.name}
+                    class="text-sm font-light"
+                    onblur={() => hasError('name')} />
                 {#if !!contactErrors['name'] === true}
                     <Label class="ml-[2px] text-sm text-red-500 font-light">Please enter your name.</Label>
                 {/if}
             </div>
             <div class="grid gap-1">
                 <Label for="your_email" class="ml-[2px]">Your Email</Label>
-                <Input id="your_email" name="your_email" type="email" bind:value={contactData.email} onblur={() => hasError('email')} />
+                <Input id="your_email" name="your_email" type="email" bind:value={contactData.email}
+                    class="text-sm font-light"
+                    onblur={() => hasError('email')} />
                 {#if !!contactErrors['email'] === true}
                     <Label class="ml-[2px] text-sm text-red-500 font-light">Please enter a valid email address.</Label>
                 {/if}
@@ -173,12 +177,13 @@
             <div class="grid gap-1">
                 <Label for="inquiry_type" class="ml-[2px]">Inquiry Type</Label>
                 <Select.Root type="single" name="inquiry_type" id="inquiry_type" bind:value={contactData.type} onValueChange={setTypeDefaults} onblur={() => hasError('type')}>
-                    <Select.Trigger>
+                    <Select.Trigger class="text-sm font-light">
                         {triggerContent}
                     </Select.Trigger>
                     <Select.Content>
                         {#each inquiryTypes as t}
                             <Select.Item
+                                class="text-sm font-light"
                                 value={t.value}
                                 label={t.text}
                             >
@@ -195,7 +200,9 @@
             {#if contactData.type === 'advertise'}
                 <div class="grid gap-1">
                     <Label for="cleaner_name" class="ml-[2px]">Business Name</Label>
-                    <Input id="cleaner_name" name="cleaner_name" bind:value={contactData.cleaner} onblur={() => hasError('cleaner')} />
+                    <Input id="cleaner_name" name="cleaner_name" bind:value={contactData.cleaner}
+                        class="text-sm font-light"
+                        onblur={() => hasError('cleaner')} />
                     {#if contactErrors['cleaner'] === true}
                         <Label class="ml-[2px] text-sm text-red-500 font-light">Please enter the cleaner's business name.</Label>
                     {/if}
@@ -211,7 +218,9 @@
                             Your city
                         {/if}
                     </Label>
-                    <Input id="your_city" name="your_city" bind:value={contactData.city} onblur={() => hasError('city')} />
+                    <Input id="your_city" name="your_city" bind:value={contactData.city}
+                        class="text-sm font-light"
+                        onblur={() => hasError('city')} />
                     {#if contactErrors['city'] === true}
                         <Label class="ml-[2px] text-sm text-red-500 font-light">
                             {#if contactData.type === 'advertise'}
@@ -226,7 +235,8 @@
             
             <div class="grid gap-1">
                 <Label class="ml-[2px]">Your Message (max 500 words)</Label>
-                <Textarea id="your_message" name="your_message" class="resize-none h-[100px]" maxlength="500" bind:value={contactData.message} onblur={() => hasError('message')}></Textarea>
+                <Textarea id="your_message" name="your_message" class="resize-none h-[100px] text-sm font-light" maxlength="500"
+                    bind:value={contactData.message} onblur={() => hasError('message')}></Textarea>
                 {#if contactErrors['message'] === true}
                     <Label class="ml-[2px] text-sm text-red-500 font-light">Please enter your message.</Label>
                 {/if}
