@@ -80,19 +80,7 @@
         }
 
         isSubmitting = true;
-        setTimeout(() => {
-            isSubmitting = false;
-            isSubmitted = true;
-
-            setTimeout(() => {
-                resetContactData();
-                isOpen = false;
-                setTimeout(() => isSubmitted = false, 1000)
-            }, 2000);
-            // toast.success("Inquiry form submitted!");
-        }, 5000);
-
-        /* let jsonResponse = await fetch(API_URL, {
+        let jsonResponse = await fetch(API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -105,14 +93,31 @@
         jsonResponse = await jsonResponse.json();
         console.log(`submitData jsonResponse`, jsonResponse);
 
-        isSubmitting = true;
+        isSubmitting = false;
+        isSubmitted = true;
         success = jsonResponse.ok;
+        setTimeout(() => {
+            resetContactData();
+            isOpen = false;
+            setTimeout(() => isSubmitted = false, 1000)
+        }, 2000);
         if (success) {
             console.log('YES');
         }
         else {
             console.log('NO');
-        } */
+        }
+        /* setTimeout(() => {
+            isSubmitting = false;
+            isSubmitted = true;
+
+            setTimeout(() => {
+                resetContactData();
+                isOpen = false;
+                setTimeout(() => isSubmitted = false, 1000)
+            }, 2000);
+            // toast.success("Inquiry form submitted!");
+        }, 5000); */
     };
 
     const validateCity = () => {
