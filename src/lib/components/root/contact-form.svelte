@@ -9,7 +9,7 @@
     import Spinner from '$lib/components/ui/spinner/spinner.svelte';
     import Textarea from '$lib/components/ui/textarea/textarea.svelte';
 
-    const API_URL = 'https://0olq4i6esc.execute-api.ap-southeast-2.amazonaws.com/default/fpc_inquiries';
+    const API_URL = 'https://hfy2qvtl1c.execute-api.ap-southeast-2.amazonaws.com/default/fpc_inquiries';
 
     let { isFooter = false } = $props();
     
@@ -29,7 +29,7 @@
     let contactErrors = $state({});
     let isOpen = $state(false);
     let isSubmitting = $state(false);
-    let isSubmitted = $state(false);
+    let isSubmitted = $state(true);
 
     let inquiryTypes = [
         { value: 'advertise', text: 'Advertise a cleaner' },
@@ -80,6 +80,10 @@
         }
 
         isSubmitting = true;
+        console.log('submit data', JSON.stringify({
+            ...contactData,
+            ts: (new Date()).getTime().toString()
+        }));
         let jsonResponse = await fetch(API_URL, {
             method: 'POST',
             headers: {
@@ -147,8 +151,8 @@
         </Dialog.Header>
         {#if isSubmitted === true}
             <div class="py-1">
-                <h1 class="text-3xl text-green-700 font-semibold">Thank you for your inquiry!</h1>
-                <p class="pt-4 font-extralight text-md">We will do our best to get back to you as quickly as we can.</p>
+                <h1 class="text-xl text-green-700 font-semibold">Thank you for your inquiry!</h1>
+                <p class="pt-4 font-extralight text-sm">We will do our best to get back to you as quickly as we can.</p>
             </div>
         {:else}
         <div class="grid gap-8 max-h-[500px] overflow-scroll p-2 pr-4">
