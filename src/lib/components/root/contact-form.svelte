@@ -142,7 +142,7 @@
 </script>
 
 <Dialog.Root bind:open={isOpen}>
-    <Dialog.Trigger class="cursor-pointer text-md font-normal pb-[2px] border-b-2 border-transparent {triggerClass}">Contact Us</Dialog.Trigger>
+    <Dialog.Trigger class="cursor-pointer text-xs md:text-sm font-light pb-[2px] border-b-1 border-gray-500 {triggerClass}">Contact Us</Dialog.Trigger>
     <Dialog.Content class="bg-white pb-12">
         <Dialog.Header>
             <Dialog.Title>

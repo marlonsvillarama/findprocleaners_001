@@ -13,7 +13,7 @@
         <Separator class="shadow-md" />
     </div>
 
-    <div class="px-6 pt-8 lg:px-8 bg-accent pb-16 flex flex-1">
+    <div class="pt-4 md:pt-8 bg-accent pb-12 md:pb-16 flex flex-1">
         {@render children?.()}
     </div>
 

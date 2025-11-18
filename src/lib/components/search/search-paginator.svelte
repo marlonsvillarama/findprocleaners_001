@@ -35,10 +35,12 @@
 
 <div class="flex items-center justify-between py-1">
     <div>
-        <h2 class="text-xl font-semibold">Results Found ({data.count})</h2>
+        <h2 class="text-sm font-light">Found ({data.count}) cleaners</h2>
     </div>
     <div class="flex flex-1 items-center justify-end gap-2">
-        Results {data.firstIndex} to {data.lastIndex} of {data.count}
+        <!-- <span class="hidden md:block">
+            Results {data.firstIndex} to {data.lastIndex} of {data.count}
+        </span> -->
         <!-- {table.getFilteredSelectedRowModel().rows.length} of -->
         <!-- <span>Total Results:</span> <span class="font-semibold">{data.results.length}</span> -->
         <div class="flex w-full items-center gap-8 lg:w-fit">
@@ -63,25 +65,25 @@
                     </Select.Content>
                 </Select.Root>
             </div> -->
-            <div class="flex w-fit items-center justify-center text-sm font-medium">
+            <!-- <div class="flex w-fit items-center justify-center text-sm font-medium"> -->
                 <!-- Page {table.getState().pagination.pageIndex + 1} of
                 {table.getPageCount()} -->
-            </div>
-            <div class="ml-auto flex items-center gap-2 lg:ml-0">
+            <!-- </div> -->
+            <div class="ml-auto flex items-center gap-1 md:gap-2 lg:ml-0">
                 <Button
                     variant="outline"
-                    class="h-8 w-8 p-0 lg:flex cursor-pointer"
+                    class="h-6 w-6 md:h-8 md:w-8 p-0 lg:flex cursor-pointer"
                     onclick={() => gotoPage(1)}
                     disabled={!data.hasPrevious}
                 >
                     <!-- onclick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()} -->
                     <span class="sr-only">Go to first page</span>
-                    <ChevronsLeft />
+                    <ChevronsLeft size={16} />
                 </Button>
                 <Button
                     variant="outline"
-                    class="size-8"
+                    class="h-6 w-6 md:h-8 md:w-8 p-0 lg:flex cursor-pointer"
                     size="icon"
                     onclick={() => gotoPage(data.page - 1)}
                     disabled={!data.hasPrevious}
@@ -89,11 +91,11 @@
                     <!-- onclick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()} -->
                     <span class="sr-only">Go to previous page</span>
-                    <ChevronLeft />
+                    <ChevronLeft size={16} />
                 </Button>
                 <Button
                     variant="outline"
-                    class="size-8"
+                    class="h-6 w-6 md:h-8 md:w-8 p-0 lg:flex cursor-pointer"
                     size="icon"
                     onclick={() => gotoPage(parseInt(data.page) + 1)}
                     disabled={!data.hasNext}
@@ -105,7 +107,7 @@
                 </Button>
                 <Button
                     variant="outline"
-                    class="hidden size-8 lg:flex cursor-pointer hover:shadow-sm"
+                    class="h-6 w-6 md:h-8 md:w-8 p-0 lg:flex cursor-pointer"
                     size="icon"
                     onclick={() => gotoPage(Math.ceil(data.count / 20))}
                     disabled={!data.hasNext}

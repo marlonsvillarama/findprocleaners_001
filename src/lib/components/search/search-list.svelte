@@ -102,8 +102,8 @@
 
 <div class="results-container grid">
     <div>
-        <h1 class="text-green-800 text-2xl font-extrabold mb-1">Search Results for '{data.city?.name}'</h1>
-        <Separator class="mb-1" />
+        <div class="text-green-800 text-lg lg:text-lg font-light">Results for <span class="font-semibold mb-1">'{data.city?.name}'</span></div>
+        <Separator class="mt-1 mb-1" />
         <!-- <span class="text-gray-500">Found <span class="text-gray-900 font-light">{data.count}</span> cleaners servicing this city</span> -->
     </div>
 
@@ -138,9 +138,9 @@
         </div>
     {:else}
         <div class="grid gap-2 mt-8">
-            <h1 class="font-bold pb-4 text-5xl">Uh-oh...</h1>
-            <p class="">We did not find anything in {data.city?.name} at this time.</p>
-            <p class="">Please feel free to contact us and refer a cleaner you know!</p>
+            <h1 class="font-bold pb-4 text-3xl lg:text-5xl">Uh-oh...</h1>
+            <p class="text-xs md:text-sm font-light text-gray-600">We did not find anything in {data.city?.name} at this time.</p>
+            <p class="text-xs md:text-sm font-light text-gray-600">Please feel free to contact us and refer a cleaner you know!</p>
         </div>
         <div class="flex flex-row gap-4 items-center mt-8">
             <!-- <a href="/blog" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Read our blog</a> -->
