@@ -76,7 +76,7 @@
         <div class="flex flex-col gap-1 items-start mt-4 pl-6">
             {#if data.fpc_reviews.length > 0}
                 <span class="font-normal text-xs text-left text-gray-600 pb-1 border-b-1 border-green-600">Customer review from {data.fpc_reviews[0].author_title}</span>
-                <p class="text-xs text-gray-600 text-left font-extralight leading-[1.25rem] tracking-wider px-2 pt-1">{data.fpc_reviews[0].review_text}</p>
+                <p class="text-xs text-gray-800 text-left font-extralight leading-[1.25rem] tracking-wider px-2 pt-1">{data.fpc_reviews[0].review_text}</p>
             {:else}
                 <!-- <p class="text-sm text-gray-500 italic text-left mb-2">Be the first one to review this cleaner!</p> -->
                 <!-- <Dialog.Root>
