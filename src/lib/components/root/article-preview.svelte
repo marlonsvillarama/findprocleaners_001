@@ -9,7 +9,7 @@
     let dt = $state(date);
     let articleDate = $derived.by((dt) => {
         let newDate = new Date(date.slice(0, 4), parseInt(date.slice(4,6)) - 1, date.slice(6));
-        console.log(newDate);
+        // console.log(newDate);
         return Intl.DateTimeFormat('en-US', {
             day: 'numeric',
             month: 'long',

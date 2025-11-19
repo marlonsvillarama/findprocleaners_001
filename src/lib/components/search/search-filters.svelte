@@ -1,7 +1,8 @@
 <script>
     import * as Dialog from '$lib/components/ui/dialog/index';
     import * as Field from '$lib/components/ui/field/index';
-    import * as Popover from '$lib/components/ui/popover/index';
+    import { Popover } from 'bits-ui';
+    // import * as Popover from '$lib/components/ui/popover/index';
     import * as RadioGroup from '$lib/components/ui/radio-group/index';
     import * as Select from '$lib/components/ui/select/index';
     import { IconShieldCheckered } from '@tabler/icons-svelte';
@@ -10,10 +11,16 @@
     import Label from '../ui/label/label.svelte';
     import Separator from '../ui/separator/separator.svelte';
 
-    import { Building2 } from '@lucide/svelte';
+    import {
+        Building2,
+        Search,
+        X
+    } from '@lucide/svelte';
 
+    // import { createPaginatorData } from '$lib/data/paginator.svelte';
     let { data } = $props();
-    // console.log('filters data', data);
+    // let paginator = createPaginatorData();
+    console.log('filters data', data);
 
     // import citiesList from '$lib/data/cities';
     // let cities = citiesList.map(c => {
@@ -46,14 +53,29 @@
         col++;
     } while (col < COLUMN_COUNT);
 
+    let isFiltersOpen = $state(false);
+
     let selectedCity = $state('');
     // $effect(() => console.log('selectedCity', selectedCity))
     const cityTrigger = $derived(data.cities.find((c) => c.id === selectedCity)?.name ?? '--');
 
+    const searchCity = () => {
+        if (!selectedCity) { return; }
+
+        let city = data.cities.find((c) => c.id === selectedCity);
+        // console.log(`selectedCity = ${selectedCity}`, city);
+        window.location = `/search/${city.name.toLowerCase().replaceAll(' ', '+')}`;
+    };
+
     let selectedSort = $state(`${data.sort || ''}|${data.order}`);
-    let selectedTypes = $state(data?.types?.length > 0 ? data.types.split(',') : []);
+    let selectedTypes = $state(data?.types?.length > 0 ? data.types : []);
 
     const applyFilters = () => {
+        // console.log('*** applyFilters');
+        // paginator.printFilters();
+        // console.log('*** gotoPage url ***', paginator.applyFiltersToUrl());
+        // window.location = paginator.applyFiltersToUrl();
+
         let sortParts = selectedSort.split('|');
         let url = `/search/${data.slug}?page=${data.page}&sort=${sortParts[0]}`;
 
@@ -70,153 +92,220 @@
     };
 
     const isServiceTypeChecked = (type) => {
-        return data.types.split(',').indexOf(type) >= 0;
+        return data.types.indexOf(type) >= 0;
     };
 
+    /* const getSort = () => {
+        console.log(`*** getSort BEFORE`, paginator.sort);
+        return `${paginator.sort}|${paginator.order}`;
+    }; */
+
+    /* const updateSort = (id) => {
+        // console.log(`*** updateSort BEFORE id = ${id}`, paginator.sort);
+        let parts = id.split('|');
+        paginator.sort = parts[0];
+        paginator.order = parts[1];
+
+        console.log(`*** updateSort AFTER id = ${id}`, paginator.sort);
+        // console.log(`selectedTypes AFTER id = ${id}; toggle = ${toggle}`, paginator.types);
+    }; */
+
     const updateServiceTypes = (id, toggle) => {
-        console.log(`selectedTypes BEFORE id = ${id}; toggle = ${toggle}`, selectedTypes);
+        // console.log(`selectedTypes BEFORE id = ${id}; toggle = ${toggle}`, selectedTypes);
+        // console.log(`*** updateServiceTypes selectedTypes BEFORE id = ${id}; toggle = ${toggle}`, paginator.types);
         if (toggle) {
             if (selectedTypes.indexOf(id) < 0) {
-                console.log(`pushing into array (toggle = ${toggle}): ${id}...`)
+                // console.log(`pushing into array (toggle = ${toggle}): ${id}...`)
                 selectedTypes.push(id);
             }
+            // if (paginator.types.indexOf(id) < 0) {
+            //     console.log(`pushing into array (toggle = ${toggle}): ${id}...`)
+            //     paginator.types.push(id);
+            // }
         }
         else {
             if (selectedTypes.indexOf(id) >= 0) {
-                console.log(`removing from array (toggle = ${toggle}): ${id}...`)
+                // console.log(`removing from array (toggle = ${toggle}): ${id}...`)
                 selectedTypes = selectedTypes.filter(d => d !== id);
             }
+            // if (paginator.types.indexOf(id) >= 0) {
+            //     console.log(`removing from array (toggle = ${toggle}): ${id}...`)
+            //     paginator.types = paginator.types.filter(d => d !== id);
+            // }
         }
 
-        console.log(`selectedTypes AFTER id = ${id}; toggle = ${toggle}`, selectedTypes);
+        // console.log(`selectedTypes AFTER id = ${id}; toggle = ${toggle}`, selectedTypes);
+        // console.log(`selectedTypes AFTER id = ${id}; toggle = ${toggle}`, paginator.types);
     };
 </script>
 
-<div class="grid gap-1 w-[250px]">
-    <h1 class="text-green-800 text-2xl font-extrabold mb-1">Filters</h1>
+<div class="gap-1 md:w-[250px]">
+    <h1 class="hidden md:block text-green-800 text-lg font-light mb-1">Search Filters</h1>
 
     <Field.Set>
-        <Field.Group>
+        <Field.Group class="gap-4">
             <Field.Field>
-                <!-- <Field.Label for="city">Select your city</Field.Label> -->
+                <div class="hidden md:block">
+                    <Dialog.Root>
+                        <Dialog.Trigger class="w-full">
+                            <div class="flex justify-center items-center gap-3 py-2 md:py-3 border-b-2 border-green-700 w-full bg-white rounded-sm text-sm text-green-700 cursor-pointer
+                                hover:shadow-lg">
+                                <Building2 size={20} />
+                                <span class="text-xs">Select your city</span>
+                            </div>
+                        </Dialog.Trigger>
 
-                <Dialog.Root>
-                    <Dialog.Trigger>
-                        <div class="flex justify-center items-center gap-3 py-2 border-green-700 w-full bg-white rounded-sm text-green-700 cursor-pointer
-                            shadow-sm hover:shadow-md">
+                        <Dialog.Content class="absolute bg-white rounded-sm min-w-[800px] max-h-[550px] overflow-auto" side="right">
+                            <div class="flex gap-4 items-center justify-center">
+                                <Building2 size={20} />
+                                <!-- <h1 class="text-xl text-left text-green-700 font-bold">Select your city</h1> -->
+                                <h1 class="text-md text-left text-green-700 font-medium">Select your city</h1>
+                            </div>
+                            <div class="city-grid items-start px-4 mx-4 mt-4 mb-8">
+                                <!-- {#each groups as group}
+                                    <div class="grid gap-2"> -->
+                                        <!-- {#each group as city} -->
+                                {#each data.cities as city}
+                                    <a href="/search/{city.name.toLowerCase().replaceAll(' ', '+')}" target="_self"
+                                        class="hover:bg-green-700/5 mb-2"
+                                    >
+                                        <div class="text-sm text-gray-600 font-light hover:text-green-700 p-1 px-2 border-l-2 border-transparent
+                                            hover:border-green-700
+                                        ">{city.name}</div>
+                                    </a>
+                                {/each}
+                                    <!-- </div>
+                                {/each} -->
+                            </div>
+                            <!-- <div class="grid grid-cols-3 items-start px-4">
+                                {#each groups as group}
+                                    <div class="grid gap-2">
+                                        {#each group as city}
+                                            <a href="/search/{city.name.toLowerCase().replaceAll(' ', '+')}" target="_self"
+                                                class="hover:bg-green-700/5"
+                                            >
+                                                <h2 class="text-gray-600 hover:text-green-700 p-1 px-2 border-l-2 border-transparent
+                                                    hover:border-green-700
+                                                ">{city.name}</h2>
+                                            </a>
+                                        {/each}
+                                    </div>
+                                {/each}
+                            </div> -->
+                        </Dialog.Content>
+                    </Dialog.Root>
+                </div>
+
+                <div class="md:hidden flex items-center justify-between gap-4">
+                    <Select.Root type="single" bind:value={selectedCity} onValueChange={searchCity}>
+                        <Select.Trigger class="w-full flex justify-center items-center gap-3 py-2 md:py-3 border-b-2 border-green-700 w-full bg-white rounded-sm text-xs md:text-sm text-green-700 cursor-pointer
+                                hover:shadow-lg">
                             <Building2 size={20} />
                             <span>Select your city</span>
-                        </div>
-                    </Dialog.Trigger>
-                    <!-- <Dialog.Trigger>
-                        <div class="px-3 py-2 border shadow-sm w-full bg-white rounded-sm text-green-700 cursor-pointer hover:bg-white">
-                            -- Select a city --
-                        </div>
-                    </Dialog.Trigger> -->
+                        </Select.Trigger>
+                        <Select.Content>
+                            <div class="max-h-[400px] overflow-scroll">
+                            {#each data.cities as city}
+                                <Select.Item value={city.id}>
+                                    <div class="text-xs text-gray-600 font-light hover:text-green-700 p-1 px-2 border-l-2 border-transparent
+                                        hover:border-green-700
+                                    ">{city.name}</div>
+                                </Select.Item>
+                            {/each}
+                            </div>
+                        </Select.Content>
+                    </Select.Root>
 
-                    <Dialog.Content class="absolute bg-white rounded-sm min-w-[800px] max-h-[550px] overflow-auto" side="right">
-                        <div class="flex gap-4 items-center justify-center">
-                            <Building2 size={20} />
-                            <h1 class="text-xl text-left text-green-700 font-bold">Select your city</h1>
-                        </div>
-                        <div class="grid grid-cols-3 items-start px-4">
-                            {#each groups as group}
-                                <div class="grid gap-2">
-                                    {#each group as city}
-                                        <!-- <a href="/search/{city.name.toLowerCase().replaceAll(' ', '+')}" target="_self">
-                                            <h2 class="text-green-700">{city.name}</h2>
-                                        </a> -->
-                                        <a href="/search/{city.name.toLowerCase().replaceAll(' ', '+')}" target="_self"
-                                            class="hover:bg-green-700/5"
-                                        >
-                                            <h2 class="text-gray-600 hover:text-green-700 p-1 px-2 border-l-2 border-transparent
-                                                hover:border-green-700
-                                            ">{city.name}</h2>
-                                        </a>
+                    <Dialog.Root>
+                        <Dialog.Trigger class="w-[200px]">
+                            <div class="md:hidden border-1 border-input rounded-md bg-white px-4 py-[0.6rem] text-xs text-green-700 font-light">Open filters</div>
+                        </Dialog.Trigger>
+                        <Dialog.Content class="absolute bg-white rounded-sm max-h-[80%] overflow-auto" side="right">
+                            <div class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-sm pb-2 font-medium">Job Types</h2>
+                                </div>
+                                <div class="grid gap-1">
+                                    {#each serviceTypes as serviceType}
+                                        <Field.Field orientation="horizontal" class="pl-3">
+                                            <Checkbox id="type-{serviceType.id}" value={serviceType.id}
+                                                checked={isServiceTypeChecked(serviceType.id)}
+                                                onCheckedChange={v => updateServiceTypes(serviceType.id, v)}></Checkbox>
+                                            <Field.Label for="type-{serviceType.id}" class="text-xs py-2 cursor-pointer font-light">{serviceType.text}</Field.Label>
+                                        </Field.Field>
                                     {/each}
                                 </div>
-                            {/each}
-                        </div>
-                    </Dialog.Content>
-                </Dialog.Root>
-                <!-- <Select.Root type="single" name="city" bind:value={selectedCity}>
-                    <Select.Trigger class="w-full">{cityTrigger}</Select.Trigger>
+                            </div>
+                            
+                            <Field.Field class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
+                                <Field.Label>Sort Results</Field.Label>
+                                <RadioGroup.Root bind:value={selectedSort}>
+                                    <Label class="text-xs w-full cursor-pointer px-3 font-light">
+                                        <RadioGroup.Item value="rating_ave|desc" />
+                                        Highest Rated
+                                    </Label>
+                                    <Label class="text-xs w-full cursor-pointer px-3 font-light">
+                                        <RadioGroup.Item value="review_count|desc" />
+                                        Most reviews
+                                    </Label>
+                                    <Label class="text-xs w-full cursor-pointer px-3 font-light">
+                                        <RadioGroup.Item value="name|asc" />
+                                        Name
+                                    </Label>
+                                </RadioGroup.Root>
+                            </Field.Field>
 
-                    <Select.Content>
-                        {#each data.allCities as city (city.name)}
-                            <Select.Item value={city.id} label={city.name}>{city.name}</Select.Item>
+                            <Button class="text-xs bg-green-700 hover:bg-green-800 cursor-pointer" disabled={!selectedSort} onclick={applyFilters}>Apply filters</Button>
+                        </Dialog.Content>
+                    </Dialog.Root>
+                </div>
+            </Field.Field>
+
+            <div class="hidden md:block md:grid md:gap-4">
+                <div class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-sm pb-2 font-medium">Job Types</h2>
+                        <!-- <Button variant="secondary">Clear types</Button> -->
+                    </div>
+                    <div class="grid gap-1">
+                        {#each serviceTypes as serviceType}
+                            <Field.Field orientation="horizontal" class="pl-3">
+                                <Checkbox id="type-{serviceType.id}" value={serviceType.id}
+                                    checked={isServiceTypeChecked(serviceType.id)}
+                                    onCheckedChange={v => updateServiceTypes(serviceType.id, v)}></Checkbox>
+                                <Field.Label for="type-{serviceType.id}" class="text-xs py-2 cursor-pointer font-light">{serviceType.text}</Field.Label>
+                            </Field.Field>
                         {/each}
-                    </Select.Content>
-                </Select.Root> -->
-            </Field.Field>
-
-            <!-- <Separator /> -->
-
-            <div class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
-                <div class="flex items-center justify-between">
-                    <h2 class="text-sm pb-2 font-medium">Job Types</h2>
-                    <!-- <Button variant="secondary">Clear types</Button> -->
+                    </div>
                 </div>
-                <div class="grid gap-1">
-                    {#each serviceTypes as serviceType}
-                        <Field.Field orientation="horizontal" class="pl-3 hover:bg-green-700/5">
-                            <Checkbox id="type-{serviceType.id}" value={serviceType.id}
-                                checked={isServiceTypeChecked(serviceType.id)}
-                                onCheckedChange={v => updateServiceTypes(serviceType.id, v)}></Checkbox>
-                            <Field.Label for="type-{serviceType.id}" class="px-1 py-1 cursor-pointer font-light">{serviceType.text}</Field.Label>
-                        </Field.Field>
-                    {/each}
-                </div>
+
+                <Field.Field class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
+                    <Field.Label>Sort Results</Field.Label>
+                    <RadioGroup.Root bind:value={selectedSort}>
+                        <Label class="text-xs w-full cursor-pointer px-3 font-light">
+                            <RadioGroup.Item value="rating_ave|desc" />
+                            Highest Rated
+                        </Label>
+                        <Label class="text-xs w-full cursor-pointer px-3 font-light">
+                            <RadioGroup.Item value="review_count|desc" />
+                            Most reviews
+                        </Label>
+                        <Label class="text-xs w-full cursor-pointer px-3 font-light">
+                            <RadioGroup.Item value="name|asc" />
+                            Name
+                        </Label>
+                    </RadioGroup.Root>
+                </Field.Field>
+
+                <Button class="text-xs bg-green-700 hover:bg-green-800 cursor-pointer" disabled={!selectedSort} onclick={applyFilters}>Apply filters</Button>
             </div>
-            <!-- <Field.Field class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
-                <Field.Label>Job Type</Field.Label>
-                <RadioGroup.Root bind:value={selectedSort}>
-                    <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="home" />
-                        Home Cleaning
-                    </Label>
-                    <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="office" />
-                        Office Cleaning
-                    </Label>
-                    <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="window" />
-                        Window Cleaning
-                    </Label>
-                    <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="water+blasting" />
-                        Water Blasting
-                    </Label>
-                    <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="water+blasting" />
-                        Water Blasting
-                    </Label>
-                </RadioGroup.Root>
-            </Field.Field> -->
-
-            <!-- <Separator /> -->
-
-            <Field.Field class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
-                <Field.Label>Sort Results</Field.Label>
-                <RadioGroup.Root bind:value={selectedSort}>
-                    <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="rating_ave|desc" />
-                        Highest Rated
-                    </Label>
-                    <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="review_count|desc" />
-                        Most reviews
-                    </Label>
-                    <Label class="w-full cursor-pointer px-3 font-light">
-                        <RadioGroup.Item value="name|asc" />
-                        Name
-                    </Label>
-                </RadioGroup.Root>
-            </Field.Field>
-
-            <!-- <Separator /> -->
-
-            <Button class="bg-green-700 hover:bg-green-800 cursor-pointer" disabled={!selectedSort} onclick={applyFilters}>Apply filters</Button>
         </Field.Group>
     </Field.Set>
 </div>
+
+<style>
+    .city-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+</style>

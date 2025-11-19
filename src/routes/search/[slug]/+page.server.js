@@ -1,6 +1,7 @@
 import { PUBLIC_SUPABASE_URL } from "$env/static/public"
 import { supabase } from "$lib/supabaseClient";
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
+// import { createPaginatorData } from "$lib/data/paginator.svelte";
 
 async function getCities () {
 	let { data } = await supabase.from("fpc_cities").select(`
@@ -56,9 +57,6 @@ async function getFeatured (options) {
 async function getListings (options) {
 	let { page, slug, sort, order, types } = options;
 
-	const PAGE_SIZE = 20;
-	const PAGE_START = PAGE_SIZE * ((page || 1) - 1);
-	const PAGE_END = PAGE_START + PAGE_SIZE - 1;
 	// console.log('getListings', { PAGE_SIZE, PAGE_START, PAGE_END, options });
 
 	let countQuery = supabase.from("fpc_listings")
@@ -76,6 +74,13 @@ async function getListings (options) {
 		countQuery = countQuery.or(typeFilters);
 	}
 	let { count, error } = await countQuery;
+	const PAGE_SIZE = 20;
+	const PAGE_START = PAGE_SIZE * ((page || 1) - 1);
+	const PAGE_END = PAGE_START + PAGE_SIZE - 1;
+
+	if (PAGE_START > count) {
+		redirect(302, `/search/${slug}?page=1&sort=${sort}&order=${order}&types=${types.join(',')}`);
+	}
 
 	let listingsQuery = supabase.from("fpc_listings").select(`
 		id,
@@ -171,18 +176,27 @@ async function getListings (options) {
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params, url }) {
+	// let paginator = createPaginatorData();
     let slug = params.slug;
+	// paginator.slug = params.slug;
     // console.log('+load slug', slug);
+
+	let pageParam = url.searchParams.get('page') || 1;
+	// paginator.page = pageParam;
+	// console.log('+load pageParam', pageParam);
 
 	// if (slug.toLowerCase() === 'new') { return {}; }
 	let sortParam = url.searchParams.get('sort') || 'name';
-	// console.log('sortParam', sortParam);
+	// paginator.sort = sortParam.toLowerCase();
+	// console.log('+load sortParam', sortParam);
 	
 	let orderParam = url.searchParams.get('order') || 'asc';
-	// console.log('orderParam', orderParam);
+	// paginator.order = orderParam.toLowerCase();
+	// console.log('+load orderParam', orderParam);
 
 	let typesParam = url.searchParams.get('types') || '';
-	// console.log('typesParam', typesParam);
+	// paginator.types = typesParam.toLowerCase().split(',');
+	// console.log('+load typesParam', typesParam);
 	
 	/* let urlParams = url.searchParams.has('page');
 	// console.log('+load urlParams', urlParams);
@@ -208,7 +222,7 @@ export async function load({ params, url }) {
 	let city = cities.find(d => d.name.toLowerCase().replaceAll(' ', '+') === slug);
 	// console.log('city', city);
 
-	let pageParam = url.searchParams.get('page') || 1;
+	// let pageParam = url.searchParams.get('page') || 1;
 
 	let featured = await getFeatured({ slug });
     let listings = await getListings({
@@ -218,6 +232,11 @@ export async function load({ params, url }) {
 		order: orderParam.toLowerCase(),
 		types: typesParam.toLowerCase().split(',')
 	});
+		// page: paginator.page,
+		// slug,
+		// sort: paginator.sort.toLowerCase(),
+		// order: paginator.order.toLowerCase(),
+		// types: paginator.types
 	// let reviews = await getReviews({ list: listings.data.map(d => d.id) })
 	/* let listingsResponse = await supabase.from("fpc_listings").select(`
 		id,
@@ -253,6 +272,6 @@ export async function load({ params, url }) {
 		page: pageParam,
 		slug,
 		sort: sortParam,
-		types: typesParam
+		types: typesParam.split(',')
     };
 }

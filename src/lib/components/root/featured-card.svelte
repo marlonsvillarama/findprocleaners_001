@@ -16,7 +16,7 @@
         website = 'https://queenstowncleaningservices.co.nz/'
     */
     let { data } = $props();
-    console.log('featured card data', data);
+    // console.log('featured card data', data);
 </script>
 
 <a href={data.website} target="_blank">

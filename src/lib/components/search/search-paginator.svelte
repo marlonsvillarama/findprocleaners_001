@@ -1,5 +1,8 @@
 <script>
     import Button from "../ui/button/button.svelte";
+    import Separator from "../ui/separator/separator.svelte";
+
+    // import { createPaginatorData } from "$lib/data/paginator.svelte";
 
     import {
         ChevronLeft,
@@ -17,30 +20,53 @@
         hasNext: data.hasNext
     }); */
 
+    let selectedSort = $state(`${data.sort || ''}|${data.order}`);
+    // let selectedSort = paginator.sort;
+    let selectedTypes = $state(data?.types?.length > 0 ? data.types : []);
+    // let selectedTypes = paginator.types;
+
     // const PAGE_COUNT = Math.ceil(data.count / 20);
     const gotoPage = (page) => {
+        // let paginator = createPaginatorData();
+        // paginator.slug = data.slug;
+        // console.log('*** paginator load');
+        // paginator.printFilters();
+        // paginator.page = page
+        // paginator.printFilters();
+        // console.log('*** gotoPage url ***', paginator.applyFiltersToUrl());
+        // return;
+        // paginator.applyFiltersToUrl();
+
+        let sortParts = selectedSort.split('|');
+        let url = `/search/${data.slug}?page=${data.page}&sort=${sortParts[0]}`;
+
+        if (sortParts.length > 1) {
+            url = `${url}&order=${sortParts[1]}`
+        }
+
+        if (selectedTypes.length > 0) {
+            url = `${url}&types=${selectedTypes.join(',')}`
+        }
+
         // let page = data.page + (inc === true ? 1 : -1);
         let arrParams = [];
         let urlParams = new URLSearchParams(window.location.search);
         urlParams.forEach((v, k) => {
             arrParams.push(`${k}=${k === 'page' ? page : v}`);
         });
-        console.log('paginator urlParams', urlParams);
+        // console.log('paginator urlParams', urlParams);
 
         let pageUrl = `/search/${data.slug}?${arrParams.join('&')}`;
-        console.log('paginator pageUrl', pageUrl);
+        // console.log('paginator pageUrl', pageUrl);
         window.location = pageUrl;
     };
 </script>
 
 <div class="flex items-center justify-between py-1">
     <div>
-        <h2 class="text-sm font-light">Found ({data.count}) cleaners</h2>
+        <h2 class="text-xs md:text-sm font-light">{data.firstIndex} to {data.lastIndex} of {data.count} cleaners</h2>
     </div>
     <div class="flex flex-1 items-center justify-end gap-2">
-        <!-- <span class="hidden md:block">
-            Results {data.firstIndex} to {data.lastIndex} of {data.count}
-        </span> -->
         <!-- {table.getFilteredSelectedRowModel().rows.length} of -->
         <!-- <span>Total Results:</span> <span class="font-semibold">{data.results.length}</span> -->
         <div class="flex w-full items-center gap-8 lg:w-fit">

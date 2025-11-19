@@ -4,12 +4,13 @@
 
     import SearchFeatured from "./search-featured.svelte";
     import SearchPaginator from "./search-paginator.svelte";
+    import SearchResult from "./search-result.svelte";
+	import ContactForm from "../root/contact-form.svelte";
 
     import * as Select from "../ui/select/index";
     import Button from "../ui/button/button.svelte";
     import Label from "../ui/label/label.svelte";
     import Separator from "../ui/separator/separator.svelte";
-    import SearchResult from "./search-result.svelte";
 
     // import { ChevronLeft, ChevronsLeft, ChevronRight, ChevronsRight } from "@lucide/svelte";
 	// import LayoutColumnsIcon from "@tabler/icons-svelte/icons/layout-columns";
@@ -100,9 +101,9 @@
 	}); */
 </script>
 
-<div class="results-container grid">
+<div class="results-container grid items-start">
     <div>
-        <div class="text-green-800 text-lg lg:text-lg font-light">Results for <span class="font-semibold mb-1">'{data.city?.name}'</span></div>
+        <div class="text-green-800 text-md lg:text-lg font-light">Results for <span class="font-semibold mb-1">'{data.city?.name}'</span></div>
         <Separator class="mt-1 mb-1" />
         <!-- <span class="text-gray-500">Found <span class="text-gray-900 font-light">{data.count}</span> cleaners servicing this city</span> -->
     </div>
@@ -147,7 +148,8 @@
             <!-- <a href="/advertise" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Refer a cleaner</a> -->
             <!-- <a href="/advertise" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Advertise with us</a> -->
             <!-- <a href="/review" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Write a review</a> -->
-            <a href="/contact" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Contact Us</a>
+            <!-- <a href="/contact" class="px-4 py-2 border-1 border-green-700 rounded-sm text-green-700 text-sm hover:bg-green-700 hover:text-white duration-[100ms] ease-in-out">Contact Us</a> -->
+			<ContactForm isButton={true} />
         </div>
     {/if}
 </div>

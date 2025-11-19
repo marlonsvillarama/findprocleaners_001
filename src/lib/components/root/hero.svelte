@@ -23,7 +23,7 @@
     let selectedCity = $state('');
     const cityTrigger = $derived.by(() => {
         let city = data.cities.find((c) => c.id === selectedCity);
-        console.log(`selectedCity = ${selectedCity}`, city);
+        // console.log(`selectedCity = ${selectedCity}`, city);
         return data.cities.find((c) => c.id === selectedCity)?.name ?? 'Select your city';
     });
 
@@ -36,7 +36,7 @@
         if (!selectedCity) { return; }
 
         let city = data.cities.find((c) => c.id === selectedCity);
-        console.log(`selectedCity = ${selectedCity}`, city);
+        // console.log(`selectedCity = ${selectedCity}`, city);
         window.location = `/search/${city.name.toLowerCase().replaceAll(' ', '+')}`;
     };
 </script>
