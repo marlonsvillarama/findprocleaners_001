@@ -26,12 +26,12 @@
 <!-- <Dialog.Root>
     <Dialog.Trigger> -->
 <!-- <div class="w-full grid grid-cols-[1fr_250px] gap-4 border-b-1 rounded-md py-2 px-6 py-4 {featuredStyles}"> -->
-<div class="w-full grid gap-4 border-b-1 border-gray-300 px-6 pt-4 pb-5 {featuredStyles}">
+<div class="w-full grid gap-4 border-b-1 border-gray-300 md:px-4 pt-4 pb-5 {featuredStyles}">
     <div class="details grid gap-1">
         <a href="{data.website}?refer=findprocleaners" target="_blank"
             class="cursor-pointer border-b-2 border-transparent hover:border-b-gray-100">
-            <h1 class="flex gap-2 items-center text-xl text-green-700 font-semibold">
-                <SquareArrowUpRight class="text-green-700" size={24} />
+            <h1 class="flex gap-2 items-center text-md text-green-700 font-semibold">
+                <SquareArrowUpRight class="text-green-700" size={16} />
                 {data.name}
             </h1>
         </a>
@@ -40,21 +40,21 @@
                 <div class="px-2 py-1 text-xs text-white bg-green-700 rounded-xl">{dt}</div>
             {/each}
         </div> -->
-        <div class="grid gap-1 sm:flex items-center justify-between">
+        <div class="grid gap-1 sm:flex items-center justify-between font-light">
             <!-- <div class="flex flex-row items-end gap-4"> -->
             <!-- <h2 class="text-gray-400 text-sm text-left">{data.city}</h2> -->
             <!-- <a href="{data.website}?refer=findprocleaners" target="_blank" class="cursor-pointer border-b-2 border-transparent hover:border-b-gray-100">
                 <h1 class="text-sm text-gray-500 font-semibold">{data.name}</h1>
             </a> -->
             <!-- </div> -->
-            <div class="flex flex-row items-center gap-1">
-                <span class="font-extrabold text-xl text-green-800">{(data.rating_ave || 0).toFixed(1)}</span>
-                <Star class="fill-yellow-300" />
-                <span class="text-sm"> out of {data.review_count || 0} reviews</span>
+            <div class="flex flex-row items-center gap-1 pl-6">
+                <span class="font-bold text-lg text-green-800">{(data.rating_ave || 0).toFixed(1)}</span>
+                <Star class="fill-yellow-300" size={16} />
+                <span class="text-xs"> out of {data.review_count || 0} reviews</span>
             </div>
-            <div class="grid grid-cols-[32px_1fr] items-center text-left">
-                <Phone size={24} />
-                {#if data.phone_1} <span class="text-lg">{data.phone_1}</span>
+            <div class="flex gap-2 items-center text-left pl-6">
+                <Phone size={16} />
+                {#if data.phone_1} <span class="text-sm">{data.phone_1}</span>
                 {:else} <span class="text-sm italic text-gray-400 font-light">No phone information</span>
                 {/if}
             </div>
@@ -73,10 +73,10 @@
                 {/if}
             </div> -->
         <!-- </div> -->
-        <div class="flex flex-col gap-1 items-start mt-4">
+        <div class="flex flex-col gap-1 items-start mt-4 pl-6">
             {#if data.fpc_reviews.length > 0}
-                <span class="font-semibold text-sm text-left text-gray-600 pb-1 border-b-1 border-green-600">Customer review from {data.fpc_reviews[0].author_title}</span>
-                <p class="text-sm text-gray-500 text-left font-light tracking-wider px-2 pt-2 italic">{data.fpc_reviews[0].review_text}</p>
+                <span class="font-normal text-xs text-left text-gray-600 pb-1 border-b-1 border-green-600">Customer review from {data.fpc_reviews[0].author_title}</span>
+                <p class="text-xs text-gray-600 text-left font-extralight leading-[1.25rem] tracking-wider px-2 pt-1">{data.fpc_reviews[0].review_text}</p>
             {:else}
                 <!-- <p class="text-sm text-gray-500 italic text-left mb-2">Be the first one to review this cleaner!</p> -->
                 <!-- <Dialog.Root>

@@ -95,15 +95,15 @@ const buildEmails = (options) => {
 };
 
 const sendEmails = async (options) => {
-    console.log('sendEmails', options);
+    // console.log('sendEmails', options);
     let emails = buildEmails(options);
-    console.log('emails', emails.length);
+    // console.log('emails', emails.length);
 
     let emailResponses = [];
 
     for (let i = 0, count = emails.length; i < count; i++) {
         let email = emails[i];
-        console.log('email', email);
+        // console.log('email', email);
         let emailData = {
             Source: SENDER,
             Destination: {
@@ -129,19 +129,19 @@ const sendEmails = async (options) => {
         if (email.cc) {
             emailData.Destination.CcAddresses = [ email.cc ];
         }
-        console.log('emailData', JSON.stringify(emailData));
+        // console.log('emailData', JSON.stringify(emailData));
         let command = new SendEmailCommand(emailData);
 
         let emailResponse = {};
         try {
             emailResponse = await ses.send(command);
-            console.log('SES emailResponse', emailResponse);
+            // console.log('SES emailResponse', emailResponse);
             emailResponses.push(emailResponse);
         } catch (err) {
-            console.error('*** Send email error ***', err);
+            // console.error('*** Send email error ***', err);
         }
         finally {
-            console.log('*** sendEmails END ***');
+            // console.log('*** sendEmails END ***');
         }
     }
 
@@ -155,19 +155,19 @@ export const handler = async (event, context) => {
         "Content-Type": "application/json",
     };
 
-    console.log('{id}', event.pathParameters);
-    console.log('routeKey', event.routeKey);
+    // console.log('{id}', event.pathParameters);
+    // console.log('routeKey', event.routeKey);
     try {
         switch (event.routeKey) {
             case "POST /inquiry":
                 let requestJSON = JSON.parse(event.body);
-                console.log('request', requestJSON);
+                // console.log('request', requestJSON);
 
                 // TODO Send confirmation email
                 let emailResponses = await sendEmails(requestJSON);
 
                 body = { ok: true, id: requestJSON.id };
-                console.log('response body', emailResponses);
+                // console.log('response body', emailResponses);
                 break;
             default: {
                 // throw new Error(`Unsupported route: "${event.routeKey}"`);

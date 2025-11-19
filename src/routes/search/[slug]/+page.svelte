@@ -5,6 +5,7 @@
     import SearchList from "$lib/components/search/search-list.svelte";
 
     let { data } = $props();
+    // console.log('+page data', data);
 </script>
 
 <svelte:head>
@@ -12,7 +13,7 @@
     <meta name="description" content="Find the best professional cleaners within {data.city?.name}.">
 </svelte:head>
 
-<div class="mx-2 sm:mx-auto sm:w-[90%] sm:max-w-7xl grid grid-cols-[auto_1fr] gap-12 items-start bg-accent">
+<div class="mx-4 sm:mx-auto sm:w-[90%] sm:max-w-7xl grid grid-rows-[auto_1fr] md:grid-cols-[auto_1fr] gap-8 items-start bg-accent border-0 border-red-600">
     <SearchFilters { data } />
     <SearchList { data } />
 </div>

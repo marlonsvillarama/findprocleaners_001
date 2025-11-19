@@ -17,7 +17,7 @@
 
 <Header { data } />
 
-<div class="grid gap-16 sm:gap-24 bg-background-light">
+<div class="grid gap-12 md:gap-24 bg-background-light">
     <Hero { data } />
 
     {#if data.featured.length > 0}
