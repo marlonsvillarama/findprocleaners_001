@@ -2,7 +2,6 @@
     import * as Dialog from '$lib/components/ui/dialog/index';
     import * as Field from '$lib/components/ui/field/index';
     import { Popover } from 'bits-ui';
-    // import * as Popover from '$lib/components/ui/popover/index';
     import * as RadioGroup from '$lib/components/ui/radio-group/index';
     import * as Select from '$lib/components/ui/select/index';
     import { IconShieldCheckered } from '@tabler/icons-svelte';
@@ -17,19 +16,7 @@
         X
     } from '@lucide/svelte';
 
-    // import { createPaginatorData } from '$lib/data/paginator.svelte';
     let { data } = $props();
-    // let paginator = createPaginatorData();
-    console.log('filters data', data);
-
-    // import citiesList from '$lib/data/cities';
-    // let cities = citiesList.map(c => {
-    //     return {
-    //         ...c,
-    //         value: c.name.toLowerCase()
-    //     };
-    // });
-    // console.log(`cities = ${data.allCities?.length}`, data.allCities || []);
 
     const serviceTypes = [
         { id: 'boat', text: 'Boat Cleaning' },
@@ -54,16 +41,13 @@
     } while (col < COLUMN_COUNT);
 
     let isFiltersOpen = $state(false);
-
     let selectedCity = $state('');
-    // $effect(() => console.log('selectedCity', selectedCity))
     const cityTrigger = $derived(data.cities.find((c) => c.id === selectedCity)?.name ?? '--');
 
     const searchCity = () => {
         if (!selectedCity) { return; }
 
         let city = data.cities.find((c) => c.id === selectedCity);
-        // console.log(`selectedCity = ${selectedCity}`, city);
         window.location = `/search/${city.name.toLowerCase().replaceAll(' ', '+')}`;
     };
 
@@ -71,11 +55,6 @@
     let selectedTypes = $state(data?.types?.length > 0 ? data.types : []);
 
     const applyFilters = () => {
-        // console.log('*** applyFilters');
-        // paginator.printFilters();
-        // console.log('*** gotoPage url ***', paginator.applyFiltersToUrl());
-        // window.location = paginator.applyFiltersToUrl();
-
         let sortParts = selectedSort.split('|');
         let url = `/search/${data.slug}?page=${data.page}&sort=${sortParts[0]}`;
 
@@ -87,7 +66,6 @@
             url = `${url}&types=${selectedTypes.filter(t => !!t === true).join(',')}`
         }
 
-        // console.log('applyFilters url', url);
         window.location = url;
     };
 
@@ -95,47 +73,17 @@
         return data.types.indexOf(type) >= 0;
     };
 
-    /* const getSort = () => {
-        console.log(`*** getSort BEFORE`, paginator.sort);
-        return `${paginator.sort}|${paginator.order}`;
-    }; */
-
-    /* const updateSort = (id) => {
-        // console.log(`*** updateSort BEFORE id = ${id}`, paginator.sort);
-        let parts = id.split('|');
-        paginator.sort = parts[0];
-        paginator.order = parts[1];
-
-        console.log(`*** updateSort AFTER id = ${id}`, paginator.sort);
-        // console.log(`selectedTypes AFTER id = ${id}; toggle = ${toggle}`, paginator.types);
-    }; */
-
     const updateServiceTypes = (id, toggle) => {
-        // console.log(`selectedTypes BEFORE id = ${id}; toggle = ${toggle}`, selectedTypes);
-        // console.log(`*** updateServiceTypes selectedTypes BEFORE id = ${id}; toggle = ${toggle}`, paginator.types);
         if (toggle) {
             if (selectedTypes.indexOf(id) < 0) {
-                // console.log(`pushing into array (toggle = ${toggle}): ${id}...`)
                 selectedTypes.push(id);
             }
-            // if (paginator.types.indexOf(id) < 0) {
-            //     console.log(`pushing into array (toggle = ${toggle}): ${id}...`)
-            //     paginator.types.push(id);
-            // }
         }
         else {
             if (selectedTypes.indexOf(id) >= 0) {
-                // console.log(`removing from array (toggle = ${toggle}): ${id}...`)
                 selectedTypes = selectedTypes.filter(d => d !== id);
             }
-            // if (paginator.types.indexOf(id) >= 0) {
-            //     console.log(`removing from array (toggle = ${toggle}): ${id}...`)
-            //     paginator.types = paginator.types.filter(d => d !== id);
-            // }
         }
-
-        // console.log(`selectedTypes AFTER id = ${id}; toggle = ${toggle}`, selectedTypes);
-        // console.log(`selectedTypes AFTER id = ${id}; toggle = ${toggle}`, paginator.types);
     };
 </script>
 
@@ -265,7 +213,6 @@
                 <div class="bg-white rounded-md shadow-sm px-5 pt-4 pb-6">
                     <div class="flex items-center justify-between">
                         <h2 class="text-sm pb-2 font-medium">Job Types</h2>
-                        <!-- <Button variant="secondary">Clear types</Button> -->
                     </div>
                     <div class="grid gap-1">
                         {#each serviceTypes as serviceType}
