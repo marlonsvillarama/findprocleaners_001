@@ -12,13 +12,18 @@
     } from "@lucide/svelte";
 
     let { data } = $props();
-    /* console.log('paginator', {
+    console.log('paginator', {
+        slug: data.slug,
+        page: data.page,
+        sort: data.sort,
+        order: data.order,
+        types: data.types,
         count: data.count,
         firstIndex: data.firstIndex,
         lastIndex: data.lastIndex,
         hasPrevious: data.hasPrevious,
         hasNext: data.hasNext
-    }); */
+    });
 
     let selectedSort = $state(`${data.sort || ''}|${data.order}`);
     // let selectedSort = paginator.sort;
@@ -38,15 +43,18 @@
         // paginator.applyFiltersToUrl();
 
         let sortParts = selectedSort.split('|');
-        let url = `/search/${data.slug}?page=${data.page}&sort=${sortParts[0]}`;
+        let url = `/search/${data.slug}?page=${page}&sort=${sortParts[0]}`;
 
         if (sortParts.length > 1) {
             url = `${url}&order=${sortParts[1]}`
         }
 
         if (selectedTypes.length > 0) {
-            url = `${url}&types=${selectedTypes.join(',')}`
+            url = `${url}&types=${selectedTypes.filter(t => !!t === true).join(',')}`
         }
+        console.log('paginator new url', url);
+        window.location = url;
+        return;
 
         // let page = data.page + (inc === true ? 1 : -1);
         let arrParams = [];
@@ -57,7 +65,8 @@
         // console.log('paginator urlParams', urlParams);
 
         let pageUrl = `/search/${data.slug}?${arrParams.join('&')}`;
-        // console.log('paginator pageUrl', pageUrl);
+        console.log('paginator pageUrl', pageUrl);
+        return;
         window.location = pageUrl;
     };
 </script>

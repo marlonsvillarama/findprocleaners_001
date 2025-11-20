@@ -6,14 +6,17 @@
     import Header from "$lib/components/root/header.svelte";
     import Hero from "$lib/components/root/hero.svelte";
     import LatestArticles from "$lib/components/root/latest-articles.svelte";
+    import Seo from "$lib/components/root/seo.svelte";
 
     let { data } = $props();
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
     <title>FindProCleaners - Find the best cleaners near you</title>
     <meta name="description" content="Find the best professional cleaners within your area.">
-</svelte:head>
+</svelte:head> -->
+
+<Seo />
 
 <Header { data } />
 
