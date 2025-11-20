@@ -84,7 +84,7 @@
         }
 
         if (selectedTypes.length > 0) {
-            url = `${url}&types=${selectedTypes.join(',')}`
+            url = `${url}&types=${selectedTypes.filter(t => !!t === true).join(',')}`
         }
 
         // console.log('applyFilters url', url);
