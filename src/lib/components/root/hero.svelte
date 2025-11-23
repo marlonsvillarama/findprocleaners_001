@@ -32,11 +32,11 @@
     };
 </script>
 
-<div class="bg-green-700/20">
+<div class="">
     <div class="grid lg:grid-cols-2 items-center justify-center lg:justify-between gap-8 mx-2 py-12 lg:py-0 md:mx-auto md:w-[90%] md:max-w-7xl">
         <div class="flex flex-col lg:grid gap-8 text-left items-center justify-center lg:justify-left">
-            <h2 class="text-3xl text-center md:text-left lg:text-4xl/12 text-green-800 font-semibold">Find the best cleaners near you</h2>
-            <div class="hidden md:block">
+            <h1 class="text-3xl text-center md:text-left lg:text-4xl/12 text-green-800 font-semibold">Find the best cleaners near you</h1>
+            <!-- <div class="hidden md:block">
                 <Dialog.Root class="hidden md:block">
                     <Dialog.Trigger>
                         <div class="flex items-center gap-3 px-16 py-2 md:py-3 border-b-2 border-green-700 w-full bg-white rounded-sm text-xs md:text-sm text-green-700 cursor-pointer
@@ -64,9 +64,9 @@
                         </div>
                     </Dialog.Content>
                 </Dialog.Root>
-                </div>
+            </div> -->
 
-                <div class="md:hidden">
+            <!-- <div class="md:hidden">
                 <Select.Root type="single" bind:value={selectedCity} onValueChange={searchCity}>
                     <Select.Trigger class="flex items-center gap-3 px-12 py-5 md:py-3 border-0 border-b-2 border-green-700 w-full bg-white rounded-sm
                             hover:shadow-lg">
@@ -87,7 +87,7 @@
                         </div>
                     </Select.Content>
                 </Select.Root>
-            </div>
+            </div> -->
         </div>
         <div class="hidden lg:block w-full bg-[url(/images/hero-01.jpg)] bg-right bg-cover
             h-auto lg:h-[420px]

@@ -4,6 +4,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  /* --color-main: #C8D9C3; */
+  --color-main: oklch(0.448 0.119 151.328);
+  --color-main-dark: #223F3D;
+  --color-accent: #327D81;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
