@@ -17,6 +17,21 @@ async function getCities () {
     return data;
 };
 
+async function getRegions () {
+    let { data } = await supabase.from("fpc_regions").select(`
+        name,
+        slug,
+        image_path,
+        page_title,
+        page_intro
+    `)
+    .eq('is_active', 'true')
+    .order('name');
+
+    console.log('getRegions data', data);
+    return data;
+}
+
 async function getListings () {
     let { data } = await supabase.from("fpc_listings").select(`
         id,
@@ -46,7 +61,7 @@ async function getListings () {
 
     data.forEach(d => d.image_url = `${PUBLIC_SUPABASE_URL}/storage/v1/object/public/fpc_listings/${d.image_path}`)
     return data;
-};
+}
 
 async function getProducts () {
     let { data } = await supabase.from("fpc_products").select(`
@@ -59,7 +74,7 @@ async function getProducts () {
     // console.log('server getProducts data', data);
 
     return data;
-};
+}
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params, url }) {
@@ -75,19 +90,21 @@ export async function load({ params, url }) {
 
     // let cities = citiesResponse.data;
     // console.log('server cities', cities);
-    let cities = await getCities();
+    // let cities = await getCities();
+    let regions = await getRegions();
     // let city = allCities.find(d => d.name.toLowerCase().replaceAll(' ', '+') === slug);
     // console.log('city', city);
     // console.log('cities', cities);
 
-    let listings = await getListings();
+    // let listings = await getListings();
     // console.log('listings', listings);
-    let products = await getProducts();
+    // let products = await getProducts();
     // console.log('products', products);
 
     return {
-        cities,
-        featured: listings.filter(d => d.is_featured === true),
+        regions
+        // cities,
+        // featured: listings.filter(d => d.is_featured === true),
         // city: city || { name: slug },
         // featured: listings.filter(d => d.is_featured === true).map(d => {
         //     return {
@@ -95,7 +112,7 @@ export async function load({ params, url }) {
         //         city: cities.find(c => !!c.id === true && c.id.toString() === d.city)
         //     };
         // }),
-        products: products.slice(0, 4)
+        // products: products.slice(0, 4)
         // results: listingsResponse.data.filter(d => d.is_featured === false)
     };
 }

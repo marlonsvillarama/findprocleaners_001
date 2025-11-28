@@ -10,11 +10,11 @@
     ];
 </script>
 
-<div class="flex items-end justify-between my-2 md:my-4 mx-2 md:mx-auto md:w-[90%] md:max-w-7xl bg-white">
+<div class="flex items-end justify-between my-2 md:my-4 mx-2 md:mx-auto md:w-[85%] md:max-w-6xl bg-white">
     <a href="/" title="FindProCleaners.nz - Find the best cleaners near you" target="_self">
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
             <img src="/images/icons/find_pro_cleaners_3.svg" alt="Find Pro Cleaners" class="w-[36px] h-auto">
-            <span class="header-logo font-medium text-lg md:text-2xl text-main">Find Pro Cleaners</span>
+            <span class="header-logo font-semibold text-lg md:text-2xl text-main">Find Pro Cleaners</span>
             <!-- <div class="flex items-end">
                 <span class="font-medium text-lg md:text-xl text-green-600/70">Find</span>
                 <span class="font-medium text-lg md:text-xl text-gray-700">Pro</span>
@@ -35,6 +35,6 @@
 
 <style>
     .header-logo {
-        font-family: "Red Rose", sans-serif;
+        font-family: "Noto Serif", serif;
     }
 </style>

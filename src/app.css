@@ -15,7 +15,8 @@
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --background-light: rgba(240, 240, 240, 0.5);
-  --foreground: oklch(0.13 0.028 261.692);
+  --foreground: rgb(80, 82, 86);
+  /* --foreground: oklch(0.13 0.028 261.692); */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);
   --popover: oklch(1 0 0);
@@ -129,5 +130,5 @@
 }
 
 body {
-  font-family: "Lexend", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
