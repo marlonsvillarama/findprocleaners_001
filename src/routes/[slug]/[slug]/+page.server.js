@@ -45,7 +45,7 @@ async function getServiceTypes (slug) {
 }
 
 async function getListings ({ cities }) {
-    console.log(`*** getListings cities => `, cities);
+    // console.log(`*** getListings cities => `, cities);
     let { data } = await supabase.from("fpc_listing_cities").select(`
         id,
         city:fpc_cities (
@@ -88,7 +88,7 @@ async function getListings ({ cities }) {
         )
     `)
     .in('city', cities);
-    console.log('server getListings', data);
+    // console.log('server getListings', data);
 
     if (data) {
         data.forEach(d => d.image_url = `${PUBLIC_SUPABASE_URL}/storage/v1/object/public/fpc_listings/${d.image_path}`)
@@ -100,8 +100,8 @@ async function getListings ({ cities }) {
 export async function load({ params, url }) {
     const PREFIX = '/professional-cleaners-in-';
 
-    console.log('url path', url.pathname);
-    console.log('url sort', url.searchParams.get('sort'));
+    // console.log('url path', url.pathname);
+    // console.log('url sort', url.searchParams.get('sort'));
     if (url.pathname.toLowerCase().indexOf(PREFIX) < 0) {
         redirect(302, '/not-found');
     }
@@ -124,7 +124,7 @@ export async function load({ params, url }) {
     }
     let serviceTypes = await getServiceTypes();
     let cities = slug === 'all' ? region.cities : region.cities.filter(c => c.slug === slug)
-    console.log('*** slug/slug cities', cities);
+    // console.log('*** slug/slug cities', cities);
     let listings = await getListings({ cities: cities.map(c => c.id) });
 
     return {

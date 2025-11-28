@@ -2,7 +2,7 @@
     let {
         data
     } = $props();
-    console.log('region', data);
+    // console.log('region', data);
 </script>
 
 <a href="/professional-cleaners-in-{data.slug}"

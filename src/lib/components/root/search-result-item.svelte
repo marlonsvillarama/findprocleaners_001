@@ -11,7 +11,7 @@
 
     let { item } = $props();
     let { city, data } = item;
-    console.log('result item', item);
+    // console.log('result item', item);
 </script>
 
 <a href={data.website} target="_blank">
@@ -57,11 +57,15 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-1 items-start mt-4">
-            {#if data.reviews.length > 0}
-                <span class="font-normal text-left text-gray-600 pb-1 border-b-1 border-gray-600">Customer review from {data.reviews[0].author_title}</span>
-                <p class="text-sm text-gray-800 italic text-left font-light leading-[1.25rem] tracking-wider px-2 pt-1">{data.reviews[0].review_text}</p>
-            {/if}
-        </div>
+        {#if data.reviews.length > 0}
+            <div class="flex flex-col gap-1 items-start mt-4 mb-4">
+                <span class="font-normal text-left text-gray-600 pb-1 border-b-1 border-gray-600">
+                    Customer review from {data.reviews[0].author_title}
+                </span>
+                <p class="text-sm text-gray-800 italic text-left font-light leading-[1.25rem] tracking-wider px-2 pt-1">
+                    "{data.reviews[0].review_text}"
+                </p>
+            </div>
+        {/if}
     </div>
 </a>

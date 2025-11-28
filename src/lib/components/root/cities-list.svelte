@@ -5,7 +5,7 @@
 </script>
 
 <div class="grid md:gap-2 border-0 border-gray-500 shadow-sm rounded-md">
-    <h1 class="text-lg md:text-2xl text-gray-700/80 px-3 py-2 bg-gray-200 rounded-t-md">Other cities in this region</h1>
+    <h1 class="text-lg md:text-2xl text-gray-700/80 px-3 py-2 bg-gray-200 rounded-t-md">Select a city in this region</h1>
 
     <div class="city-grid gap-y-1 px-4 items-start border-0 border-red-500">
         {#each data as city}

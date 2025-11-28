@@ -72,7 +72,7 @@
         <Section title="Featured Cleaners">
             {#snippet content()}
                 <Featured data={featured} />
-                <SearchMoreLink link="{path}/cleaners?sort=featured" />
+                <SearchMoreLink link="{path}/all?sort=featured" />
             {/snippet}
         </Section>
         {/if}
@@ -80,14 +80,14 @@
         <Section title="Highest-Rated Cleaners">
             {#snippet content()}
                 <Featured data={highestRated} />
-                <SearchMoreLink link="{path}/cleaners?sort=highest-rated" />
+                <SearchMoreLink link="{path}/all?sort=highest-rated" />
             {/snippet}
         </Section>
 
         <Section title="Most-Reviewed Cleaners">
             {#snippet content()}
                 <Featured data={mostReviewed} />
-                <SearchMoreLink link="{path}/cleaners?sort=most-reviewed" />
+                <SearchMoreLink link="{path}/all?sort=most-reviewed" />
             {/snippet}
         </Section>
     {/if}
