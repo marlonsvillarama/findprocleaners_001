@@ -9,7 +9,7 @@
     
     let {
         data,
-        image = 'cleaners_banner_4.png',
+        image = 'find_pro_cleaners.png',
         title = 'Find Professional Cleaners Near You',
         search = false,
         subtitle = ''

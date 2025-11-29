@@ -1,7 +1,7 @@
 <script>
     let {
         link = '',
-        label = 'Search more cleaners'
+        label = 'Find more cleaners'
     } = $props();
 </script>
 

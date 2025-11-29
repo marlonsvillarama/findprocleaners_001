@@ -6,6 +6,7 @@
     import SearchResults from "$lib/components/root/search-results.svelte";
     import Section from "$lib/components/root/section.svelte";
     import Seo from "$lib/components/root/seo.svelte";
+    import Button from "$lib/components/ui/button/button.svelte";
 
     let { data } = $props();
     let {
@@ -14,21 +15,29 @@
         params,
         region,
         serviceTypes,
-        slug
+        slug,
+        sort,
+        url
     } = data;
-    // console.log('slug/slug serviceTypes', serviceTypes);
 
     let title = $derived.by(() =>
         data.slug === 'all' ? region.name : region.cities.find(c => c.slug === slug).name
     );
 
+    let sortMethod = $state('name');
     let selectedFilters = $state(serviceTypes ? serviceTypes.map(s => s.slug) : []);
-    // $effect(() => console.log('selectedFilters', selectedFilters));
 
     let searchResults = $state(listings);
-    const filterResults = () => {
-        // console.log('searchResults', searchResults);    
-        searchResults = listings.filter(d => {
+    /* let searchResults = $derived.by(() => {
+        let list = [...listings].sort((a, b) => {
+            if (sortMethod === 'name') {
+                return a.data[sortMethod] - b.data[sortMethod];
+            }
+
+            return b.data[sortMethod] - a.data[sortMethod];
+        });
+        console.log('SORTEDmlistigs', list);
+        return list.filter(d => {
             let types = d.data.services.map(s => s.service_type.slug);
             // console.log('*** d', d);
             // console.log('*** selectedFilters', selectedFilters);
@@ -38,7 +47,28 @@
 
             return intersection.length > 0;
         });
+    }); */
+    const filterResults = () => {
         // console.log('searchResults', searchResults);
+        searchResults = [...listings].sort((a, b) => {
+            if (sortMethod === 'name') {
+                return a.data[sortMethod] - b.data[sortMethod];
+            }
+
+            return b.data[sortMethod] - a.data[sortMethod];
+        });
+        // console.log(`filterResults sortMethod = "${sortMethod}"; AFTER SORT`, searchResults);
+        searchResults = searchResults.filter(d => {
+            let types = d.data.services.map(s => s.service_type.slug);
+            // console.log('*** d', d);
+            // console.log('*** selectedFilters', selectedFilters);
+            // console.log(' => types', types);
+            let intersection = selectedFilters.filter(f => types.includes(f));
+            // console.log(` => intersection ==> ${intersection.length > 0}`, intersection);
+
+            return intersection.length > 0;
+        });
+        // console.log(`filterResults sortMethod = "${sortMethod}"; AFTER FILTER`, searchResults);
     };
 
     const resetFilters = () => {
@@ -49,6 +79,11 @@
     const clearFilters = () => {
         selectedFilters = [];
         filterResults();
+    };
+
+    const updateSort = (value) => {
+        sortMethod = value;
+        window.location = `${url}?sort=${sortMethod.toLowerCase()}`;
     };
 </script>
 
@@ -62,7 +97,11 @@
     <div class="grid gap-4 md:gap-12 bg-background-light">
         <CitiesList data={region.cities} />
 
-        <SearchResults listings={searchResults} onresetfilters={resetFilters} onclearfilters={clearFilters}>
+        <SearchResults listings={searchResults} {sort}
+            onresetfilters={resetFilters}
+            onclearfilters={clearFilters}
+            onsortchanged={updateSort}
+        >
             {#snippet filters()}
                 <div class="flex flex-wrap gap-2 items-center w-full border-0 border-gray-200">
                     {#each serviceTypes as st}

@@ -14,7 +14,6 @@
     // console.log('result item', item);
 </script>
 
-<a href={data.website} target="_blank">
     <div class="border-1 border-gray-200 border-l-3 border-l-green-700/60 hover:border-gray-200 hover:border-l-green-700 hover:shadow-sm rounded-sm px-5 py-3">
         <div class="grid gap-1 md:flex items-center justify-between">
             <h3 class="text-xl font-semibold">{data.name}</h3>
@@ -30,30 +29,34 @@
             {/each}
         </div>
 
-        <div class="mb-2 flex items-center gap-2">
+        <div class="mb-3 flex items-center gap-2 text-sm">
             <House size={16} />
-            <span class="font-semibold">
+            <span class="font-light">
                 {data.address_1}{#if data.address_2}, {data.address_2}{/if}{#if data.city}, {data.city}{/if}
                 {#if data.zip}{data.zip}{/if}
             </span>
         </div>
 
-        <div class="mb-5 grid gap-2 lg:gap-12 lg:flex lg:items-center">
+        <div class="mb-5 grid gap-2 lg:gap-12 lg:flex lg:items-center text-sm">
             <div class="flex items-center gap-2 min-w-[200px]">
                 <Phone size={16} />
-                <span class="font-semibold">{data.phone_1}</span>
+                <span class="font-light">{data.phone_1}</span>
             </div>
             
             <div class="flex items-center gap-2 min-w-[200px]">
                 <Mail size={16} />
-                <span class="">
+                <span class="font-light">
                     {data.email_1 || '-'}
                 </span>
             </div>
 
             <div class="flex items-center gap-2 min-w-[200px]">
                 <Globe size={16} />
-                <span class="text-blue-600 underline">{data.website || '-'}</span>
+                {#if data.website}
+                    <a href={data.website} target="_blank" class="text-blue-600 underline">{data.website}</a>
+                {:else}
+                    <span>-</span>
+                {/if}
             </div>
         </div>
 
@@ -68,4 +71,4 @@
             </div>
         {/if}
     </div>
-</a>
+<!-- </a> -->

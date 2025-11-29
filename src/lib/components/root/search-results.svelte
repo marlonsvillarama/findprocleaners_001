@@ -5,19 +5,34 @@
     let {
         filters,
         listings,
+        sort = 'name',
         onresetfilters,
-        onclearfilters
+        onclearfilters,
+        onsortchanged
     } = $props();
-    // console.log('search results listings', listings);
 
-    let activeFilters = $state([]);
-
-    const toggleFilter = (slug, remove = false) => {
+    let sortMethod = $state(sort);
+    
+    const updateSortMethod = () => {
+        onsortchanged(sortMethod);
     };
 </script>
 
 <div class="border-0">
-    <h2 class="text-2xl text-green-800 mb-1">Found {listings.length} result{listings.length === 1 ? '' : 's'}</h2>
+    <div class="flex items-center justify-between mb-2">
+        <h2 class="text-2xl text-green-800 mb-1">Found {listings.length} result{listings.length === 1 ? '' : 's'}</h2>
+        <div class="flex gap-3 items-center">
+            <span class="text-sm">Sort results by:</span>
+            <select class="border rounded-sm px-4 py-2 text-sm" bind:value={sortMethod}>
+                <option value="name">Name</option>
+                <option value="highest-rated">Highest rated</option>
+                <option value="most-reviewed">Most reviewed</option>
+            </select>
+            <input type="button" value="Go" onclick={updateSortMethod}
+                class="rounded-sm px-3 py-2 text-sm border cursor-pointer bg-gray-100 hover:bg-gray-200" />
+        </div>
+    </div>
+
     <Separator class="mb-2"/>
 
     <div class="flex items-center gap-6 mb-3">

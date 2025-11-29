@@ -15,6 +15,11 @@ import { error, redirect } from '@sveltejs/kit';
 //     return data || [];
 // };
 
+const SORT_TYPES = {
+    'highest-rated': 'rating_ave',
+    'most-reviewed': 'review_count'
+};
+
 async function getRegions (slug) {
     let { data } = await supabase.from("fpc_regions").select(`
         id,
@@ -127,13 +132,25 @@ export async function load({ params, url }) {
     // console.log('*** slug/slug cities', cities);
     let listings = await getListings({ cities: cities.map(c => c.id) });
 
+    let urlParams = url.searchParams;
+    let sortParam = urlParams.get('sort');
+    let sortType = SORT_TYPES[sortParam];
+    console.log(`** SERVER sortType = "${sortType}"; sortParam = "${sortParam}"`);
+
+    if (sortType) {
+        listings.sort((a, b) => b.data[sortType] - a.data[sortType]);
+        // console.log('** SERVER listings', listings);`
+    }
+
     return {
         allRegions,
         listings,
         params: url.searchParams,
         region,
         serviceTypes,
-        slug
+        slug,
+        sort: sortParam || 'name',
+        url: `${PREFIX}${regionId}/${slug}` 
         // path: slug
     };
 }
