@@ -84,7 +84,7 @@ async function getRegions (slug) {
         image_path,
         page_title,
         page_intro,
-        cities:fpc_cities (id, name)
+        cities:fpc_cities (id, name, slug)
     `)
     .eq('is_active', 'true')
     .order('name');

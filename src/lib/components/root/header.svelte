@@ -1,12 +1,24 @@
 <script>
     import * as Dialog from '$lib/components/ui/dialog/index';
-    import ContactForm from "./contact-form.svelte";
+    // import ContactForm from "./contact-form.svelte";
 
     let links = [
         {
             text: 'Home',
             url: '/'
         },
+        {
+            text: 'Search by Region',
+            url: '/search-professional-cleaners-by-region'
+        },
+        {
+            text: 'Search by Category',
+            url: '/search-professional-cleaners-by-category'
+        },
+        {
+            text: 'Contact Us',
+            url: '/contact'
+        }
     ];
 </script>
 
@@ -25,11 +37,11 @@
     </a>
     <div class="hidden md:flex items-center gap-8">
         {#each links as link}
-            <a href={link.url} title={link.text} class="text-md font-normal text-green-700 pb-[2px] border-b-2 border-transparent
+            <a href={link.url} title={link.text} class="text-sm font-normal text-green-700 pb-[2px] border-b-2 border-transparent
                 hover:text-green-900 hover:border-green-900">{link.text}</a>
         {/each}
 
-        <ContactForm />
+        <!-- <ContactForm /> -->
     </div>
 </div>
 

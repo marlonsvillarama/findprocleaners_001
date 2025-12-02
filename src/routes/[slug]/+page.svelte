@@ -1,6 +1,8 @@
 <script>
     import * as Collapsible from "$lib/components/ui/collapsible/index.js";
     import Separator from "$lib/components/ui/separator/separator.svelte";
+
+    import CitiesList from "$lib/components/root/cities-list.svelte";
     import FAQ from "$lib/components/root/faq.svelte";
     import Featured from "$lib/components/root/featured.svelte";
     import Footer from "$lib/components/root/footer.svelte";
@@ -63,6 +65,12 @@
                     <p class="font-light tracking-[0.25px] leading-[1.75rem]">{pc}</p>
                 </div>
             {/each}
+        {/snippet}
+    </Section>
+
+    <Section>
+        {#snippet content()}
+            <CitiesList data={region} />
         {/snippet}
     </Section>
 

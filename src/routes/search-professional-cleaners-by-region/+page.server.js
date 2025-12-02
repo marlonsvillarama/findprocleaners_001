@@ -2,7 +2,7 @@ import { PUBLIC_SUPABASE_URL } from "$env/static/public"
 import { supabase } from "$lib/supabaseClient";
 import { error } from '@sveltejs/kit';
 
-/* async function getCities () {
+async function getCities () {
     let { data } = await supabase.from("fpc_cities").select(`
         id,
         name,
@@ -15,25 +15,20 @@ import { error } from '@sveltejs/kit';
     // console.log('server getCities', data);
 
     return data;
-}; */
+};
 
 async function getRegions () {
     let { data } = await supabase.from("fpc_regions").select(`
-        id,
         name,
         slug,
         image_path,
         page_title,
-        page_intro,
-        cities:fpc_cities (
-            id,
-            name
-        )
+        page_intro
     `)
     .eq('is_active', 'true')
     .order('name');
 
-    // console.log('getRegions data', data);
+    console.log('getRegions data', data);
     return data;
 }
 
@@ -97,27 +92,6 @@ export async function load({ params, url }) {
     // console.log('server cities', cities);
     // let cities = await getCities();
     let regions = await getRegions();
-    regions = regions.map(r => {
-        return {
-            ...r,
-            cities: r.cities.map(c => {
-                return {
-                    ...c,
-                    region: { id: r.id, name: r.name, slug: r.slug }
-                };
-            })
-        };
-    });
-    let allCities = regions.reduce((sum, next) => [ ...sum, ...next.cities ], []);
-    let allCityIds = [ ...new Set(allCities.map(c => c.id)) ];
-    let cities = allCities.filter(c => allCityIds.includes(c.id));
-    cities.sort((a, b) => {
-        if (a.name < b.name) return -1;
-        if (a.name > b.name) return 1;
-        return 0;
-    });
-        // ...new Set(regions.reduce((sum, next) => [...sum, ...next.cities ], []))
-    // console.log('HOME +server cities', cities);
     // let city = allCities.find(d => d.name.toLowerCase().replaceAll(' ', '+') === slug);
     // console.log('city', city);
     // console.log('cities', cities);
@@ -128,8 +102,8 @@ export async function load({ params, url }) {
     // console.log('products', products);
 
     return {
-        cities,
         regions
+        // cities,
         // featured: listings.filter(d => d.is_featured === true),
         // city: city || { name: slug },
         // featured: listings.filter(d => d.is_featured === true).map(d => {

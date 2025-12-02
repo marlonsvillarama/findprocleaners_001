@@ -95,7 +95,7 @@
     <h1 class="text-4xl text-green-800 mb-4">Professional Cleaners in {title}</h1>
     
     <div class="grid gap-4 md:gap-12 bg-background-light">
-        <CitiesList data={region.cities} />
+        <CitiesList data={region} />
 
         <SearchResults listings={searchResults} {sort}
             onresetfilters={resetFilters}

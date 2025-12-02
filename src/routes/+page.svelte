@@ -22,11 +22,13 @@
 
     let { data } = $props();
     let {
+        cities,
         regions
-        // cities,
         // featured,
         // products
     } = data;
+
+    const searchByCity = () => {};
 </script>
 
 <!-- <svelte:head>
@@ -37,7 +39,8 @@
 <Seo />
 
 <div class="grid gap-12 md:gap-24 bg-background-light">
-    <Hero { data } subtitle="Discover the best professional cleaning services in your city." search={true} />
+    <Hero subtitle="Discover the best professional cleaning services in your city."
+        {data} search={true} {cities} />
 
     <Section title="Why Hire Professional Cleaners?">
         {#snippet content()}
