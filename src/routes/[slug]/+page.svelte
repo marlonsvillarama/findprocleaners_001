@@ -28,18 +28,18 @@
         path,
         region
     } = data;
-    console.log(`+page slug=${region.slug}; listings`, listings);
+    // console.log(`+page slug=${region.slug}; listings`, listings);
 
     let page_content = region.page_intro.split('|');
     let featured = listings.filter(d => d.data.is_featured === true);
     let nonFeatured = listings.filter(d => d.data.is_featured === false);
     
     listings.sort((a, b) => parseFloat(b.data.rating_ave || '0') - parseFloat(a.data.rating_ave || '0'));
-    console.log('listings SORTED BY rating_ave', listings);
+    // console.log('listings SORTED BY rating_ave', listings);
     let highestRated = listings.slice(0, 3);
 
     listings.sort((a, b) => parseInt(b.data.review_count || '0') - parseInt(a.data.review_count || '0'));
-    console.log('listings SORTED BY review_count', listings);
+    // console.log('listings SORTED BY review_count', listings);
     let mostReviewed = listings.slice(0, 3);
 </script>
 
@@ -48,7 +48,7 @@
 />
 
 <div class="grid gap-12 md:gap-24 bg-background-light">
-    <Hero title="Find Professional Cleaners in {region.name}" image="regions/{region.image_path}" />
+    <Hero title="Find Professional Cleaners in {region.name}" data={region} image="regions/{region.image_path}" />
 
     <!-- <div class="flex items-center justify-between"> -->
     <!-- <div class="md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500 grid gap-6">

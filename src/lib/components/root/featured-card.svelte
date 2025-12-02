@@ -12,7 +12,7 @@
 
 <a href={data.website} target="_blank" class="rounded-md">
     <div class="featured-card rounded-md w-full border shadow-md">
-        <div class="flex items-center justify-between py-1 px-3 ">
+        <div class="flex items-center justify-between py-2 px-3 ">
             <span class="rounded-t-md font-medium text-sm">{data.multiple_cities === true ? (city.name || 'Multiple Cities') : 'Multiple Cities'}</span>
 
             <div class="flex flex-row gap-1 items-center">
@@ -22,12 +22,12 @@
             </div>
         </div>
         <div class="content bg-white rounded-b-md pb-2 px-3 border-0 border-blue-500">
-            <img src="/images/listings/{data.image_path}" class="hidden md:block w-full h-[160px] sm:h-[200px] align-center overflow-hidden object-none flex items-center border" alt={data.name} />
+            <img src="/images/listings/{data.image_path}" class="block w-full h-[160px] md:h-[200px] align-center overflow-hidden object-none flex items-center border" alt={data.name} />
 
-            <div class="company pt-2 pb-3 border-0 rounded-b-sm grid gap-3">
+            <div class="company pt-2 pb-3 border-0 rounded-b-sm grid gap-2 md:gap-3">
                 <div class="font-semibold text-gray-700 border-none truncate">{data.name}</div>
                 
-                <div class="grid md:gap-4 border-0 border-red-500">
+                <div class="grid gap-2 md:gap-4 border-0 border-red-500">
                     <div class="flex gap-3 items-center w-full">
                         <PhoneIcon size={16} />
                         {#if data.phone_1} <span class="text-sm">0{data.phone_1}</span>
@@ -37,7 +37,7 @@
 
                     <div class="grid services justify-between gap-x-6 gap-y-2 border-0 border-green-500">
                         {#each data.services as service}
-                        <span class="w-full text-sm pl-2 py-1 bg-gray-50 border-l-2 border-green-700">
+                        <span class="w-full text-xs sm:text-sm pl-2 py-1 bg-gray-50 border-l-2 border-green-700">
                             {service.service_type.name}
                         </span>
                         {/each}

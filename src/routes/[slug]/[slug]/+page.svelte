@@ -19,6 +19,7 @@
         sort,
         url
     } = data;
+    console.log('+PAGE region', region);
 
     let title = $derived.by(() =>
         data.slug === 'all' ? region.name : region.cities.find(c => c.slug === slug).name
@@ -91,8 +92,11 @@
     title="Professional Cleaners In {title}"
 />
 
-<div class="pt-4 mb-24 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500">
-    <h1 class="text-4xl text-green-800 mb-4">Professional Cleaners in {title}</h1>
+<!-- <div class="grid gap-24"> -->
+<div class="grid gap-12 md:gap-24 bg-background-light">
+<div class="pb-12 md:pb-24 mx-6 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500">
+<!-- <div class="pt-4 mb-24 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500"> -->
+    <h1 class="text-2xl md:text-2xl text-green-800 mb-4">Professional Cleaners in {title}</h1>
     
     <div class="grid gap-4 md:gap-12 bg-background-light">
         <CitiesList data={region} />
@@ -105,7 +109,7 @@
             {#snippet filters()}
                 <div class="flex flex-wrap gap-2 items-center w-full border-0 border-gray-200">
                     {#each serviceTypes as st}
-                        <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-sm cursor-pointer">
+                        <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-xs sm:text-sm cursor-pointer">
                             <label for={st.slug} class="cursor-pointer">
                                 <span>{st.name}</span>
                             </label>
@@ -133,11 +137,10 @@
             {/snippet}
         </SearchResults>
         
-        <CitiesList data={region.cities} />
+        <CitiesList data={region} />
     </div>
 </div>
 
-<div class="grid gap-24">
     <Section title="Search Professional Cleaners by Region">
         {#snippet content()}
             <RegionsSection data={allRegions} />

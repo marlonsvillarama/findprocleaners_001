@@ -27,7 +27,8 @@ async function getRegions () {
         page_intro,
         cities:fpc_cities (
             id,
-            name
+            name,
+            slug
         )
     `)
     .eq('is_active', 'true')

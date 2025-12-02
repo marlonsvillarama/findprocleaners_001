@@ -28,7 +28,7 @@ async function getRegions (slug) {
         image_path,
         page_title,
         page_intro,
-        cities:fpc_cities (id, name)
+        cities:fpc_cities (id, name, slug)
     `)
     .eq('is_active', 'true')
     .order('name');
@@ -116,7 +116,7 @@ export async function load({ params, url }) {
     
     let allRegions = await getRegions(regionId);
     let region = allRegions.find(d => d.slug === regionId);
-    // console.log(`*** ${regionId} region`, region);
+    console.log(`*** ${regionId} region`, region);
 
     if (!region) { redirect(302, '/not-found'); }
     if (region.length <= 0) { redirect(302, '/not-found'); }
@@ -147,6 +147,7 @@ export async function load({ params, url }) {
         listings,
         params: url.searchParams,
         region,
+        cities: region.cities,
         serviceTypes,
         slug,
         sort: sortParam || 'name',

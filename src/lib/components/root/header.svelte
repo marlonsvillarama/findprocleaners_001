@@ -8,13 +8,13 @@
             url: '/'
         },
         {
-            text: 'Search by Region',
+            text: 'Find Cleaners by Region',
             url: '/search-professional-cleaners-by-region'
         },
-        {
-            text: 'Search by Category',
-            url: '/search-professional-cleaners-by-category'
-        },
+        // {
+        //     text: 'Search by Category',
+        //     url: '/search-professional-cleaners-by-category'
+        // },
         {
             text: 'Contact Us',
             url: '/contact'
@@ -22,11 +22,11 @@
     ];
 </script>
 
-<div class="flex items-end justify-between my-2 md:my-4 mx-2 md:mx-auto md:w-[85%] md:max-w-6xl bg-white">
+<div class="flex items-center justify-between my-2 md:my-4 mx-2 md:mx-auto md:w-[85%] md:max-w-6xl bg-white">
     <a href="/" title="FindProCleaners.nz - Find the best cleaners near you" target="_self">
-        <div class="flex items-center gap-2">
-            <img src="/images/icons/find_pro_cleaners_3.svg" alt="Find Pro Cleaners" class="w-[36px] h-auto">
-            <span class="header-logo font-semibold text-lg md:text-2xl text-main">Find Pro Cleaners</span>
+        <div class="flex items-center gap-1 md:gap-2">
+            <img src="/images/icons/find_pro_cleaners.svg" alt="Find Pro Cleaners" class="w-[20px] md:w-[36px] h-auto">
+            <span class="header-logo font-semibold text-md md:text-2xl text-main">Find Pro Cleaners</span>
             <!-- <div class="flex items-end">
                 <span class="font-medium text-lg md:text-xl text-green-600/70">Find</span>
                 <span class="font-medium text-lg md:text-xl text-gray-700">Pro</span>

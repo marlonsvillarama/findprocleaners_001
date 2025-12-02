@@ -5,13 +5,13 @@
             url: '/'
         },
         {
-            text: 'Search by Region',
+            text: 'Find Cleaners by Region',
             url: '/search-professional-cleaners-by-region'
         },
-        {
-            text: 'Search by Category',
-            url: '/search-professional-cleaners-by-category'
-        },
+        // {
+        //     text: 'Search by Category',
+        //     url: '/search-professional-cleaners-by-category'
+        // },
         {
             text: 'Contact Us',
             url: '/contact'

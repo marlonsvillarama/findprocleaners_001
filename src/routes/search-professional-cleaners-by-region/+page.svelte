@@ -41,7 +41,8 @@
 
 <style>
     .banner {
-        background-image: url('/images/sheep.jpg');
+        /* background-image: url('/images/moeraki.jpg'); */
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)), url(/images/moeraki.jpg);
         background-position: 0% 65%;
         background-size: cover;
     }

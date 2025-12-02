@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-	import favicon from '$lib/assets/findprocleaners.svg';
+	// import favicon from '$lib/assets/findprocleaners.svg';
 	import Header from '$lib/components/root/header.svelte';
 	import Footer from '$lib/components/root/footer.svelte';
 
@@ -9,9 +9,9 @@
 	let { children } = $props();
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<link rel="icon" href={favicon} />
-</svelte:head>
+</svelte:head> -->
 
 <Header />
 

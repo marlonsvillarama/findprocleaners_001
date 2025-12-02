@@ -5,11 +5,11 @@
     } = $props();
 </script>
 
-<div class="md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500 grid gap-6">
+<div class="mx-6 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500 grid gap-4 md:gap-6">
     {#if title}
-        <h2 class="text-4xl text-green-800">{title}</h2>
+        <h2 class="text-2xl md:text-3xl text-green-800">{title}</h2>
     {/if}
-    <div class="grid gap-4">
+    <div class="grid gap-4 text-sm md:text-md">
         {@render content()}
     </div>
 </div>

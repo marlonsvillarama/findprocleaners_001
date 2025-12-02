@@ -89,7 +89,6 @@ async function getRegions (slug) {
     .eq('is_active', 'true')
     .order('name');
 
-    // console.log('getRegion data', data);
     return data;
 }
 

@@ -13,13 +13,13 @@
     
     let {
         data,
-        cities = [],
         image = 'find_pro_cleaners.png',
         title = 'Find Professional Cleaners Near You',
         search = false,
         subtitle = '',
         onsearch
     } = $props();
+    console.log()
 
     let bannerClasses = $state('');
     if (image.indexOf('/') > 0) {
@@ -30,7 +30,7 @@
     let selectedCity = $state('');
     let triggerRef = $state(null);
     
-    const selectedCityObject = $derived(cities.find(f => f.id === selectedCity) || {});
+    const selectedCityObject = $derived((data.cities || []).find(f => f.id === selectedCity) || {});
     const isSearchDisabled = $derived(!!selectedCity === false);
 
     const closeAndFocusTrigger = () => {
@@ -39,29 +39,32 @@
     };
 
     const searchCity = () => {
-        // alert(`selectedCity = ${JSON.stringify(selectedCity)}`);
+        // console.log(`selectedCityObject = ${JSON.stringify(selectedCityObject)}`);
         if (isSearchDisabled === true) { return; }
-        alert(`selectedCityObject = ${JSON.stringify(selectedCityObject)}`);
 
+        let url = `/professional-cleaners-in-${selectedCityObject.region.slug}/${selectedCityObject.slug}`;
+        // console.log('new url', url);
+        // alert(`selectedCityObject = ${JSON.stringify(selectedCityObject)}`);
+        window.location = url;
     };
 </script>
 
-<div class="banner relative md:pt-24 md:pb-42" style="background-image: url('/images/{image}'); {bannerClasses}">
-    <div class="pb-26 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500">
+<div class="banner relative pt-12 md:pt-24 md:pb-24" style="background-image: url('/images/{image}'); {bannerClasses}">
+    <div class="pb-12 md:pb-24 mx-6 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500">
         <div class="grid gap-6 lg:max-w-[60%] border-0 border-green-500">
-            <h1 class="text-5xl text-white leading-[4rem]">{title}</h1>
+            <h1 class="text-2xl font-medium md:text-5xl text-white leading-[2rem] md:leading-[4rem]">{title}</h1>
             {#if subtitle}
-                <p class="text-white text-xl font-light tracking-[0.25px]">Discover the best professional cleaning services in your city.</p>
+                <p class="text-white text-sm md:text-xl font-light tracking-[0.25px]">Discover the best professional cleaning services in your city.</p>
             {/if}
             {#if search === true}
             <div class="flex items-center gap-2">
                 <Popover.Root bind:open>
                     <Popover.Trigger bind:ref={triggerRef}
-                        class="w-[300px] justify-between text-sm font-light bg-white px-4 pr-4 py-3 border-0 rounded-sm text-foreground outline-none cursor-pointer"
+                        class="w-[70%] md:w-[300px] justify-between text-sm font-light bg-white px-2 md:px-4 py-1.5 md:py-3 border-0 rounded-xs md:rounded-sm text-foreground outline-none cursor-pointer"
                     >
                         {#snippet child({ props })}
                             <div
-                            class="flex items-center justify-between"
+                                class="flex text-xs md:text-sm items-center justify-between"
                                 {...props}
                                 role="combobox"
                                 area-expanded={open}
@@ -71,14 +74,15 @@
                             </div>
                         {/snippet}
                     </Popover.Trigger>
-                    <Popover.Content
-                        class="w-[300px] justify-between text-sm font-light bg-white px-4 pr-4 py-3 border-0 rounded-sm text-foreground outline-none cursor-pointer"
+                    <Popover.Content align="start"
+                        class="w-full md:w-[300px] justify-between text-sm font-light bg-white px-2 md:px-4 py-1.5 md:py-3 border-0 rounded-xs md:rounded-sm text-foreground outline-none cursor-pointer"
                     >
                         <Command.Root>
                             <Command.Input placeholder="Type your city here..." />
                             <Command.List>
-                                {#each cities as city (city.id)}
+                                {#each (data.cities || []) as city (city.id)}
                                     <Command.Item
+                                        class="text-xs md:text-sm"
                                         selectedCity={city.id}
                                         onSelect={() => {
                                             selectedCity = city.id;
@@ -102,7 +106,7 @@
                 <button type="button"
                     disabled={isSearchDisabled}
                     onmouseup={searchCity}
-                    class="bg-green-700 text-white px-4 py-2.5 rounded-sm cursor-pointer hover:bg-green-800 hover:shadow-md duration-[100ms]"
+                    class="bg-green-700 text-sm text-white px-2 md:px-4 py-1.5 md:py-3 rounded-xs md:rounded-sm cursor-pointer hover:bg-green-800 hover:shadow-md duration-[100ms]"
                 >Go!</button>
             </div>
             {/if}

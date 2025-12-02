@@ -9,6 +9,7 @@
     import Hero from "$lib/components/root/hero.svelte";
     import LatestArticles from "$lib/components/root/latest-articles.svelte";
     import Region from "$lib/components/root/region.svelte";
+    import RegionsSection from "$lib/components/root/regions-section.svelte";
     import Section from "$lib/components/root/section.svelte";
     import Seo from "$lib/components/root/seo.svelte";
 
@@ -21,12 +22,12 @@
     } from "@lucide/svelte";
 
     let { data } = $props();
-    let {
-        cities,
-        regions
+    // let {
+        // cities,
+        // regions
         // featured,
         // products
-    } = data;
+    // } = data;
 
     const searchByCity = () => {};
 </script>
@@ -40,33 +41,34 @@
 
 <div class="grid gap-12 md:gap-24 bg-background-light">
     <Hero subtitle="Discover the best professional cleaning services in your city."
-        {data} search={true} {cities} />
+        {data} search={true} />
 
     <Section title="Why Hire Professional Cleaners?">
         {#snippet content()}
-            <div class="flex gap-8 items-center">
+            <!-- <div class="flex gap-6 md:gap-8 items-center"> -->
                 <p class="font-light tracking-[0.25px] leading-[1.75rem]">
                     While many New Zealanders take pride in keeping their spaces tidy, the reality of modern life—with demanding work schedules, family commitments, and the desire to make the most of our beautiful outdoors—often leaves little time for thorough cleaning.
                 </p>
-            </div>
+            <!-- </div> -->
 
-            <div class="flex gap-8 items-center">
+            <!-- <div class="flex gap-8 items-center"> -->
                 <p class="font-light tracking-[0.25px] leading-[1.75rem]">
                     Our climate, with its mix of humidity in the north and dampness in many regions, can also create unique challenges such as mould growth, especially in older homes with limited insulation.
                 </p>
-            </div>
+            <!-- </div> -->
 
-            <div class="flex gap-8 items-center">
+            <!-- <div class="flex gap-8 items-center"> -->
                 <p class="font-light tracking-[0.25px] leading-[1.75rem]">
                     This makes regular, professional cleaning not just a luxury, but sometimes a necessity for maintaining a healthy home environment!
                 </p>
-            </div>
+            <!-- </div> -->
         {/snippet}
     </Section>
 
     <Section title="Search Professional Cleaners by Region">
         {#snippet content()}
-            <div class="grid categories justify-between gap-12 border-0 border-gray-500">
+            <RegionsSection data={data.regions} />
+            <!-- <div class="grid categories justify-between gap-12 border-0 border-gray-500">
                 {#each regions as region}
                     <a href="/professional-cleaners-in-{region.slug}"
                         class="grid rounded-md shadow-md bg-gray-200/70 hover:bg-gray-200 duration-[100ms]"
@@ -78,29 +80,29 @@
                         <div class="flex justify-center pt-1 pb-2 rounded-b-md">{region.name}</div>
                     </a>
                 {/each}
-            </div>
+            </div> -->
         {/snippet}
     </Section>
 
     <Section title="For Kiwis Across the Country">
         {#snippet content()}
-            <div class="grid gap-4 items-center">
+            <!-- <div class="grid gap-4 items-center"> -->
                 <p class="font-light tracking-[0.25px] leading-[1.75rem]">
                     Professional cleaning services have become increasingly popular across New Zealand as people recognise the value of their time and the expertise that trained cleaners bring.
                 </p>
-            </div>
+            <!-- </div> -->
 
-            <div class="flex gap-8 items-center">
+            <!-- <div class="flex gap-8 items-center"> -->
                 <p class="font-light tracking-[0.25px] leading-[1.75rem]">
                     Whether you're a busy professional in Wellington, a family in Hamilton juggling work and school runs, or a retiree in Nelson wanting to maintain your home without the physical strain, professional cleaners offer tailored solutions to meet diverse needs.
                 </p>
-            </div>
+            <!-- </div> -->
 
-            <div class="flex gap-8 items-center">
+            <!-- <div class="flex gap-8 items-center"> -->
                 <p class="font-light tracking-[0.25px] leading-[1.75rem]">
                     From regular domestic cleaning and deep cleans to specialised services like carpet cleaning, window washing, and end-of-tenancy cleans, these professionals use commercial-grade equipment and products that achieve results beyond what's possible with standard household supplies.
                 </p>
-            </div>
+            <!-- </div> -->
         {/snippet}
     </Section>
     
@@ -109,7 +111,7 @@
             <div class="grid categories justify-between gap-12 border-0 border-gray-500">
                 <a href="/" class="grid rounded-md shadow-md border bg-green-700/80 hover:bg-green-700 duration-[100ms]">
                     <div class="h-[200px] border-0 border-red-500 category home-cleaning rounded-t-md"></div>
-                    <div class="flex justify-center pt-1 pb-2 text-white rounded-b-md">Home</div>
+                    <div class="flex justify-center pt-1 pb-2 text-white rounded-b-md">Residential</div>
                 </a>
                 <a href="/" class="grid rounded-md shadow-md border bg-green-700/80 hover:bg-green-700 duration-[100ms]">
                     <div class="h-[200px] border-0 border-red-500 category commercial rounded-t-md"></div>
@@ -130,6 +132,10 @@
                 <a href="/" class="grid rounded-md shadow-md border bg-green-700/80 hover:bg-green-700 duration-[100ms]">
                     <div class="h-[200px] border-0 border-red-500 category vehicles rounded-t-md"></div>
                     <div class="flex justify-center pt-1 pb-2 text-white rounded-b-md">Vehicles</div>
+                </a>
+                <a href="/" class="grid rounded-md shadow-md border bg-green-700/80 hover:bg-green-700 duration-[100ms]">
+                    <div class="h-[200px] border-0 border-red-500 category gardening rounded-t-md"></div>
+                    <div class="flex justify-center pt-1 pb-2 text-white rounded-b-md">Gardening</div>
                 </a>
             </div>
         {/snippet}
@@ -181,11 +187,10 @@
     .vehicles {
         background-image: url('/images/vehicle.jpg');
     }
-    .faq {
-        font-family: 'Noto Serif', serif;
+    .gardening {
+        background-image: url('/images/gardening.jpg');
     }
-    .categories,
-    .regions {
-        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    .categories {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 </style>

@@ -4,7 +4,7 @@
     let { data } = $props();
 </script>
 
-<div class="grid regions justify-between gap-12 border-0 border-gray-500">
+<div class="grid regions justify-between gap-6 md:gap-12 border-0 border-gray-500">
     {#each data as region}
         <Region data={region} />
     {/each}
