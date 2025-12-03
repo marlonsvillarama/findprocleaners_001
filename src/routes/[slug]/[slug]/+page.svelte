@@ -96,7 +96,7 @@
 <div class="grid gap-12 md:gap-24 bg-background-light border-t-1 border-green-700 pt-3">
     <Section title="Professional Cleaners in {title}">
         {#snippet content()}
-            <CitiesList data={region} />
+            <CitiesList data={region} {slug} />
         {/snippet}
     </Section>
 
@@ -142,7 +142,7 @@
 
     <Section title="Professional Cleaners in {title}">
         {#snippet content()}
-            <CitiesList data={region} />
+            <CitiesList data={region} {slug} />
         {/snippet}
     </Section>
 
