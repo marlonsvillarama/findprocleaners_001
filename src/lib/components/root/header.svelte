@@ -6,7 +6,7 @@
     // import ContactForm from "./contact-form.svelte";
 
     import {
-        ChevronRight,
+        ChevronsUpDown,
         Menu
     } from '@lucide/svelte';
 
@@ -63,7 +63,7 @@
                 <Sheet.Header class="border-b-1 border-gray-200">
                     <Sheet.Title class="title text-2xl">Find Pro Cleaners</Sheet.Title>
                 </Sheet.Header>
-                <div class="grid gap-3 px-4 pb-4 max-h-[500px] overflow-scroll">
+                <div class="grid gap-3 px-4 h-[80%] max-h-[480px] overflow-scroll">
                     {#each links as link}
                         <div class="grid gap-2 items-center">
                             <a href={link.url} title={link.text} target="_self"
@@ -82,6 +82,10 @@
                             {/if}
                         </div>
                     {/each}
+                </div>
+                <div class="flex items-center gap-3 px-4 pt-3 border-t-1">
+                    <ChevronsUpDown stroke="bg-gray-400" />
+                    <span class="text-sm text-gray-400">Scroll for more options</span>
                 </div>
             </Sheet.Content>
         </Sheet.Root>
