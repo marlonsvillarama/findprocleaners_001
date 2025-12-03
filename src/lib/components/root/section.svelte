@@ -16,7 +16,7 @@
     {#if title || actions}
         <div class="flex items-center justify-between">
             {#if title}
-                <h2 class="text-md sm:text-3xl font-semibold text-gray-700">{title}</h2>
+                <h2 class="text-lg sm:text-3xl font-semibold text-gray-700">{title}</h2>
             {/if}
             {#if actions}
                 {@render actions()}

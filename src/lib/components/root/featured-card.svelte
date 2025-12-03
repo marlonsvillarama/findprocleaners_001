@@ -12,7 +12,7 @@
 </script>
 
 <a href={data.website} target="_blank" class="rounded-md">
-    <div class="featured-card rounded-md w-full border-2 border-amber-400/40 bg-transparent">
+    <div class="featured-card rounded-md w-full border-2 border-amber-400/40 bg-transparent shadow-sm">
         <div class="sm:gap-0 pt-2 pb-2 px-3 rounded-t-sm border-0 border-red-500 sm:bg-white">
             <div class="font-semibold text-gray-700 border-none truncate mb-1">{data.name}</div>
             <div class="flex items-center justify-between">

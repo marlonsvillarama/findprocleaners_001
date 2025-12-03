@@ -7,16 +7,11 @@
 	// import { Toaster } from 'svelte-sonner';
 	
 	let { children } = $props();
+	// console.log('+PAGE LAYOUT data', data);
 </script>
 
 <!-- <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head> -->
 
-<Header />
-
-<div class="mb-12 md:mb-24">
 	{@render children?.()}
-</div>
-
-<Footer />

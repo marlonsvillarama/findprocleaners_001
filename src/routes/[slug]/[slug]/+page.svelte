@@ -3,6 +3,8 @@
     import CitiesFilter from "$lib/components/root/cities-filter.svelte";
     import CitiesList from "$lib/components/root/cities-list.svelte";
     import FAQ from "$lib/components/root/faq.svelte";
+    import Footer from "$lib/components/root/footer.svelte";
+    import Header from "$lib/components/root/header.svelte";
     import RegionsSection from "$lib/components/root/regions-section.svelte";
     import SearchResults from "$lib/components/root/search-results.svelte";
     import Section from "$lib/components/root/section.svelte";
@@ -89,11 +91,12 @@
     };
 </script>
 
-<Seo
-    title="Professional Cleaners In {title}"
-/>
+<Seo title="Professional Cleaners In {title}" />
 
-<!-- <div class="grid gap-24"> -->
+<Header data={allRegions} />
+
+<div class="mb-12 md:mb-24">
+
 <div class="grid gap-6 md:gap-24 bg-background-light border-t-1 border-green-700 pt-3">
     <Section title="Professional Cleaners in {title}">
         {#snippet content()}
@@ -102,7 +105,7 @@
         {/snippet}
     </Section>
 
-    <Section>
+    <Section class="mb-12">
         {#snippet content()}
             <SearchResults listings={searchResults} {sort}
                 onresetfilters={resetFilters}
@@ -112,7 +115,7 @@
                 {#snippet filters()}
                     <div class="flex flex-wrap gap-2 items-center w-full border-0 border-gray-200">
                         {#each serviceTypes as st}
-                            <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-md cursor-pointer">
+                            <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-sm cursor-pointer">
                                 <label for={st.slug} class="cursor-pointer">
                                     {st.name}
                                 </label>
@@ -194,18 +197,22 @@
         </div>
     </div> -->
 
-    <Section title="Search Professional Cleaners by Region">
+    <Section title="Search Professional Cleaners by Region" class="mb-12">
         {#snippet content()}
             <RegionsSection data={allRegions} />
         {/snippet}
     </Section>
 
-    <Section title="Frequently Asked Questions">
+    <Section title="Frequently Asked Questions" class="mb-12">
         {#snippet content()}
             <FAQ place={region.name} />
         {/snippet}
     </Section>
 </div>
+
+</div>
+
+<Footer />
 
 <style>
     h1 {

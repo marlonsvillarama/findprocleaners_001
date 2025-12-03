@@ -14,16 +14,16 @@
     // console.log('result item', item);
 </script>
 
-<div class="grid gap-3 border-1 border-gray-200 rounded-sm px-5 py-3 border-l-3 border-l-green-700/60 hover:border-gray-200 hover:border-l-green-700 hover:shadow-sm">
+<div class="grid gap-1 border-1 border-gray-200 rounded-sm px-5 py-3 border-l-3 border-l-green-700/60 hover:border-gray-200 hover:border-l-green-700 shadow-sm hover:shadow-sm">
     <div class="items-center justify-between w-full">
         <h3 class="text-gray-700 sm:text-md font-semibold w-full mb-1">{data.name}</h3>
 
         <StarRating rating={data.rating_ave} count={data.review_count} link={data.review_link} />
     </div>
 
-    <Separator />
+    <!-- <Separator /> -->
 
-    <div class="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] justify-between gap-x-6 gap-y-2 border-0 border-green-500">
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] justify-between mt-1 gap-x-6 gap-y-2 border-0 border-green-500">
     <!-- <div class="mt-1 mb-5 sm:flex gap-x-2 gap-y-2 border-0 border-green-500"> -->
         {#each data.services as service}
         <!-- <div class="text-sm text-gray-500 px-2 py-1 bg-gray-50 rounded-sm border">
@@ -35,16 +35,16 @@
         {/each}
     </div>
 
-    <div class="grid gap-2">
-        <div class="flex items-center gap-2 text-sm">
+    <div class="grid mt-2 gap-2">
+        <!-- <div class="flex items-center gap-2 text-sm">
             <House size={16} />
             <span class="font-light">
                 {data.address_1}{#if data.address_2}, {data.address_2}{/if}{#if data.city}, {data.city}{/if}
                 {#if data.zip}{data.zip}{/if}
             </span>
-        </div>
+        </div> -->
 
-        <div class="grid gap-2 lg:gap-12 lg:flex lg:items-center text-sm">
+        <div class="grid mb-1 gap-1 lg:gap-12 lg:flex lg:items-center text-sm">
             <div class="flex items-center gap-2 min-w-[200px]">
                 <Phone size={16} />
                 <span class="font-medium">{data.phone_1}</span>

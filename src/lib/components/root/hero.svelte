@@ -90,7 +90,7 @@
                         class="w-full md:w-[300px] justify-between text-md sm:text-sm font-light bg-white px-3 md:px-4 py-2 md:py-3 border-0 rounded-xs md:rounded-sm text-foreground outline-none cursor-pointer"
                     >
                         <Command.Root>
-                            <Command.Input placeholder="Type your city here..." />
+                            <Command.Input placeholder="Type your region..." />
                             <Command.List>
                                 {#each (data.regions || []) as region (region.id)}
                                     <Command.Item

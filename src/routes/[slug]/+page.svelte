@@ -45,9 +45,11 @@
     let mostReviewed = listings.slice(0, 3);
 </script>
 
-<Seo
-    title="Find Professional Cleaners In {region.name}"
-/>
+<Seo title="Find Professional Cleaners In {region.name}" />
+
+<Header data={allRegions} />
+
+<div class="mb-12 md:mb-24">
 
 <div class="grid md:gap-24 bg-background-light">
     <Hero title="Find Professional Cleaners in {region.name}"
@@ -92,7 +94,7 @@
         {#if featured.length > 0}
             <Section title="Featured Cleaners" class="mb-12">
                 {#snippet actions()}
-                    <a href="/" class="text-sm text-blue-500 font-light">
+                    <a href="/{path}/all" class="text-sm text-blue-600">
                         View all ({listings.length})
                     </a>
                 {/snippet}
@@ -118,7 +120,7 @@
         </Section> -->
     {/if}
 
-    <Section title="Find Professional Cleaners by Region">
+    <Section title="Find Professional Cleaners by Region" class="mb-12">
         {#snippet content()}
             <RegionsSection data={allRegions} />
         {/snippet}
@@ -161,3 +163,7 @@
         {/snippet}
     </Section>
 </div>
+
+</div>
+
+<Footer />

@@ -29,6 +29,8 @@
             url: '/contact'
         }
     ];
+
+    let { data } = $props();
 </script>
 
 <div class="flex items-center justify-between my-2 md:my-4 mx-4 md:mx-auto md:w-[85%] md:max-w-6xl bg-white">
@@ -58,15 +60,26 @@
                 <Menu size={20} class="stroke-green-700" />
             </Sheet.Trigger>
             <Sheet.Content side="right">
-                <Sheet.Header>
-                    <Sheet.Title class="text-2xl">Find Pro Cleaners</Sheet.Title>
+                <Sheet.Header class="border-b-1 border-gray-200">
+                    <Sheet.Title class="title text-2xl">Find Pro Cleaners</Sheet.Title>
                 </Sheet.Header>
-                <div class="grid gap-4 mx-4">
+                <div class="grid gap-3 px-4">
                     {#each links as link}
-                        <div class="flex gap-2 items-center">
-                            <!-- <ChevronRight size={16} /> -->
+                        <div class="grid gap-2 items-center">
                             <a href={link.url} title={link.text} target="_self"
-                                class="pl-5 text-lg font-normal text-green-700 pb-[2px] border-b-2 border-transparent hover:text-green-900 hover:border-green-900">{link.text}</a>
+                                class="pl-5 text-md font-medium text-green-700 pb-[2px] border-b-2 border-transparent hover:text-green-900 hover:border-green-900">
+                                {link.text}
+                            </a>
+                            {#if link.url.indexOf('region') > 0}
+                                <div class="grid gap-2">
+                                    {#each data as region}
+                                        <a href="/professional-cleaners-in-{region.slug}" title={region.name} target="_self"
+                                            class="pl-10 text-md font-light text-green-700 pb-[2px] border-b-2 border-transparent hover:text-green-900 hover:border-green-900">
+                                            - {region.name}
+                                        </a>
+                                    {/each}
+                                </div>
+                            {/if}
                         </div>
                     {/each}
                 </div>
@@ -76,7 +89,8 @@
 </div>
 
 <style>
-    .header-logo {
+    .header-logo,
+    .title {
         font-family: "Gabarito", sans-serif;
     }
 </style>

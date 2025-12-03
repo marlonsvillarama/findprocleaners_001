@@ -1,6 +1,8 @@
 <script>
     import Button from "$lib/components/ui/button/button.svelte";
     import FAQ from "$lib/components/root/faq.svelte";
+    import Footer from "$lib/components/root/footer.svelte";
+    import Header from "$lib/components/root/header.svelte";
     import Hero from "$lib/components/root/hero.svelte";
     import Input from "$lib/components/ui/input/input.svelte";
     import RegionsSection from "$lib/components/root/regions-section.svelte";
@@ -20,6 +22,10 @@
 <Seo
     title="Find Professional Cleaners by Region"
 />
+
+<Header data={data.regions} />
+
+<div class="mb-12 md:mb-24">
 
 <div class="grid gap-12 md:gap-24 bg-background-light">
     <!-- <div class="banner relative md:pt-24 md:pb-42">
@@ -44,6 +50,10 @@
         {/snippet}
     </Section>
 </div>
+
+</div>
+
+<Footer />
 
 <!-- <style>
     .banner {
