@@ -8,6 +8,7 @@
     import Header from "$lib/components/root/header.svelte";
     import Hero from "$lib/components/root/hero.svelte";
     import LatestArticles from "$lib/components/root/latest-articles.svelte";
+    import Paragraph from "$lib/components/root/paragraph.svelte";
     import Region from "$lib/components/root/region.svelte";
     import RegionsSection from "$lib/components/root/regions-section.svelte";
     import Section from "$lib/components/root/section.svelte";
@@ -46,26 +47,41 @@
     <Section title="Why Hire Professional Cleaners?">
         {#snippet content()}
             <!-- <div class="flex gap-6 md:gap-8 items-center"> -->
-                <p class="font-light tracking-[0.25px] leading-[1.75rem]">
+                <Paragraph>
+                    {#snippet text()}
                     While many New Zealanders take pride in keeping their spaces tidy, the reality of modern life—with demanding work schedules, family commitments, and the desire to make the most of our beautiful outdoors—often leaves little time for thorough cleaning.
-                </p>
+                    {/snippet}
+                </Paragraph>
+                <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
+                    While many New Zealanders take pride in keeping their spaces tidy, the reality of modern life—with demanding work schedules, family commitments, and the desire to make the most of our beautiful outdoors—often leaves little time for thorough cleaning.
+                </p> -->
             <!-- </div> -->
 
             <!-- <div class="flex gap-8 items-center"> -->
-                <p class="font-light tracking-[0.25px] leading-[1.75rem]">
+                <Paragraph>
+                    {#snippet text()}
                     Our climate, with its mix of humidity in the north and dampness in many regions, can also create unique challenges such as mould growth, especially in older homes with limited insulation.
-                </p>
+                    {/snippet}
+                </Paragraph>
+                <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
+                    Our climate, with its mix of humidity in the north and dampness in many regions, can also create unique challenges such as mould growth, especially in older homes with limited insulation.
+                </p> -->
             <!-- </div> -->
 
             <!-- <div class="flex gap-8 items-center"> -->
-                <p class="font-light tracking-[0.25px] leading-[1.75rem]">
+                <Paragraph>
+                    {#snippet text()}
                     This makes regular, professional cleaning not just a luxury, but sometimes a necessity for maintaining a healthy home environment!
-                </p>
+                    {/snippet}
+                </Paragraph>
+                <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
+                    This makes regular, professional cleaning not just a luxury, but sometimes a necessity for maintaining a healthy home environment!
+                </p> -->
             <!-- </div> -->
         {/snippet}
     </Section>
 
-    <Section title="Search Professional Cleaners by Region">
+    <Section title="Find Professional Cleaners by Region">
         {#snippet content()}
             <RegionsSection data={data.regions} />
             <!-- <div class="grid categories justify-between gap-12 border-0 border-gray-500">
@@ -87,21 +103,36 @@
     <Section title="For Kiwis Across the Country">
         {#snippet content()}
             <!-- <div class="grid gap-4 items-center"> -->
-                <p class="font-light tracking-[0.25px] leading-[1.75rem]">
+                <Paragraph>
+                    {#snippet text()}
                     Professional cleaning services have become increasingly popular across New Zealand as people recognise the value of their time and the expertise that trained cleaners bring.
-                </p>
+                    {/snippet}
+                </Paragraph>
+                <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
+                    Professional cleaning services have become increasingly popular across New Zealand as people recognise the value of their time and the expertise that trained cleaners bring.
+                </p> -->
             <!-- </div> -->
 
             <!-- <div class="flex gap-8 items-center"> -->
-                <p class="font-light tracking-[0.25px] leading-[1.75rem]">
+                <Paragraph>
+                    {#snippet text()}
                     Whether you're a busy professional in Wellington, a family in Hamilton juggling work and school runs, or a retiree in Nelson wanting to maintain your home without the physical strain, professional cleaners offer tailored solutions to meet diverse needs.
-                </p>
+                    {/snippet}
+                </Paragraph>
+                <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
+                    Whether you're a busy professional in Wellington, a family in Hamilton juggling work and school runs, or a retiree in Nelson wanting to maintain your home without the physical strain, professional cleaners offer tailored solutions to meet diverse needs.
+                </p> -->
             <!-- </div> -->
 
             <!-- <div class="flex gap-8 items-center"> -->
-                <p class="font-light tracking-[0.25px] leading-[1.75rem]">
+                <Paragraph>
+                    {#snippet text()}
                     From regular domestic cleaning and deep cleans to specialised services like carpet cleaning, window washing, and end-of-tenancy cleans, these professionals use commercial-grade equipment and products that achieve results beyond what's possible with standard household supplies.
-                </p>
+                    {/snippet}
+                </Paragraph>
+                <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
+                    From regular domestic cleaning and deep cleans to specialised services like carpet cleaning, window washing, and end-of-tenancy cleans, these professionals use commercial-grade equipment and products that achieve results beyond what's possible with standard household supplies.
+                </p> -->
             <!-- </div> -->
         {/snippet}
     </Section>

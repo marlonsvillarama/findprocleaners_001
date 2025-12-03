@@ -23,14 +23,18 @@
 
     let bannerClasses = $state('');
     if (image.indexOf('/') > 0) {
-        bannerClasses = `background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)), url(/images/${image}); background-position: 0% 50%;`
+        // bannerClasses = `background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)), url(/images/${image}); background-position: 0% 50%;`
+        bannerClasses = 'background-position: 0% 50%;'
+    }
+    else if (image.indexOf('sheep') >= 0) {
+        bannerClasses = 'background-position: 0% 65%;'
     }
 
     let open = $state(false);
     let selectedCity = $state('');
     let triggerRef = $state(null);
     
-    const selectedCityObject = $derived((data.cities || []).find(f => f.id === selectedCity) || {});
+    const selectedCityObject = $derived((data?.cities || []).find(f => f.id === selectedCity) || {});
     const isSearchDisabled = $derived(!!selectedCity === false);
 
     const closeAndFocusTrigger = () => {
@@ -49,18 +53,18 @@
     };
 </script>
 
-<div class="banner relative pt-12 md:pt-24 md:pb-24" style="background-image: url('/images/{image}'); {bannerClasses}">
-    <div class="pb-12 md:pb-24 mx-6 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500">
+<div class="banner relative pt-12 pb-18 sm:pt-24 sm:pb-30" style="background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('/images/{image}'); {bannerClasses}">
+    <div class="mx-6 sm:mx-auto sm:w-[85%] sm:max-w-6xl border-0 border-red-500">
         <div class="grid gap-6 lg:max-w-[60%] border-0 border-green-500">
-            <h1 class="text-2xl font-medium md:text-5xl text-white leading-[2rem] md:leading-[4rem]">{title}</h1>
+            <h1 class="text-3xl font-normal md:text-5xl text-white leading-[2.25rem] sm:leading-[3.5rem]">{title}</h1>
             {#if subtitle}
-                <p class="text-white text-sm md:text-xl font-light tracking-[0.25px]">Discover the best professional cleaning services in your city.</p>
+                <p class="text-white text-md md:text-xl font-light tracking-[0.25px]">Discover the best professional cleaning services in your city.</p>
             {/if}
             {#if search === true}
             <div class="flex items-center gap-2">
                 <Popover.Root bind:open>
                     <Popover.Trigger bind:ref={triggerRef}
-                        class="w-[70%] md:w-[300px] justify-between text-sm font-light bg-white px-2 md:px-4 py-1.5 md:py-3 border-0 rounded-xs md:rounded-sm text-foreground outline-none cursor-pointer"
+                        class="w-[70%] md:w-[300px] justify-between text-md sm:text-sm font-light bg-white px-3 md:px-4 py-2 md:py-3 border-0 rounded-xs md:rounded-sm text-foreground outline-none cursor-pointer"
                     >
                         {#snippet child({ props })}
                             <div
@@ -75,14 +79,14 @@
                         {/snippet}
                     </Popover.Trigger>
                     <Popover.Content align="start"
-                        class="w-full md:w-[300px] justify-between text-sm font-light bg-white px-2 md:px-4 py-1.5 md:py-3 border-0 rounded-xs md:rounded-sm text-foreground outline-none cursor-pointer"
+                        class="w-full md:w-[300px] justify-between text-md sm:text-sm font-light bg-white px-3 md:px-4 py-2 md:py-3 border-0 rounded-xs md:rounded-sm text-foreground outline-none cursor-pointer"
                     >
                         <Command.Root>
                             <Command.Input placeholder="Type your city here..." />
                             <Command.List>
                                 {#each (data.cities || []) as city (city.id)}
                                     <Command.Item
-                                        class="text-xs md:text-sm"
+                                        class="text-sm"
                                         selectedCity={city.id}
                                         onSelect={() => {
                                             selectedCity = city.id;
@@ -106,7 +110,7 @@
                 <button type="button"
                     disabled={isSearchDisabled}
                     onmouseup={searchCity}
-                    class="bg-green-700 text-sm text-white px-2 md:px-4 py-1.5 md:py-3 rounded-xs md:rounded-sm cursor-pointer hover:bg-green-800 hover:shadow-md duration-[100ms]"
+                    class="bg-green-700 text-md text-white px-3 md:px-4 py-2 md:py-3 rounded-xs md:rounded-sm cursor-pointer hover:bg-green-800 hover:shadow-md duration-[100ms]"
                 >Go!</button>
             </div>
             {/if}

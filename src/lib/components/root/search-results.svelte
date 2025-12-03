@@ -35,7 +35,7 @@
 
     <Separator class="mb-2"/>
 
-    <div class="flex items-center gap-3 sm:gap-6 mb-3">
+    <div class="flex items-center gap-3 sm:gap-3 mb-3">
         <button class="text-xs sm:text-sm px-2 py-1.5 bg-gray-200 rounded-sm border-b-2 border-transparent hover:border-green-700 cursor-pointer" onclick={onresetfilters}>
             Select all
         </button>

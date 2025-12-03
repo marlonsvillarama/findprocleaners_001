@@ -1,7 +1,16 @@
 <script>
     import * as Dialog from '$lib/components/ui/dialog/index';
+    import * as Sheet from '$lib/components/ui/sheet/index';
+    import { buttonVariants } from '$lib/components/ui/button';
+    import { MediaQuery } from 'svelte/reactivity';
     // import ContactForm from "./contact-form.svelte";
 
+    import {
+        ChevronRight,
+        Menu
+    } from '@lucide/svelte';
+
+    const isMedium = new MediaQuery("(min-width: 768px)");
     let links = [
         {
             text: 'Home',
@@ -22,11 +31,11 @@
     ];
 </script>
 
-<div class="flex items-center justify-between my-2 md:my-4 mx-2 md:mx-auto md:w-[85%] md:max-w-6xl bg-white">
+<div class="flex items-center justify-between my-2 md:my-4 mx-4 md:mx-auto md:w-[85%] md:max-w-6xl bg-white">
     <a href="/" title="FindProCleaners.nz - Find the best cleaners near you" target="_self">
         <div class="flex items-center gap-1 md:gap-2">
             <img src="/images/icons/find_pro_cleaners.svg" alt="Find Pro Cleaners" class="w-[20px] md:w-[36px] h-auto">
-            <span class="header-logo font-semibold text-md md:text-2xl text-main">Find Pro Cleaners</span>
+            <span class="header-logo font-semibold text-xl md:text-2xl text-main">Find Pro Cleaners</span>
             <!-- <div class="flex items-end">
                 <span class="font-medium text-lg md:text-xl text-green-600/70">Find</span>
                 <span class="font-medium text-lg md:text-xl text-gray-700">Pro</span>
@@ -35,14 +44,35 @@
             </div> -->
         </div>
     </a>
-    <div class="hidden md:flex items-center gap-8">
-        {#each links as link}
-            <a href={link.url} title={link.text} class="text-sm font-normal text-green-700 pb-[2px] border-b-2 border-transparent
-                hover:text-green-900 hover:border-green-900">{link.text}</a>
-        {/each}
 
-        <!-- <ContactForm /> -->
-    </div>
+    {#if isMedium.current}
+        <nav class="flex items-center gap-8">
+            {#each links as link}
+                <a href={link.url} title={link.text} class="text-sm font-normal text-green-700 pb-[2px] border-b-2 border-transparent
+                    hover:text-green-900 hover:border-green-900">{link.text}</a>
+            {/each}
+        </nav>
+    {:else}
+        <Sheet.Root>
+            <Sheet.Trigger class={buttonVariants({ variant:"ghost", size: "icon" })}>
+                <Menu size={20} class="stroke-green-700" />
+            </Sheet.Trigger>
+            <Sheet.Content side="right">
+                <Sheet.Header>
+                    <Sheet.Title>Find Pro Cleaners</Sheet.Title>
+                </Sheet.Header>
+                <div class="grid gap-4 mx-4">
+                    {#each links as link}
+                        <div class="flex gap-2 items-center">
+                            <ChevronRight size={16} />
+                            <a href={link.url} title={link.text} target="_self" class="text-sm font-normal text-green-700 pb-[2px] border-b-2 border-transparent
+                                hover:text-green-900 hover:border-green-900">{link.text}</a>
+                        </div>
+                    {/each}
+                </div>
+            </Sheet.Content>
+        </Sheet.Root>
+    {/if}
 </div>
 
 <style>

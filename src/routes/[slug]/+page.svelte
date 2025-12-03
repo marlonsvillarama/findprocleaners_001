@@ -8,6 +8,7 @@
     import Footer from "$lib/components/root/footer.svelte";
     import Header from "$lib/components/root/header.svelte";
     import Hero from "$lib/components/root/hero.svelte";
+    import Paragraph from "$lib/components/root/paragraph.svelte";
     import RegionsSection from "$lib/components/root/regions-section.svelte";
     import SearchMoreLink from "$lib/components/root/search-more-link.svelte";
     import Section from "$lib/components/root/section.svelte";
@@ -62,7 +63,12 @@
         {#snippet content()}
             {#each page_content as pc}
                 <div class="grid items-center">
-                    <p class="font-light tracking-[0.25px] leading-[1.75rem]">{pc}</p>
+                    <Paragraph>
+                        {#snippet text()}
+                        {pc}
+                        {/snippet}
+                    </Paragraph>
+                    <!-- <p class="font-light tracking-[0.25px] leading-[1.75rem]">{pc}</p> -->
                 </div>
             {/each}
         {/snippet}

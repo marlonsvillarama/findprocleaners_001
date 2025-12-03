@@ -93,53 +93,104 @@
 />
 
 <!-- <div class="grid gap-24"> -->
-<div class="grid gap-12 md:gap-24 bg-background-light">
-<div class="pb-12 md:pb-24 mx-6 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500">
-<!-- <div class="pt-4 mb-24 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500"> -->
-    <h1 class="text-2xl md:text-2xl text-green-800 mb-4">Professional Cleaners in {title}</h1>
-    
-    <div class="grid gap-4 md:gap-12 bg-background-light">
-        <CitiesList data={region} />
+<div class="grid gap-12 md:gap-24 bg-background-light border-t-1 border-green-700 pt-3">
+    <Section title="Professional Cleaners in {title}">
+        {#snippet content()}
+            <CitiesList data={region} />
+        {/snippet}
+    </Section>
 
-        <SearchResults listings={searchResults} {sort}
-            onresetfilters={resetFilters}
-            onclearfilters={clearFilters}
-            onsortchanged={updateSort}
-        >
-            {#snippet filters()}
-                <div class="flex flex-wrap gap-2 items-center w-full border-0 border-gray-200">
-                    {#each serviceTypes as st}
-                        <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-xs sm:text-sm cursor-pointer">
-                            <label for={st.slug} class="cursor-pointer">
-                                <span>{st.name}</span>
+    <Section>
+        {#snippet content()}
+            <SearchResults listings={searchResults} {sort}
+                onresetfilters={resetFilters}
+                onclearfilters={clearFilters}
+                onsortchanged={updateSort}
+            >
+                {#snippet filters()}
+                    <div class="flex flex-wrap gap-2 items-center w-full border-0 border-gray-200">
+                        {#each serviceTypes as st}
+                            <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-xs sm:text-sm cursor-pointer">
+                                <label for={st.slug} class="cursor-pointer">
+                                    {st.name}
+                                </label>
+                                <input type="checkbox" name={st.slug} id={st.slug} bind:group={selectedFilters} value={st.slug}
+                                    onchange={filterResults}
+                                    class="rounded-sm cursor-pointer outline-none border hover:bg-gray-100">
+                            </div>
+                        {/each}
+                        <!-- <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-sm cursor-pointer">
+                            <label for="commercial" class="cursor-pointer">
+                                <span>Commercial</span>
                             </label>
-                            <input type="checkbox" name={st.slug} id={st.slug} bind:group={selectedFilters} value={st.slug}
-                                onchange={filterResults}
+                            <input type="checkbox" name="commercial" id="commercial"
                                 class="rounded-sm cursor-pointer outline-none border hover:bg-gray-100">
                         </div>
-                    {/each}
-                    <!-- <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-sm cursor-pointer">
-                        <label for="commercial" class="cursor-pointer">
-                            <span>Commercial</span>
-                        </label>
-                        <input type="checkbox" name="commercial" id="commercial"
-                            class="rounded-sm cursor-pointer outline-none border hover:bg-gray-100">
+                        <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-sm cursor-pointer">
+                            <label for="pressure-wash" class="cursor-pointer">
+                                <span>Pressure Wash</span>
+                            </label>
+                            <input type="checkbox" name="pressure-wash" id="pressure-wash"
+                                class="rounded-sm cursor-pointer outline-none border hover:bg-gray-100">
+                        </div> -->
                     </div>
-                    <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-sm cursor-pointer">
-                        <label for="pressure-wash" class="cursor-pointer">
-                            <span>Pressure Wash</span>
-                        </label>
-                        <input type="checkbox" name="pressure-wash" id="pressure-wash"
-                            class="rounded-sm cursor-pointer outline-none border hover:bg-gray-100">
-                    </div> -->
-                </div>
-                <!-- selected: {JSON.stringify(selectedFilters)} -->
-            {/snippet}
-        </SearchResults>
+                    <!-- selected: {JSON.stringify(selectedFilters)} -->
+                {/snippet}
+            </SearchResults>
+        {/snippet}
+    </Section>
+
+    <Section title="Professional Cleaners in {title}">
+        {#snippet content()}
+            <CitiesList data={region} />
+        {/snippet}
+    </Section>
+
+    <!-- <div class="pb-12 md:pb-24 mx-6 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500"> -->
+    <!-- <div class="pt-4 mb-24 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500"> -->
+        <!-- <h1 class="text-2xl md:text-2xl text-green-800 mb-4">Professional Cleaners in {title}</h1>
         
-        <CitiesList data={region} />
-    </div>
-</div>
+        <div class="grid gap-4 md:gap-12 bg-background-light"> -->
+
+            <!-- <SearchResults listings={searchResults} {sort}
+                onresetfilters={resetFilters}
+                onclearfilters={clearFilters}
+                onsortchanged={updateSort}
+            >
+                {#snippet filters()}
+                    <div class="flex flex-wrap gap-2 items-center w-full border-0 border-gray-200">
+                        {#each serviceTypes as st}
+                            <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-xs sm:text-sm cursor-pointer">
+                                <label for={st.slug} class="cursor-pointer">
+                                    <span>{st.name}</span>
+                                </label>
+                                <input type="checkbox" name={st.slug} id={st.slug} bind:group={selectedFilters} value={st.slug}
+                                    onchange={filterResults}
+                                    class="rounded-sm cursor-pointer outline-none border hover:bg-gray-100">
+                            </div>
+                        {/each}
+                        <-- <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-sm cursor-pointer">
+                            <label for="commercial" class="cursor-pointer">
+                                <span>Commercial</span>
+                            </label>
+                            <input type="checkbox" name="commercial" id="commercial"
+                                class="rounded-sm cursor-pointer outline-none border hover:bg-gray-100">
+                        </div>
+                        <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-sm cursor-pointer">
+                            <label for="pressure-wash" class="cursor-pointer">
+                                <span>Pressure Wash</span>
+                            </label>
+                            <input type="checkbox" name="pressure-wash" id="pressure-wash"
+                                class="rounded-sm cursor-pointer outline-none border hover:bg-gray-100">
+                        </div> --
+                    </div>
+                    <-- selected: {JSON.stringify(selectedFilters)} --
+                {/snippet}
+            </SearchResults> -->
+            
+            <!-- <CitiesList data={region} />
+        </div>
+    </div> -->
 
     <Section title="Search Professional Cleaners by Region">
         {#snippet content()}

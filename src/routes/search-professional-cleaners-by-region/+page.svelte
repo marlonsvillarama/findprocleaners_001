@@ -17,16 +17,17 @@
 </script>
 
 <div class="grid gap-12 md:gap-24 bg-background-light">
-    <div class="banner relative md:pt-24 md:pb-42">
+    <!-- <div class="banner relative md:pt-24 md:pb-42">
         <div class="pb-26 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500">
             <div class="grid gap-6 lg:max-w-[60%] border-0 border-green-500">
                 <h1 class="text-5xl text-white leading-[4rem]">Search Professional Cleaners by Region</h1>
                 <p class="text-white text-xl font-light tracking-[0.25px]">Discover the best professional cleaning services withn your region.</p>
             </div>
         </div>
-    </div>
+    </div> -->
+    <Hero title="Find Professional Cleaners by Region" image="moeraki.jpg" />
 
-    <Section title="Search Professional Cleaners by Region">
+    <Section title="Choose Your Region Below">
         {#snippet content()}
             <RegionsSection data={regions} />
         {/snippet}
@@ -39,7 +40,7 @@
     </Section>
 </div>
 
-<style>
+<!-- <style>
     .banner {
         /* background-image: url('/images/moeraki.jpg'); */
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)), url(/images/moeraki.jpg);
@@ -57,4 +58,4 @@
     .tile > input[type=radio]:checked + label {
         background-color: rgba(0, 130, 54, 0.2);
     }
-</style>
+</style> -->
