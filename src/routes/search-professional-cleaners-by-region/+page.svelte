@@ -4,6 +4,7 @@
     import Hero from "$lib/components/root/hero.svelte";
     import Input from "$lib/components/ui/input/input.svelte";
     import RegionsSection from "$lib/components/root/regions-section.svelte";
+    import Seo from "$lib/components/root/seo.svelte";
     import Section from "$lib/components/root/section.svelte";
 
     import { ChevronRight } from "@lucide/svelte";
@@ -15,6 +16,10 @@
         regions
     } = data;
 </script>
+
+<Seo
+    title="Find Professional Cleaners by Region"
+/>
 
 <div class="grid gap-12 md:gap-24 bg-background-light">
     <!-- <div class="banner relative md:pt-24 md:pb-42">

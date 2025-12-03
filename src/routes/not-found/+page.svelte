@@ -1,8 +1,11 @@
 <script>
     import Paragraph from "$lib/components/root/paragraph.svelte";
     import Section from "$lib/components/root/section.svelte";
+    import Seo from "$lib/components/root/seo.svelte";
     import UnorderedList from "$lib/components/root/unordered-list.svelte";
 </script>
+
+<Seo title="Oops! Something went wrong..." />
 
 <div class="grid gap-12 md:gap-12 bg-background-light">
     <Section>
