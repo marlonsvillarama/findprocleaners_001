@@ -8,10 +8,16 @@
         if (a.name > b.name) return 1;
         return 0;
     });
+
+    let isOpen = $state(false);
 </script>
 
 <div class="grid md:gap-1 border-0 border-gray-500 shadow-sm rounded-md ">
-    <h1 class="text-lg md:text-md text-gray-700/80 px-3 py-2 bg-gray-200 rounded-t-md">Select a city in this region</h1>
+    <button type="button" class="text-lg md:text-md text-gray-700/80 px-3 py-2 bg-gray-200 rounded-t-md {isOpen ? 'rounded-b-0' : 'rounded-b-md'}" onclick={() => isOpen = !isOpen}>
+        Select another city in this region
+    </button>
+
+    <div class="{isOpen ? 'block' : 'hidden'}">
 
     <div class="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] md:gap-y-1 px-4 py-2 items-start text-md sm:text-sm border-0 border-red-500">
         {#each data.cities as city}
@@ -30,10 +36,11 @@
         Can't find your city?
         <a href="/contact?mode=request_city#contact-form" class="text-blue-600 underline">Request it to be listed.</a>
     </div>
+    </div>
 </div>
 
 <style>
-    h1 {
+    button {
         font-family: 'Noto Serif', serif;
     }
     /* .city-grid {
