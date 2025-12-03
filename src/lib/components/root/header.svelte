@@ -35,7 +35,7 @@
     <a href="/" title="FindProCleaners.nz - Find the best cleaners near you" target="_self">
         <div class="flex items-center gap-1 md:gap-2">
             <img src="/images/icons/find_pro_cleaners.svg" alt="Find Pro Cleaners" class="w-[20px] md:w-[36px] h-auto">
-            <span class="header-logo font-semibold text-xl md:text-2xl text-main">Find Pro Cleaners</span>
+            <span class="header-logo font-semibold text-2xl md:text-3xl text-main">Find Pro Cleaners</span>
             <!-- <div class="flex items-end">
                 <span class="font-medium text-lg md:text-xl text-green-600/70">Find</span>
                 <span class="font-medium text-lg md:text-xl text-gray-700">Pro</span>
@@ -59,13 +59,13 @@
             </Sheet.Trigger>
             <Sheet.Content side="right">
                 <Sheet.Header>
-                    <Sheet.Title>Find Pro Cleaners</Sheet.Title>
+                    <Sheet.Title class="text-2xl">Find Pro Cleaners</Sheet.Title>
                 </Sheet.Header>
                 <div class="grid gap-4 mx-4">
                     {#each links as link}
                         <div class="flex gap-2 items-center">
                             <ChevronRight size={16} />
-                            <a href={link.url} title={link.text} target="_self" class="text-sm font-normal text-green-700 pb-[2px] border-b-2 border-transparent
+                            <a href={link.url} title={link.text} target="_self" class="text-lg font-normal text-green-700 pb-[2px] border-b-2 border-transparent
                                 hover:text-green-900 hover:border-green-900">{link.text}</a>
                         </div>
                     {/each}
