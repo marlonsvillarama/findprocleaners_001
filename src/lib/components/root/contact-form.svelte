@@ -84,10 +84,6 @@
         }
 
         isSubmitting = true;
-        // console.log('submit data', JSON.stringify({
-        //     ...contactData,
-        //     ts: (new Date()).getTime().toString()
-        // }));
         let jsonResponse = await fetch(API_URL, {
             method: 'POST',
             headers: {
@@ -99,7 +95,6 @@
             })
         });
         jsonResponse = await jsonResponse.json();
-        // console.log(`submitData jsonResponse`, jsonResponse);
 
         isSubmitting = false;
         isSubmitted = true;
@@ -109,23 +104,6 @@
             isOpen = false;
             setTimeout(() => isSubmitted = false, 1000)
         }, 2000);
-        /* if (success) {
-            console.log('YES');
-        }
-        else {
-            console.log('NO');
-        } */
-        /* setTimeout(() => {
-            isSubmitting = false;
-            isSubmitted = true;
-
-            setTimeout(() => {
-                resetContactData();
-                isOpen = false;
-                setTimeout(() => isSubmitted = false, 1000)
-            }, 2000);
-            // toast.success("Inquiry form submitted!");
-        }, 5000); */
     };
 
     const validateCity = () => {

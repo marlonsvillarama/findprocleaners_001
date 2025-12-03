@@ -1,62 +1,50 @@
 <script>
     import Separator from "../ui/separator/separator.svelte";
 
-    let { data } = $props();
+    let { data, slug } = $props();
+    console.log('+CITIES-LIST cities', data.cities);
+    data.cities.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+    });
 
-    // const COLUMN_COUNT = 4;
-
-    const getGroups = (count) => {
-        let groups = [];
-        let perColumn = Math.ceil(data.cities.length / count);
-
-        let col = 0;
-        let start = 0;
-        do {
-            groups.push(data.cities.slice((col * perColumn), (col * perColumn) + perColumn));
-            col++;
-        } while (col < count);
-
-        return groups;
-    };
+    let isOpen = $state(false);
 </script>
 
-<!-- <div class="mx-4 sm:w-7xl sm:mx-auto grid gap-8 mb-8"> -->
-<div class="mx-4 sm:mx-auto sm:w-[90%] sm:max-w-7xl grid md:gap-8 mb-8 border-0 border-red-500">
-    <h1 class="text-xl md:text-3xl text-gray-700 font-semibold mb-1 text-center">Select your city below</h1>
-    <!-- <h1 class="text-xl text-green-800 font-semibold mb-1 mx-auto">Select your city below</h1> -->
-    <!-- <Separator /> -->
-    <!-- <div class="border grid sm:grid-cols-3 gap-4 sm:gap-12 items-start"> -->
-    <!-- <div class="flex sm:flex-cols gap-4 sm:gap-12 items-start justify-between">
-        {#each products as product}
-            <ProductPreview {...product} />
-        {/each}
-    </div> -->
+<div class="grid md:gap-1 border-0 border-gray-500 shadow-sm rounded-md ">
+    <button type="button" class="text-lg md:text-md text-gray-700/80 px-3 py-2 bg-gray-200 rounded-t-md {isOpen ? 'rounded-b-0' : 'rounded-b-md'}" onclick={() => isOpen = !isOpen}>
+        Select a city within this region
+    </button>
 
-    <!-- <div class="flex flex-cols-3 sm:flex-cols-4 items-start justify-between px-4"> -->
-    <div class="city-grid items-start mt-4 mb-8">
-        <!-- {#each getGroups(4) as group} -->
-            <!-- <div class="grid gap-2">
-                {#each group as city} -->
-                {#each data.cities as city}
-                    <!-- <a href="/search/{city.name.toLowerCase().replaceAll(' ', '+')}" target="_self">
-                        <h2 class="text-green-700">{city.name}</h2>
-                    </a> -->
-                    <a href="/search/{city.name.toLowerCase().replaceAll(' ', '+')}" target="_self"
-                        class="hover:bg-green-700/5 mb-2"
-                    >
-                        <h2 class="font-light text-sm text-gray-600 hover:text-green-700 p-1 px-2 border-l-2 border-transparent
-                            hover:border-green-700
-                        ">{city.name}</h2>
-                    </a>
-                {/each}
-            <!-- </div>
-        {/each} -->
+    <div class="{isOpen ? 'block' : 'hidden'}">
+
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] md:gap-y-1 px-4 py-2 items-start text-md sm:text-sm border-0 border-red-500">
+        {#each data.cities as city}
+            <a href="/professional-cleaners-in-{data.slug}/{city.slug}" target="_self">
+                <h2 class="text-gray-600 hover:text-green-700 p-2 px-3 border-l-2 border-{city.slug === slug ? 'green-700' : 'transparent'}
+                    bg-{city.slug === slug ? 'green-700/5' : 'transparent'}
+                    hover:border-green-700 hover:bg-green-700/5"
+                >
+                    {city.name}
+                </h2>
+            </a>
+        {/each}
+    </div>
+
+    <div class="px-4 text-sm sm:text-xs pb-3 text-gray-400">
+        Can't find your city?
+        <a href="/contact?mode=request_city#contact-form" class="text-blue-600 underline">Request it to be listed.</a>
+    </div>
     </div>
 </div>
 
 <style>
-    .city-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    button {
+        font-family: 'Red Rose', serif;
     }
+    /* .city-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    } */
 </style>
