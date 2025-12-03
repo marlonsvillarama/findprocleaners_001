@@ -15,10 +15,12 @@
 </script>
 
 <div class="grid gap-3 border-1 border-gray-200 rounded-sm px-5 py-3 border-l-3 border-l-green-700/60 hover:border-gray-200 hover:border-l-green-700 hover:shadow-sm">
-    <div class="grid gap-1 md:flex items-center justify-between">
-        <h3 class="text-md font-semibold">{data.name}</h3>
-        <StarRating rating={data.rating_ave} count={data.review_count} />
+    <div class="items-center justify-between w-full">
+        <h3 class="text-md font-semibold w-full mb-1">{data.name}</h3>
+
+        <StarRating rating={data.rating_ave} count={data.review_count} link={data.review_link} />
     </div>
+
     <Separator />
 
     <div class="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] justify-between gap-x-6 gap-y-2 border-0 border-green-500">
@@ -68,7 +70,7 @@
 
     {#if data.reviews.length > 0}
         <div class="flex flex-col gap-1 items-start mt-2 mb-4">
-            <p class="text-sm text-gray-800 text-left font-normal leading-[1.25rem] tracking-[0.25px] pt-1">
+            <p class="text-sm text-gray-800 text-left font-normal leading-[1.5rem] tracking-[0.25px] pt-1">
                 "{data.reviews[0].review_text}"
             </p>
             <div class="font-light flex justify-end italic text-gray-600 pb-1 border-b-0 border-gray-600">

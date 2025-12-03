@@ -91,14 +91,14 @@
         </Section>
         {/if}
 
-        <Section title="Highest-Rated Cleaners">
+        <Section title="Highest-Rated">
             {#snippet content()}
                 <Featured data={highestRated} />
                 <SearchMoreLink link="{path}/all?sort=highest-rated" />
             {/snippet}
         </Section>
 
-        <Section title="Most-Reviewed Cleaners">
+        <Section title="Most-Reviewed">
             {#snippet content()}
                 <Featured data={mostReviewed} />
                 <SearchMoreLink link="{path}/all?sort=most-reviewed" />
@@ -106,7 +106,7 @@
         </Section>
     {/if}
 
-    <Section title="Search Professional Cleaners by Region">
+    <Section title="Find Professional Cleaners by Region">
         {#snippet content()}
             <RegionsSection data={allRegions} />
         {/snippet}

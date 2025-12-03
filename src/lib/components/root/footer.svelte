@@ -19,7 +19,7 @@
     ];
 </script>
 
-<div class="bg-green-800 p-4 md:pt-10 pb-6 md:pb-12 text-white">
+<div class="bg-green-800 p-4 md:pt-10 pb-18 md:pb-12 text-white">
     <div class="flex flex-col my-2 md:my-4 mx-2 md:mx-auto md:w-[90%] md:max-w-6xl md:flex-row md:items-start justify-between gap-8">
         <div class="grid gap-1">
             <h2 class="text-md">FindProCleaners.co.nz</h2>

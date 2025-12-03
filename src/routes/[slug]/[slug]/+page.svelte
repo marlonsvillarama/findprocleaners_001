@@ -110,7 +110,7 @@
                 {#snippet filters()}
                     <div class="flex flex-wrap gap-2 items-center w-full border-0 border-gray-200">
                         {#each serviceTypes as st}
-                            <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-xs sm:text-sm cursor-pointer">
+                            <div class="tile border rounded-sm flex items-center gap-2 relative px-3 py-1 text-md cursor-pointer">
                                 <label for={st.slug} class="cursor-pointer">
                                     {st.name}
                                 </label>

@@ -117,7 +117,7 @@
             <!-- <div class="flex gap-8 items-center"> -->
                 <Paragraph>
                     {#snippet text()}
-                    Whether you're a busy professional in Wellington, a family in Hamilton juggling work and school runs, or a retiree in Nelson wanting to maintain your home without the physical strain, professional cleaners offer tailored solutions to meet diverse needs.
+                    Whether you're a busy professional in Wellington or a retiree in Nelson wanting to maintain your home, professional cleaners offer tailored solutions to meet diverse needs.
                     {/snippet}
                 </Paragraph>
                 <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
