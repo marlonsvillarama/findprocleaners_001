@@ -12,12 +12,17 @@
 <div class="grid gap-3">
     <FaqItem title="How much do professional cleaning services cost in {place}?">
         {#snippet content()}
-            <Paragraph class="px-4 md:px-8 mb-3">
+            <Paragraph class="px-4 md:px-8 mb-6 sm:mb-4">
                 {#snippet text()}
-                Professional cleaning rates vary depending on your location, the size of your property, and the type of service required. Generally, you can expect to pay between $30-$50 per hour for standard domestic cleaning, with rates typically higher in major cities like Auckland and Wellington.
+                Professional cleaning rates vary depending on your location, the size of your property, and the type of service required.
                 {/snippet}
             </Paragraph>
-            <Paragraph class="px-4 md:px-8 mb-3">
+            <Paragraph class="px-4 md:px-8 mb-6 sm:mb-4">
+                {#snippet text()}
+                Generally, you can expect to pay between $30-$50 per hour for standard domestic cleaning, with rates typically higher in major cities like Auckland and Wellington.
+                {/snippet}
+            </Paragraph>
+            <Paragraph class="px-4 md:px-8">
                 {#snippet text()}
                 Deep cleans or specialised services such as carpet cleaning, oven cleaning, or end-of-tenancy cleans are usually quoted as fixed prices based on the property size and condition.
                 {/snippet}

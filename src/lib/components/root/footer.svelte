@@ -25,7 +25,7 @@
             <h2 class="text-md">FindProCleaners.co.nz</h2>
             <h2 class="text-sm font-light md:text-sm">&copy; Copyright 2025</h2>
         </div>
-        <div class="grid md:flex-row items-left md:items-center gap-1 md:gap-2">
+        <div class="grid md:flex-row items-left md:items-center gap-3 md:gap-3">
             {#each links as link}
                 <a href={link.url} title={link.text} class="text-sm font-light text-gray-200 pb-[2px] border-b-2 border-transparent
                     hover:text-white hover:border-white">{link.text}</a>

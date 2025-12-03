@@ -8,7 +8,7 @@
 </script>
 
 <p class={cn(
-    "font-normal tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]",
+    "font-normal sm:font-light tracking-[0.25px] leading-[1.75rem] sm:leading-[1.75rem]",
     className
 )}>
     {@render text()}

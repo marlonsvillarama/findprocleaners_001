@@ -49,7 +49,7 @@
             <!-- <div class="flex gap-6 md:gap-8 items-center"> -->
                 <Paragraph>
                     {#snippet text()}
-                    While many New Zealanders take pride in keeping their spaces tidy, the reality of modern life—with demanding work schedules, family commitments, and the desire to make the most of our beautiful outdoors—often leaves little time for thorough cleaning.
+                    While many of us New Zealanders take pride in keeping our spaces tidy, our demanding work schedules, family commitments, and the desire to make the most of our beautiful outdoors often leave little time for thorough cleaning.
                     {/snippet}
                 </Paragraph>
                 <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
@@ -60,7 +60,8 @@
             <!-- <div class="flex gap-8 items-center"> -->
                 <Paragraph>
                     {#snippet text()}
-                    Our climate, with its mix of humidity in the north and dampness in many regions, can also create unique challenges such as mould growth, especially in older homes with limited insulation.
+                    The New Zealand climate has a mix of humidity and dampness in many regions, which creates unique challenges like mould growth especially in older homes with limited insulation.
+                    <!-- Our climate, with its mix of humidity in the north and dampness in many regions, can also create unique challenges such as mould growth, especially in older homes with limited insulation. -->
                     {/snippet}
                 </Paragraph>
                 <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
@@ -125,11 +126,11 @@
             <!-- </div> -->
 
             <!-- <div class="flex gap-8 items-center"> -->
-                <Paragraph>
+                <!-- <Paragraph>
                     {#snippet text()}
                     From regular domestic cleaning and deep cleans to specialised services like carpet cleaning, window washing, and end-of-tenancy cleans, these professionals use commercial-grade equipment and products that achieve results beyond what's possible with standard household supplies.
                     {/snippet}
-                </Paragraph>
+                </Paragraph> -->
                 <!-- <p class="font-normal sm:font-light tracking-[0.25px] leading-[1.5rem] sm:leading-[1.75rem]">
                     From regular domestic cleaning and deep cleans to specialised services like carpet cleaning, window washing, and end-of-tenancy cleans, these professionals use commercial-grade equipment and products that achieve results beyond what's possible with standard household supplies.
                 </p> -->

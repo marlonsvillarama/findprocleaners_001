@@ -14,7 +14,7 @@
 </script>
 
 <div class="grid gap-1">
-    <button class="px-4 md:px-5 py-2 md:py-4 bg-gray-100 rounded-sm text-left" onclick={() => isOpen = !isOpen}>
+    <button class="px-4 md:px-5 py-2 md:py-4 bg-green-700/10 rounded-sm text-left" onclick={() => isOpen = !isOpen}>
         <div class="md:flex gap-3 items-center justify-between">
             <h3 class="text-md sm:text-lg tracking-[0.25px] font-medium">{title}</h3>
             <MousePointerClick class="hidden md:inline-block" size={20} />

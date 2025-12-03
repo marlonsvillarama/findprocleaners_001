@@ -13,9 +13,9 @@
     className
 )}>
     {#if title}
-        <h2 class="text-xl md:text-3xl text-green-800">{title}</h2>
+        <h2 class="text-2xl sm:text-3xl text-green-800">{title}</h2>
     {/if}
-    <div class="grid gap-4 text-sm md:text-md">
+    <div class="grid gap-4 text-md">
         {@render content()}
     </div>
 </div>
