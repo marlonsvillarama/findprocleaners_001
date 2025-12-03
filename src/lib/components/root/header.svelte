@@ -63,7 +63,7 @@
                 <Sheet.Header class="border-b-1 border-gray-200">
                     <Sheet.Title class="title text-2xl">Find Pro Cleaners</Sheet.Title>
                 </Sheet.Header>
-                <div class="grid gap-3 px-4">
+                <div class="grid gap-3 px-4 pb-4 max-h-[500px] overflow-scroll">
                     {#each links as link}
                         <div class="grid gap-2 items-center">
                             <a href={link.url} title={link.text} target="_self"
