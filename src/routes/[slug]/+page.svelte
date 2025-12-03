@@ -2,6 +2,7 @@
     import * as Collapsible from "$lib/components/ui/collapsible/index.js";
     import Separator from "$lib/components/ui/separator/separator.svelte";
 
+    import CitiesFilter from "$lib/components/root/cities-filter.svelte";
     import CitiesList from "$lib/components/root/cities-list.svelte";
     import FAQ from "$lib/components/root/faq.svelte";
     import Featured from "$lib/components/root/featured.svelte";
@@ -48,8 +49,10 @@
     title="Find Professional Cleaners In {region.name}"
 />
 
-<div class="grid gap-12 md:gap-24 bg-background-light">
-    <Hero title="Find Professional Cleaners in {region.name}" data={region} image="regions/{region.image_path}" />
+<div class="grid md:gap-24 bg-background-light">
+    <Hero title="Find Professional Cleaners in {region.name}"
+        data={region} image="regions/{region.image_path}"
+        class="mb-6" />
 
     <!-- <div class="flex items-center justify-between"> -->
     <!-- <div class="md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500 grid gap-6">
@@ -59,7 +62,7 @@
         </a>
     </div> -->
 
-    <Section title={region.page_title}>
+    <!-- <Section title={region.page_title}>
         {#snippet content()}
             {#each page_content as pc}
                 <div class="grid items-center">
@@ -68,11 +71,10 @@
                         {pc}
                         {/snippet}
                     </Paragraph>
-                    <!-- <p class="font-light tracking-[0.25px] leading-[1.75rem]">{pc}</p> -->
                 </div>
             {/each}
         {/snippet}
-    </Section>
+    </Section> -->
 
     <!-- <Section>
         {#snippet content()}
@@ -80,30 +82,40 @@
         {/snippet}
     </Section> -->
 
+    <Section class="mb-4">
+        {#snippet content()}
+            <CitiesFilter data={region} />
+        {/snippet}
+    </Section>
+
     {#if listings.length > 0}
         {#if featured.length > 0}
-        <!-- <a id="featured"> -->
-        <Section title="Featured Cleaners">
-            {#snippet content()}
-                <Featured data={featured} />
-                <SearchMoreLink link="{path}/all?sort=featured" />
-            {/snippet}
-        </Section>
+            <Section title="Featured Cleaners" class="mb-12">
+                {#snippet actions()}
+                    <a href="/" class="text-sm text-blue-500 font-light">
+                        View all ({listings.length})
+                    </a>
+                {/snippet}
+                {#snippet content()}
+                    <Featured data={featured} />
+                    <!-- <SearchMoreLink link="{path}/all?sort=featured" /> -->
+                {/snippet}
+            </Section>
         {/if}
 
-        <Section title="Highest-Rated">
+        <!-- <Section title="Highest-Rated">
             {#snippet content()}
                 <Featured data={highestRated} />
-                <SearchMoreLink link="{path}/all?sort=highest-rated" />
+                <-- <SearchMoreLink link="{path}/all?sort=highest-rated" /> --
             {/snippet}
-        </Section>
+        </Section> -->
 
-        <Section title="Most-Reviewed">
+        <!-- <Section title="Most-Reviewed">
             {#snippet content()}
                 <Featured data={mostReviewed} />
-                <SearchMoreLink link="{path}/all?sort=most-reviewed" />
+                <-- <SearchMoreLink link="{path}/all?sort=most-reviewed" /> --
             {/snippet}
-        </Section>
+        </Section> -->
     {/if}
 
     <Section title="Find Professional Cleaners by Region">

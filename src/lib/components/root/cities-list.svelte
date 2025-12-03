@@ -41,7 +41,7 @@
 
 <style>
     button {
-        font-family: 'Noto Serif', serif;
+        font-family: 'Red Rose', serif;
     }
     /* .city-grid {
         display: grid;

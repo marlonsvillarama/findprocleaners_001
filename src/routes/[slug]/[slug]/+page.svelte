@@ -1,5 +1,6 @@
 <script>
     import Checkbox from "$lib/components/ui/checkbox/checkbox.svelte";
+    import CitiesFilter from "$lib/components/root/cities-filter.svelte";
     import CitiesList from "$lib/components/root/cities-list.svelte";
     import FAQ from "$lib/components/root/faq.svelte";
     import RegionsSection from "$lib/components/root/regions-section.svelte";
@@ -93,10 +94,11 @@
 />
 
 <!-- <div class="grid gap-24"> -->
-<div class="grid gap-12 md:gap-24 bg-background-light border-t-1 border-green-700 pt-3">
+<div class="grid gap-6 md:gap-24 bg-background-light border-t-1 border-green-700 pt-3">
     <Section title="Professional Cleaners in {title}">
         {#snippet content()}
-            <CitiesList data={region} {slug} />
+            <CitiesFilter data={region} selected={slug} />
+            <!-- <CitiesList data={region} {slug} /> -->
         {/snippet}
     </Section>
 

@@ -6,12 +6,14 @@
     import * as Select from '$lib/components/ui/select/index';
     import Button from '../ui/button/button.svelte';
     import Input from '../ui/input/input.svelte';
+    import { cn } from '$lib/utils';
     import { tick } from 'svelte';
 
     import { Building2 } from '@lucide/svelte';
     import { Search } from '@lucide/svelte';
     
     let {
+        class: className,
         data,
         image = 'find_pro_cleaners.png',
         title = 'Find Professional Cleaners Near You',
@@ -31,34 +33,40 @@
     }
 
     let open = $state(false);
-    let selectedCity = $state('');
+    let selectedValue = $state('');
     let triggerRef = $state(null);
     
-    const selectedCityObject = $derived((data?.cities || []).find(f => f.id === selectedCity) || {});
-    const isSearchDisabled = $derived(!!selectedCity === false);
+    const selectedObject = $derived((data?.regions || []).find(f => f.id === selectedValue) || {});
+    const isSearchDisabled = $derived(!!selectedValue === false);
 
     const closeAndFocusTrigger = () => {
         open = false;
         tick().then(() => triggerRef.focus());
     };
 
-    const searchCity = () => {
+    const searchRegion = () => {
         // console.log(`selectedCityObject = ${JSON.stringify(selectedCityObject)}`);
         if (isSearchDisabled === true) { return; }
 
-        let url = `/professional-cleaners-in-${selectedCityObject.region.slug}/${selectedCityObject.slug}`;
+        let url = `/professional-cleaners-in-${selectedObject.slug}`;
+        // let url = `/professional-cleaners-in-${selectedCityObject.region.slug}/${selectedCityObject.slug}`;
         // console.log('new url', url);
         // alert(`selectedCityObject = ${JSON.stringify(selectedCityObject)}`);
         window.location = url;
     };
 </script>
 
-<div class="banner relative pt-12 pb-18 sm:pt-24 sm:pb-30" style="background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('/images/{image}'); {bannerClasses}">
+<!-- <div class="banner relative pt-12 pb-18 sm:pt-24 sm:pb-30" style="background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('/images/{image}'); {bannerClasses}"> -->
+<div class={cn(
+        "banner relative pt-12 pb-18 sm:pt-24 sm:pb-30",
+        className
+    )} style="background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('/images/{image}'); {bannerClasses}"
+>
     <div class="mx-6 sm:mx-auto sm:w-[85%] sm:max-w-6xl border-0 border-red-500">
         <div class="grid gap-6 lg:max-w-[60%] border-0 border-green-500">
             <h1 class="text-3xl font-normal md:text-5xl text-white leading-[2.25rem] sm:leading-[3.5rem]">{title}</h1>
             {#if subtitle}
-                <p class="text-white text-md md:text-xl font-light tracking-[0.25px]">Discover the best professional cleaning services in your city.</p>
+                <p class="text-white text-md md:text-xl font-light tracking-[0.25px]">{subtitle}</p>
             {/if}
             {#if search === true}
             <div class="flex items-center gap-2">
@@ -73,7 +81,7 @@
                                 role="combobox"
                                 area-expanded={open}
                             >
-                                {selectedCityObject.name || "Select your city..."}
+                                {selectedObject.name || "Select your region"}
                                 <!-- <Search size={16} class="absolute top-[14px] left-[12px] stroke-(text-foreground) stroke-2" /> -->
                             </div>
                         {/snippet}
@@ -84,15 +92,15 @@
                         <Command.Root>
                             <Command.Input placeholder="Type your city here..." />
                             <Command.List>
-                                {#each (data.cities || []) as city (city.id)}
+                                {#each (data.regions || []) as region (region.id)}
                                     <Command.Item
                                         class="text-sm"
-                                        selectedCity={city.id}
+                                        selectedValue={region.id}
                                         onSelect={() => {
-                                            selectedCity = city.id;
+                                            selectedValue = region.id;
                                             closeAndFocusTrigger();
                                         }}
-                                    >{city.name}</Command.Item>
+                                    >{region.name}</Command.Item>
                                 {/each}
                             </Command.List>
                         </Command.Root>
@@ -109,7 +117,7 @@
                 <!-- </Select.Root> -->
                 <button type="button"
                     disabled={isSearchDisabled}
-                    onmouseup={searchCity}
+                    onmouseup={searchRegion}
                     class="bg-green-700 text-md text-white px-3 md:px-4 py-2 md:py-3 rounded-xs md:rounded-sm cursor-pointer hover:bg-green-800 hover:shadow-md duration-[100ms]"
                 >Go!</button>
             </div>
@@ -125,6 +133,6 @@
         background-size: cover;
     }
     .banner h1 {
-        font-family: "Noto Serif", serif;
+        font-family: "Gabarito", sans-serif;
     }
 </style>

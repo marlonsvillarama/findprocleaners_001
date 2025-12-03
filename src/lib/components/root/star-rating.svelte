@@ -9,7 +9,7 @@
 </script>
 
 <div class="grid grid-cols-2 gap-1 items-center justify-between w-full">
-    <div class="flex items-center gap-1 font-extrabold text-lg text-green-800">
+    <div class="flex items-center gap-1 font-extrabold text-md sm:text-lg text-green-800">
         {(rating || 0).toFixed(1)}
         <Star size={16} class="fill-yellow-500" />
     </div>

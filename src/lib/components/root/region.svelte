@@ -12,11 +12,11 @@
 >
     <div class="h-[150px] sm:h-[200px] border-0 border-red-500 home-cleaning rounded-t-md"
         style="background-image: url(/images/regions/{data.image_path}); background-size: cover;"></div>
-    <div class="flex region-name justify-center pt-1 pb-2 rounded-b-md">{data.name}</div>
+    <div class="flex region-name justify-center py-1 rounded-b-md text-sm">{data.name}</div>
 </a>
 
 <style>
-    .region-name {
+    /* .region-name {
         font-family: 'Noto Serif', serif;
-    }
+    } */
 </style>

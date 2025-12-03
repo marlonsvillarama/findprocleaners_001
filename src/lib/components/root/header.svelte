@@ -64,9 +64,9 @@
                 <div class="grid gap-4 mx-4">
                     {#each links as link}
                         <div class="flex gap-2 items-center">
-                            <ChevronRight size={16} />
-                            <a href={link.url} title={link.text} target="_self" class="text-lg font-normal text-green-700 pb-[2px] border-b-2 border-transparent
-                                hover:text-green-900 hover:border-green-900">{link.text}</a>
+                            <!-- <ChevronRight size={16} /> -->
+                            <a href={link.url} title={link.text} target="_self"
+                                class="pl-5 text-lg font-normal text-green-700 pb-[2px] border-b-2 border-transparent hover:text-green-900 hover:border-green-900">{link.text}</a>
                         </div>
                     {/each}
                 </div>
@@ -77,6 +77,6 @@
 
 <style>
     .header-logo {
-        font-family: "Noto Serif", serif;
+        font-family: "Gabarito", sans-serif;
     }
 </style>

@@ -48,6 +48,6 @@
 
 <style>
     h3 {
-        font-family: 'Noto Serif', serif;
+        font-family: 'Gabarito', sans-serif;
     }
 </style>

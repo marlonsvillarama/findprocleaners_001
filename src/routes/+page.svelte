@@ -41,7 +41,7 @@
 <Seo />
 
 <div class="grid gap-12 md:gap-24 bg-background-light">
-    <Hero subtitle="Discover the best professional cleaning services in your city."
+    <Hero subtitle="Discover the best professional cleaning services near you."
         {data} search={true} />
 
     <Section title="Why Hire Professional Cleaners?">

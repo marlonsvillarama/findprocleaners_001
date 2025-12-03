@@ -25,7 +25,7 @@
 
 <div class="border-0">
     <div class="sm:flex items-center justify-between mb-2">
-        <h2 class="text-lg md:text-2xl text-green-800 mb-1">Found {listings.length} result{listings.length === 1 ? '' : 's'}</h2>
+        <h2 class="text-md md:text-2xl text-green-800 font-semibold mb-1">Found {listings.length} result{listings.length === 1 ? '' : 's'}</h2>
         <div class="flex items-center justify-between">
             <div class="flex gap-2 sm:gap-3 items-center">
                 <span class="text-md sm:text-sm">Sort by:</span>
@@ -34,8 +34,10 @@
                     <option value="highest-rated">Highest rated</option>
                     <option value="most-reviewed">Most reviewed</option>
                 </select>
-                <input type="button" value="Go" onclick={updateSortMethod}
-                    class="rounded-sm px-3 py-1.5 sm:py-2 text-md sm:text-sm border cursor-pointer bg-gray-100 hover:bg-gray-200" />
+                <button onclick={updateSortMethod}
+                    class="rounded-sm px-3 py-1.5 sm:py-2 text-md sm:text-sm border cursor-pointer bg-gray-100 hover:bg-gray-200">
+                    Go
+                </button>
             </div>
             <Button size="icon" variant="outline" onclick={() => isOpen = !isOpen}>
                 <Funnel size={20} />
@@ -61,7 +63,7 @@
     </div>
 
     {#if listings.length > 0}
-        <div class="grid gap-3 mt-8">
+        <div class="grid gap-3 mt-3">
             {#each listings as item}
                 <SearchResultItem {item} />
             {/each}
@@ -70,7 +72,7 @@
 </div>
 
 <style>
-    h2 {
-        font-family: 'Noto Serif', serif;
-    }
+    /* h2 {
+        font-family: 'Gabarito', sans-serif;
+    } */
 </style>

@@ -4,7 +4,7 @@
     let { data } = $props();
 </script>
 
-<div class="grid featured justify-between gap-4 md:gap-12 border-0 border-gray-500">
+<div class="grid featured justify-between gap-3 md:gap-12 border-0 border-gray-500">
     {#each data.slice(0, 3) as featured}
         <FeaturedCard city={featured.city} data={featured.data} />
     {/each}

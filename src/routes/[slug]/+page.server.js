@@ -103,7 +103,7 @@ export async function load({ params, url }) {
     let regionId = slug.slice(PREFIX.length);
     let allRegions = await getRegions(regionId);
     let region = allRegions.find(d => d.slug === regionId);
-    // console.log(`*** ${regionId} region`, region);
+    console.log(`*** ${regionId} region`, region);
 
     if (!region) {
         redirect(302, '/not-found');
