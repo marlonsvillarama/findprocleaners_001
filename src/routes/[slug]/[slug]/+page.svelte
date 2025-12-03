@@ -140,11 +140,11 @@
         {/snippet}
     </Section>
 
-    <Section title="Professional Cleaners in {title}">
+    <!-- <Section title="Professional Cleaners in {title}">
         {#snippet content()}
             <CitiesList data={region} {slug} />
         {/snippet}
-    </Section>
+    </Section> -->
 
     <!-- <div class="pb-12 md:pb-24 mx-6 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500"> -->
     <!-- <div class="pt-4 mb-24 md:mx-auto md:w-[85%] md:max-w-6xl border-0 border-red-500"> -->

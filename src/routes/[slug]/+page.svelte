@@ -74,11 +74,11 @@
         {/snippet}
     </Section>
 
-    <Section>
+    <!-- <Section>
         {#snippet content()}
             <CitiesList data={region} />
         {/snippet}
-    </Section>
+    </Section> -->
 
     {#if listings.length > 0}
         {#if featured.length > 0}

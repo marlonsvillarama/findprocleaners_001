@@ -14,7 +14,7 @@
 
 <div class="grid md:gap-1 border-0 border-gray-500 shadow-sm rounded-md ">
     <button type="button" class="text-lg md:text-md text-gray-700/80 px-3 py-2 bg-gray-200 rounded-t-md {isOpen ? 'rounded-b-0' : 'rounded-b-md'}" onclick={() => isOpen = !isOpen}>
-        Select another city in this region
+        Select a city within this region
     </button>
 
     <div class="{isOpen ? 'block' : 'hidden'}">
