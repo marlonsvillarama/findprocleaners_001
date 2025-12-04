@@ -16,7 +16,7 @@
 
 <div class="grid gap-1 border-1 border-gray-200 rounded-sm px-5 py-3 border-l-3 border-l-green-700/60 hover:border-gray-200 hover:border-l-green-700 shadow-sm hover:shadow-sm">
     <div class="items-center justify-between w-full">
-        <h3 class="text-gray-700 sm:text-md font-semibold w-full mb-1">{data.name}</h3>
+        <h3 class="text-gray-700 text-lg sm:text-md font-semibold w-full mb-1">{data.name}</h3>
 
         <StarRating rating={data.rating_ave} count={data.review_count} link={data.review_link} />
     </div>
@@ -35,7 +35,7 @@
         {/each}
     </div>
 
-    <div class="grid mt-2 gap-2">
+    <!-- <div class="grid mt-2 gap-2"> -->
         <!-- <div class="flex items-center gap-2 text-sm">
             <House size={16} />
             <span class="font-light">
@@ -44,7 +44,7 @@
             </span>
         </div> -->
 
-        <div class="grid mb-1 gap-1 lg:gap-12 lg:flex lg:items-center text-sm">
+        <div class="grid grid-cols-2 mt-3 mb-1 gap-3 lg:gap-12 lg:flex lg:items-center">
             <div class="flex items-center gap-2 min-w-[200px]">
                 <Phone size={16} />
                 <span class="font-medium">{data.phone_1}</span>
@@ -57,16 +57,16 @@
                 </span>
             </div> -->
 
-            <div class="flex items-center gap-2 min-w-[200px]">
+            <div class="text-right flex items-center gap-2 min-w-[200px]">
                 <Globe size={16} />
                 {#if data.website}
-                    <a href={data.website} target="_blank" class="text-blue-600 underline">{data.website}</a>
+                    <a href={data.website} target="_blank" class="text-blue-600 underline">Visit website</a>
                 {:else}
                     <span>-</span>
                 {/if}
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 
     <!-- {#if data.reviews.length > 0}
         <div class="flex flex-col gap-1 items-start mt-2 mb-4">
