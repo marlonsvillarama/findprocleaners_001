@@ -74,6 +74,7 @@ async function getListings ({ cities }) {
             is_featured,
             review_count,
             rating_ave,
+            review_link,
             image_path,
             multiple_cities,
             services:fpc_listing_service_types (
@@ -84,11 +85,6 @@ async function getListings ({ cities }) {
                     name,
                     slug
                 )
-            ),
-            reviews:fpc_reviews (
-                id,
-                author_title,
-                review_text
             )
         )
     `)
