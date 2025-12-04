@@ -7,6 +7,12 @@
         selected = 'all'
     } = $props();
     console.log('*** cities-filter data ***', data);
+    data.cities.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+    });
+    console.log('data cities', data.cities);
 
     let value = $state(selected || 'all');
     const updateCity = () => {
